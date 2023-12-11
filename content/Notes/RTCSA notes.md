@@ -1599,7 +1599,8 @@ From early to latest
 	- process data
 	- write data
 		- write result of execution to memory or I/O module
-- internal structure![[Pasted image 20231211160821.png|425]]
+- internal structure
+  ![[Pasted image 20231211160821.png|350]]
 
 ### register organization
 - level is higher than cache and main memory
@@ -1623,6 +1624,47 @@ From early to latest
 				- simplify `BRANCH` instructions
 				- facilitate multiway branches
 				- saved on the stack during subroutine calls
+- control and status registers
+	- 4 essential registers
+		1. program counter (PC)
+			- contains address of <font color="#245bdb">next</font> instruction
+		2. instruction register (IR)
+			- contains instruction <font color="#245bdb">most recently</font> fetched
+		3. memory address register (MAR)
+			- contains <font color="#245bdb">address</font> of a location in memory
+		4. memory buffer register (MBR)
+			- contains a word of data <font color="#245bdb">to be written</font> to memory or the word most <font color="#245bdb">recently read</font>.
+- program status word
+	- what's this: registers that contain <font color="#245bdb">status information</font>
+	- common fields or flags
+		- sign
+		- zero
+		- carry
+		- equal
+		- overflow
+		- interrupt enable/disable
+		- supervisor
+- example of register organization
+	- MC68000
+		- length: 32 bit
+		- partition: 8 data registers and 9 address registers
+		- data register: for data manipulation & addressing as index register
+		- allows 8-, 16-, and 32-bit data operations, determined by opcode
+	- Intel 8086
+		- length: 16-bit
+		- category
+			- *General-purpose registers*: addressable on a byte or 16-bit basis
+			- *Special purpose registers*: Pointers and Index
+			- *Segment registers*: allows only four segments to work at a time
+			- *Flag register*: condition control and program status
+
+### instruction cycle
+- 4 stages of instruction cycle
+	1. fetch: <font color="#245bdb">Read</font> the <font color="#245bdb">next instruction</font> from memory into the processor.
+	2. execute: <font color="#245bdb">Interpret</font> the opcode and perform the indicated operation.
+	3. Interrupt: If interrupts are enabled and an interrupt has occurred, <font color="#245bdb">save</font> the <font color="#245bdb">current state</font> and <font color="#245bdb">service</font> the interrupt
+	4. Indirect: If indirect addressing is used, then additional memory accesses are required
+- (存档L14, P18)
 
 ## Lecture 18 Multi-core Computers
 
