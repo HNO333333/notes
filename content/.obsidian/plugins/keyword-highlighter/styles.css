@@ -1,0 +1,7 @@
+.kh-highlighted {
+  padding: 3px;
+  /*border-radius: 3px;*/
+  border-radius: 2px;
+  color: var(--kh-c);
+  background-color: var(--kh-bgc);
+}

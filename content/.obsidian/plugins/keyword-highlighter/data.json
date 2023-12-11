@@ -1,0 +1,29 @@
+{
+  "keywords": [
+    {
+      "keyword": "UPDATE",
+      "color": "#000",
+      "backgroundColor": "#ccebff"
+    },
+    {
+      "keyword": "TODO",
+      "color": "#000",
+      "backgroundColor": "#bdffe6"
+    },
+    {
+      "keyword": "FIXME",
+      "color": "#000",
+      "backgroundColor": "#BAA2E8"
+    },
+    {
+      "keyword": "NEW",
+      "color": "",
+      "backgroundColor": "#e1ffd6"
+    },
+    {
+      "keyword": "FOLLOW",
+      "color": "",
+      "backgroundColor": "#ffd6d6"
+    }
+  ]
+}

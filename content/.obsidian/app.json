@@ -1,0 +1,20 @@
+{
+  "promptDelete": false,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "imgs",
+  "defaultViewMode": "source",
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true,
+  "strictLineBreaks": true,
+  "autoPairMarkdown": true,
+  "autoPairBrackets": true,
+  "readableLineLength": true,
+  "pdfExportSettings": {
+    "includeName": false,
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 90
+  },
+  "propertiesInDocument": "visible"
+}

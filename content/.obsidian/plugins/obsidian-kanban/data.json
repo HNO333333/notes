@@ -1,0 +1,11 @@
+{
+  "new-note-folder": "dashboard/cards",
+  "show-checkboxes": true,
+  "hide-tags-in-title": true,
+  "show-add-list": true,
+  "show-view-as-markdown": false,
+  "show-search": false,
+  "show-relative-date": true,
+  "archive-with-date": true,
+  "new-card-insertion-method": "prepend"
+}
