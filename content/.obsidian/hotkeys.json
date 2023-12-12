@@ -186,14 +186,5 @@
       "key": "6"
     }
   ],
-  "workspace:goto-tab-6": [],
-  "quickadd:choice:26a6a00a-ad6a-41d8-a461-521f57e926c7": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "I"
-    }
-  ]
+  "workspace:goto-tab-6": []
 }

@@ -46,7 +46,7 @@ author: HNO3
 - planning
 - action
 - maintenance
-- ![[Pasted image 20231201205248.png|500]]
+- ![[IS notes-20231212-1.png|500]]
 
 <span style="background:rgba(3, 135, 102, 0.2)">Risk Analysis</span>
 
@@ -134,7 +134,7 @@ author: HNO3
 		- Software attack surface
 		- Human attack surface
 - defense in depth and attack surfaces
-	- ![[Pasted image 20231201212855.png|253]]
+	- ![[IS notes-20231212-2.png|253]]
 	- attack surface analysis: useful to assess the scale and severity of threats
 	- analysis of vulnerability: useful for developers aware of where security mechanism required
 	- defined attack surfaces -> find ways to make surface smaller -> less risk
@@ -149,7 +149,7 @@ author: HNO3
 		- goal represented by **AND**-node: all subgoals must be achieved
 		- goal represented by **OR**-node: a least one subgoal must be achieved
 	- branches can be labelled by values (difficulty, cost or others)
-	- example ![[Pasted image 20231201213830.png]]
+	- example ![[IS notes-20231212-3.png]]
 
 
 <span style="background:rgba(3, 135, 102, 0.2)">3 Components Involved in Authentication</span>
@@ -175,7 +175,7 @@ author: HNO3
 
 <span style="background:rgba(3, 135, 102, 0.2)">Model for Network Security</span>
 
-- ![[Pasted image 20231201214525.png]]
+- ![[IS notes-20231212-4.png]]
 - message transferred by internet service
 - security is to protect information transmission
 - techniques for providing security
@@ -212,7 +212,7 @@ author: HNO3
 - requirement of security
 	- strong encryption algorithm
 	- sender and receiver should obtain copies of secret key in a secure way and must keep key secure
-- model ![[Pasted image 20231201215924.png]]
+- model ![[IS notes-20231212-5.png]]
 	- Y = E(K,X)
 	- X = D(K,Y)
 - how to characterize cryptographic system
@@ -244,7 +244,7 @@ author: HNO3
 - easy to break: ciphertext contains the frequency information of plaintext
 
 ### Playfair Cipher
-- ![[Pasted image 20231202114630.png|397]]
+- ![[IS notes-20231212-6.png|397]]
 - how to encrypt
 	- break plain text into pairs, and filled with "filler letter". balloon -> ba lx lo on
 	- two plaintext letter at the same row: replaced by letter to the right: ar -> RM (circularly right)
@@ -259,7 +259,7 @@ author: HNO3
 - $\mathbf{A}=\begin{pmatrix}5&8\\17&3\end{pmatrix}$, $\mathbf{A^{-1}}mod26=\begin{pmatrix}9&2\\1&15\end{pmatrix}$,
   $\mathbf{AA^{-1}}=\begin{pmatrix}53&130\\156&79\end{pmatrix}mod26 = \begin{pmatrix}1&0\\0&1\end{pmatrix}$
 - how to calculate inverse matrix
-	- determinant: ![[Pasted image 20231202120333.png]]
+	- determinant: ![[IS notes-20231212-7.png]]
 	- $$ [\mathbf{A}^{-1}]_{ij}=(\det\mathbf{A})^{-1}(-1)^{i+j}(\mathbf{D}_{ji})$$
 - Hill algorithm
 	- take m successive plaintext letters and substitute with m ciphertext letters, and the process of substitution is determined by m linear equations: $$ \begin{aligned}c_1&=(k_{11}p_1+k_{21}p_2+k_{31}p_3)\bmod26\\c_2&=(k_{12}p_1+k_{22}p_2+k_{32}p_3)\bmod26\\c_3&=(k_{13}p_1+k_{23}p_2+k_{33}p_3)\bmod26\end{aligned}$$
@@ -299,8 +299,8 @@ author: HNO3
 	- key distribution and protection
 
 <span style="background:rgba(3, 135, 102, 0.2)">Transposition Techniques</span>
-- Rail Fence: ![[Pasted image 20231202161012.png]]
-- ![[Pasted image 20231202161203.png]]
+- Rail Fence: ![[IS notes-20231212-8.png]]
+- ![[IS notes-20231212-9.png]]
 	- write plaintext row-by-row, and cipher according to the column number from key and encrypt it column by column
 	- by more than 1 stage of transposition, it will become less easy to reconstruct
 
@@ -318,10 +318,10 @@ author: HNO3
 - example: Vigenere cipher, Vernam cipher
 - limitation: keystream must be provided to both users in advance via some independent and secure channel
 - introduce insurmountable logistical problems
-- ![[Pasted image 20231202165324.png]]
+- ![[IS notes-20231212-10.png]]
 
 ### Block Cipher
-- ![[Pasted image 20231202165400.png]]
+- ![[IS notes-20231212-11.png]]
 - definition: a block of plaintext is treated as a whole and used to produce ciphertext block of equal length
 - compared with stream cipher: block cipher share same key
 
@@ -336,7 +336,7 @@ author: HNO3
 
 
 <span style="background:rgba(3, 135, 102, 0.2)">General n-bit-n-bit Block Substitution</span>
-- ![[Pasted image 20231202165908.png]]
+- ![[IS notes-20231212-12.png]]
 - vulnerable to frequency attack
 	- small block size will result this problem
 
@@ -356,7 +356,7 @@ author: HNO3
 		- how to realize: complex substitution algorithm
 
 #### Feistel Cipher Structure
-- ![[Pasted image 20231202172330.png]]
+- ![[IS notes-20231212-13.png]]
 - *encryption*
 	- divide into two parts LE & RE
 	- different rounds have different keys, any round can be implemented
@@ -374,13 +374,13 @@ author: HNO3
 	- encryption side
 	  $LE_{16} = RE_{15}$
 	  $RE_{16}=LE_{15} \oplus F(RE_{15}, K_{16})$
-	- decryption side ![[Pasted image 20231202194001.png|221]]
+	- decryption side ![[IS notes-20231212-14.png|221]]
 	  $LD_1 = RD_0 = LE_{16}=RE_{15}$
 	  $RD_1=LD_0 \oplus F(RD_0,K16)=RE_{16} \oplus F(RD_0,K16)=[LE_{15}\oplus F(RE_{15},K_{16})]\oplus F(RE_{15},K_{16})$
 	- XOR properties
 		- $$[A\oplus B]\oplus C = A \oplus [B\oplus C] $$ $$D \oplus D = 0 $$$$E \oplus 0 = E$$
 	- each iteration encryption: $LE_i = RE_{i-1}$, $RE_i=LE_{i-1}\oplus F(RE_{i-1},K-i)$
-	- ![[Pasted image 20231202202933.png]] ![[Pasted image 20231202202948.png]]
+	- ![[IS notes-20231212-15.png]] ![[IS notes-20231212-16.png]]
 
 
 
@@ -389,7 +389,7 @@ author: HNO3
 ### DES: Data Encryption Standard
 - encrypt 64-bit input with a 56-bit key
 - encryption
-	- ![[Pasted image 20231202203149.png]]
+	- ![[IS notes-20231212-17.png]]
 	- 64-bit key input, but last 8 bits used as parity bits or set arbitrary
 	- exact structure of Feistel cipher
 	- Avalanche Effect
@@ -427,42 +427,42 @@ author: HNO3
 	- irreducible polynomial: can't be expressed by product of lower degree polynomials
 
 ### general structure of AES
-- ![[Pasted image 20231203114042.png]]
+- ![[IS notes-20231212-18.png]]
 - input: 128bits, key length: 16/24/32 bytes
 - input converted into 4\*4 matrix, copied into state array which is modified at each stage.
 - key is also depicted as a square matrix of bytes
 - each word is 4 bytes, total key schedule is 44 words for 128-bit key
-- ordering of key matrix is by column ![[Pasted image 20231203114209.png]]
+- ordering of key matrix is by column ![[IS notes-20231212-19.png]]
 - number of rounds
 	- 10 for 16-byte key, 12 for 24-byte key, 14 for 32-byte key
 - N-1 rounds functions
 	- *SubBytes*
-		- ![[Pasted image 20231203115655.png|450]]
+		- ![[IS notes-20231212-20.png|450]]
 		- essentially: table look-up
 			- leftmost 4 bits of the byte are used as a row value and the rightmost 4 bits are used as a column value
-			- example: {95} -> row 9, col 5 ![[Pasted image 20231203115941.png]]![[Pasted image 20231203115957.png]]
+			- example: {95} -> row 9, col 5 ![[IS notes-20231212-21.png]]![[IS notes-20231212-22.png]]
 			- how to construct S-box
 				- initialize: row y col x has value {yx}
 				- map each byte in S-box to its multiplicative inverse in the field GF($2^8$)
 				- each byte consist 8 bits, apply transformation: $$ b'_i=b_i\oplus b_{(i+4)\bmod8}\oplus b_{(i+5)\bmod8}\oplus b_{(i+6)\bmod8}\oplus b_{(i+7)\bmod8}\oplus c_i$$
-				- ![[Pasted image 20231203120504.png]]
+				- ![[IS notes-20231212-23.png]]
 	- *ShiftRows*
-		- ![[Pasted image 20231203120954.png]]
+		- ![[IS notes-20231212-24.png]]
 		- 1st row: not altered
 		- 2nd row: circular left shift 1 byte
 		- 3rd row: circular left shift 2 byte
 		- 4th row: circular left shift 3 byte
 	- *MixColumns*
-		- ![[Pasted image 20231203150118.png]]
+		- ![[IS notes-20231212-25.png]]
 	- *AddRoundKey*
-		- ![[Pasted image 20231203120049.png]]
+		- ![[IS notes-20231212-26.png]]
 		- state (1st matrix) XOR round key
 - final round
 	- only three transformation
 - before first round
 	- only AddRoundKey operation
 - detail structure
-	- ![[Pasted image 20231203114817.png]]
+	- ![[IS notes-20231212-27.png]]
 	- not Feistel structure
 		- not modify half: every round process the whole block
 	- key expanded into an array of 44 32-bit words, 4 distinct words serve as a round key
@@ -608,8 +608,8 @@ author: HNO3
 	- some other characteristics shown in certain algorithms
 		- either one related key can be used for encryption with the other for decryption
 - procedures
-	- ![[Pasted image 20231206172813.png]]
-	- ![[Pasted image 20231206172826.png]]
+	- ![[IS notes-20231212-28.png]]
+	- ![[IS notes-20231212-29.png]]
 	- essential steps
 		1. each user generates a pair of keys
 		2. each user place one of the keys to public access, while the other keep private
@@ -647,7 +647,7 @@ author: HNO3
   $$ \begin{aligned}K&=(Y_B)^{X_A}\operatorname{mod}q\\&=(\alpha^{X_B}\operatorname{mod}q)^{X_A}\operatorname{mod}q\\&=(\alpha^{X_B})^{X_A}\operatorname{mod}q\\&=\alpha^{X_BX_A}\operatorname{mod}q\\&=(\alpha^{X_A})^{X_B}\operatorname{mod}q\\&=(\alpha^{X_A}\operatorname{mod}q)^{X_B}\operatorname{mod}q\\&=(Y_A)^{X_B}\operatorname{mod}q\end{aligned}$$
 - symmetry property: $a\equiv b\mathrm{~(mod~}q)\mathrm{~if~}b\equiv a\mathrm{~(mod~}q)$
 - Man in the Middle Attack
-	- ![[Pasted image 20231206200616.png]]
+	- ![[IS notes-20231212-30.png]]
 	- A and B thought they share a secret key but their future communication will be monitored and changed by Darth.
 	- key exchange protocol is vulnerable because it does not authenticate the participants.
 		- how to overcome: digital signatures, public-key certificates
@@ -669,7 +669,7 @@ author: HNO3
 	- <font color="#92cddc">network access server</font> (NAS)
 		- access control point for users
 		- also called <font color="#92cddc">media gateway</font>, or <font color="#92cddc">remote access server</font> (RAS)
-	- ![[Pasted image 20231206202038.png]]
+	- ![[IS notes-20231212-31.png]]
 - Procedure
 	- different ARs seek access
 	- authenticate AR
@@ -702,13 +702,13 @@ author: HNO3
 		- framework for network access and authentication protocol
 		- provides a set of protocols between a client and an authentication server
 		- operate over variety of network and facilities, accommodate authentication needs of various networks
-		- ![[Pasted image 20231206204448.png]]
+		- ![[IS notes-20231212-32.png]]
 		- components of EAP
 			- EAP peer: client computers
 			- EAP authenticator: access point or NAS requires EAP authentication before granting access to network
 			- authentication server: negotiate use of EAP method with EAP peer, validate EAP peer's credentials, authorize access to network
 				- usually a Remote Authentication Dial-In User Service (RADIUS) server
-			- ![[Pasted image 20231206205021.png]]
+			- ![[IS notes-20231212-33.png]]
 	- Authentication Methods
 		- authenticator decisions involves
 			- authentication

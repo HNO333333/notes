@@ -20,7 +20,6 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.TableOfContents()),
     Component.DesktopOnly(Component.RecentNotes({title: "Latest",
                                                 limit: 3,
                                                 sort: (f1, f2) =>
@@ -29,7 +28,8 @@ export const defaultContentPageLayout: PageLayout = {
                                                 filter: (f) => !f.frontmatter?.isindex})),     
         ],
     
-  right: [Component.Graph(), Component.Backlinks()],
+  // right: [Component.Graph(), Component.Backlinks()],
+  right: [Component.DesktopOnly(Component.TableOfContents())],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
