@@ -1748,6 +1748,95 @@ From early to latest
 - approach: ability to execute instructions <font color="#245bdb">independently</font> and <font color="#245bdb">concurrently</font> in different pipelines
 - improve by allowing instructions to be executed in a <font color="#245bdb">different order</font> from the program order.
 
+### superscalar vs. scalar organization
+- traditional scalar organization
+	- one pipelined functional unit for integer operations and one for floating-point operations
+	- ![[Pasted image 20231212134849.png|400]]
+	- parallelism achieved by multiple instructions to be at different stages of the pipeline at one moment
+- superscalar organization
+	- multiple functional units, each of which is implemented as a pipeline
+		- allow processor to execute <font color="#245bdb">multiple streams</font> of instruction in parallel (one stream for each pipeline)
+	- ![[Pasted image 20231212135045.png|400]]
+	- each individual functional unit provide parallelism by virtue of its pipelined structure
+	- <font color="#245bdb">hardware</font> + <font color="#245bdb">compiler</font> to ensure no violation of original program
+
+### superpipelining
+- where to improve: based on the fact that many pipeline <font color="#245bdb">stages</font> perform tasks that <font color="#245bdb">require less than half a clock cycle</font>
+- ![[Pasted image 20231212135528.png|450]]
+	- base pipeline: issue one instruction per clock cycle, perform one pipeline stage per clock cycle, only one instruction is in its execution stage at any one time
+	- superpiplined: capable of performing two pipeline stages per clock cycle
+		- functions performed in each stage can be split into two non-overlapping parts and each can execute in half a clock cycle
+	- superscalar: capable of executing two instances of each stage in parallel
+- constraints
+	- how many percents of one program can be executed in parallel (degree of parallel)
+	- combination of <font color="#245bdb">compiler-based optimization</font> and <font color="#245bdb">hardware</font> techniques can be used to maximize instruction level parallelism
+- fundamental limitations
+	- Procedural dependency: if a instruction is followed by a branch, procedural dependency on the branch and cannot be executed until the branch is executed.
+	- Resource conflicts: is a competition of two or more instructions for the same resource at the same time
+	- other three aspects are the same as data hazard
+
+#### effect of dependencies
+![[Pasted image 20231212140625.png|500]]
+- for data dependency
+	- delayed as many clock cycles as required to remove dependency
+	- can be solved by <font color="#245bdb">register renaming</font>
+- for branch
+	- complicates the pipeline operation
+	- consequence is much more severe than data dependency
+
+### design issues
+- instruction level parallelism
+	- require instructions in a sequence are independent
+	- execution can be in parallel by overlapping
+	- governed by data & procedural dependency
+- machine parallelism
+	- <font color="#245bdb">measure</font> ability of processor can exploit the improvement by instruction level parallelism
+	- governed by number of parallel pipelines
+
+### instruction issue policy
+
+instruction issue
+- refer to the process of initiating instruction execution in the processor’s functional units
+
+instruction issue policy
+- processor try to look ahead of the current point of execution to locate instructions that can be brought into the pipeline and executed
+- refers to the protocol used to issue instructions
+
+3 types of orderings
+1. order of fetching instructions
+2. order of executing instructions
+3. order of updating contents of register and memory locations
+
+3 types of superscalar instruction issue policies
+1. in-order issue with in-order completion
+	- instruction start (issued) in order, and completion also in order
+	- there will have delay on issue & execution to guarantee in-order completion
+	- ![[Pasted image 20231212151306.png|300]]
+2. in-order issue with out-of-order completion
+	- ![[Pasted image 20231212151351.png|300]]
+	- allow instructions to be completed earlier
+3. out-of-order issue with out-of-order completion
+	- to allow out-of-order issue
+		- necessary to separate decode and execute stage of the pipeline
+		- done with buffer referred to as *instruction window*
+		- As long as this buffer is <font color="#245bdb">not full</font>, the processor can continue to fetch and decode new instructions
+	- conditions to issue execution stage
+		- particular functional unit for execution is available
+		- no conflicts or dependencies block this instruction
+	- ![[Pasted image 20231212152448.png|300]]
+
+### branch prediction
+
+examples
+- Intel 80486: fetching both the next sequential instruction after a branch
+- RISC: delayed branch, execute single instruction that immediately follow the branch to keep the pipeline full
+- superscalar: delayed branch less appeal (problems about dependencies)
+
+### machine parallelism
+- not worthwhile to add functional units without register renaming
+- adding functional units can have slight improvement, but the hardware complexity increase is huge
+
+
 ## Lecture 18 Multi-core Computers
 
 
