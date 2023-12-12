@@ -1740,7 +1740,7 @@ From early to latest
 		- processor-detected exceptions: errors that are detected by the CPU during normal operation and are critical for system stability (like divided-by-zero)
 		- programmed exceptions: instructions that generate an exceptions (like explicit system calls)
 
-## Lecture 15 Instruction-Level Parallelism, and Superscalar Processors
+## Lecture 15-16 Instruction-Level Parallelism, and Superscalar Processors
 
 ### superscalar overview
 - what is superscalar: machine that is designed to improve the performance of execution of scalar instructions
@@ -1836,6 +1836,112 @@ examples
 - not worthwhile to add functional units without register renaming
 - adding functional units can have slight improvement, but the hardware complexity increase is huge
 
+### conceptual depiction of superscalar processing
+
+<span style="background:rgba(140, 140, 140, 0.12)">static program</span> ➡ <span style="background:rgba(3, 135, 102, 0.2)">instruction fetch and branch prediction</span> ➡ <span style="background:rgba(5, 117, 197, 0.2)">{instruction dispatch ➡ instruction issue (window of execution)}</span> ➡ <span style="background:rgba(240, 107, 5, 0.2)">instruction execution</span> ➡ <span style="background:rgba(240, 200, 0, 0.2)">instruction reorder and commit</span>
+
+- program: linear sequence of instructions
+- instruction fetch stage: generate dynamic stream of instructions
+	- processor tries to remove dependencies from stream
+- window of execution
+	- instructions <font color="#245bdb">no longer sequential</font> stream
+	- instructions structured according to the dependencies
+- execution: order determined by data dependencies & hardware resource availability
+- instruction reorder: put back to sequential order and their results recorded
+
+### superscalar implementation
+
+For superscalar architecture:
+- instructions may complete in different order
+- memory and registers
+	- can't updated immediately when instruction execution completed
+	- Results must be held in temporary storage that is made permanent when it is determined that the instruction executed in the sequential model
+
+<font color="#245bdb">hardware</font> requirement for superscalar architecture
+- multiple instructions fetched at the same time
+- solve logic of data dependencies and when data is needed
+- resources for parallel execution: functional units & memory hierarchy
+- mechanism for committing process state in correct order
+
+#### example: Intel Core Micro-architecture
+Front End: initial stages of the processor pipeline responsible for <font color="#245bdb">fetching</font> and <font color="#245bdb">decoding</font> instructions
+- *branch prediction unit*: use <font color="#245bdb">dedicated hardware</font> for each branch type. maintain <font color="#245bdb">branch target buffer</font> (BTB) to cache information about recently encountered branch instructions
+- *instruction fetch and predecode unit*: including instruction <font color="#245bdb">prefetcher</font> & instruction <font color="#245bdb">cache</font>
+	- tasks of predecode unit: 1) determine <font color="#245bdb">length</font> of instruction 2) <font color="#245bdb">mark</font> various <font color="#245bdb">properties</font> of instruction for decoders 3) <font color="#245bdb">write</font> up to 6 instructions per cycle <font color="#245bdb">into</font> the <font color="#245bdb">instruction queue</font>
+- *instruction queue and decode unit*
+	- instruction queue: put fetched instructions
+	- decode unit <font color="#245bdb">scan</font> the bytes to determine <font color="#245bdb">instruction boundaries</font> (why: x86 instructions have various length)
+	- decoder transform each instruction into 1-4 <font color="#245bdb">micro-operations</font>
+
+#### example: ARM Cortex-A8
+
+overview
+- RISC-based superscalar design
+- stay in-order-issue: to keep required power minimum
+- 13 stages pipeline
+	- ![[Pasted image 20231212160703.png|400]]
+	- ![[Pasted image 20231212160724.png|400]]
+
+instruction fetch unit
+- predict instruction stream
+- fetch instruction from L1 cache
+- fetched instructions put into a buffer for consumption by the decode pipeline
+- includes the L1 instruction cache
+- branch or exceptional instruction in the code stream can cause a pipeline flush
+- fetch up to four instructions per cycle
+- analysis of each stage
+	- F0: Address generation unit (AGU) involved, not counted as part of 13-stage pipeline
+	- F1: calculated address is used to fetch instructions from the L1 instruction cache
+	- F2: Instruction data are placed in the instruction queue. If results in branch prediction, new target address is sent to the AGU
+
+instruction decode unit
+- decodes and sequences instructions
+- dual pipeline structure (pip0 & pip1)
+	- 2 instructions can process simultaneously
+	- pip0: contains older instruction in program order
+	- if pip0 can't issue, so can't pip2
+- all issued instructions process in order
+
+instruction decode unit
+- D0
+	- thumb instructions <font color="#245bdb">decompressed</font> and <font color="#245bdb">preliminary decode</font> is performed
+- D1
+	- decode completed
+- D2
+	- <font color="#245bdb">writes</font> instructions into and read instructions from pending/replay <font color="#245bdb">queue</font>.
+- D3
+	- instruction scheduling logic
+	- predicts register availability using static scheduling
+	- hazard checking is done
+- D4
+	- final decode for <font color="#245bdb">control signals</font> for integer execute load/store units
+
+instruction execute
+- E0
+	- access register file
+- E1
+	- shift (if needed)
+- E2
+	- ALU
+- E3
+	- saturation arithmetic used for some ARM data processing instructions (if needed)
+- E4
+	- change in <font color="#245bdb">control flow</font>, including <font color="#245bdb">branch misprediction</font>, <font color="#245bdb">exceptions</font>, and <font color="#245bdb">memory system replays</font> are prioritized and processed
+- E5
+	- write back results into register file
+
+instruction execute (load/store pipeline)
+- E1
+	- address generated from base and index register
+- E2
+	- address applied to cache arrays
+- E3
+	- load: data are returned and formatted for forwarding to the ALU or MUL unit
+	- store: data are formatted and ready to be written into the cache
+- E4
+	- update L2 cache (if required)
+- E5
+	- write back results into register file
 
 ## Lecture 18 Multi-core Computers
 
