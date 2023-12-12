@@ -1661,10 +1661,92 @@ From early to latest
 ### instruction cycle
 - 4 stages of instruction cycle
 	1. fetch: <font color="#245bdb">Read</font> the <font color="#245bdb">next instruction</font> from memory into the processor.
+	   ![[Pasted image 20231212110428.png|450]]
 	2. execute: <font color="#245bdb">Interpret</font> the opcode and perform the indicated operation.
 	3. Interrupt: If interrupts are enabled and an interrupt has occurred, <font color="#245bdb">save</font> the <font color="#245bdb">current state</font> and <font color="#245bdb">service</font> the interrupt
+	   ![[Pasted image 20231212110545.png|475]]
 	4. Indirect: If indirect addressing is used, then additional memory accesses are required
-- (存档L14, P18)
+	   ![[Pasted image 20231212110502.png|475]]
+
+### Pipelining Strategy
+- pipeline: new inputs are accepted at one end before previous inputs, and outputs appear at the other end
+- simple approach: (instruction) ➡ fetch ➡ execute ➡ (result)
+	- problem of this approach: during execution, main memory is not addressed (low usage)
+	- solution: fetch next instruction in parallel with execution
+- decomposition of instruction processing
+	- fetch instruction (FI)
+	- decode instruction (DI)
+	- calculate operands (CO)
+	- fetch operand (FO)
+	- execute instruction (EI)
+	- write operand (WO)
+- factors limit performance enhancement
+	- <font color="#245bdb">waiting</font> involved at various pipeline stages
+	- <font color="#245bdb">conditional branch instruction</font>, which will <font color="#245bdb">invalidate</font> several instruction fetches (some other instructions have to wait until certain instruction is completed)
+	- <font color="#245bdb">interrupt</font>
+- things need to consider
+	- CO stage may depend on contents of a <font color="#245bdb">register</font> that can be <font color="#245bdb">altered</font> by the <font color="#245bdb">previous instruction</font> in the pipeline
+
+### pipeline hazards
+- some part of pipeline need to <font color="#245bdb">stall</font> (called <font color="#245bdb">pipeline bubble</font>) until the condition allows to continue
+- 3 types of hazards
+	- resource
+	- data
+	- control or branch
+
+#### resource hazard
+- when: two or more instructions in the pipeline require the same resource
+- result: instruction must be executed in serial for this portion of pipeline
+- also referred to as *structural hazard*
+
+#### data hazard
+- when: conflict in the <font color="#245bdb">access</font> of <font color="#245bdb">operand location</font>. Generally, <font color="#245bdb">two instructions</font> in a program are to be executed in sequence and <font color="#245bdb">both access</font> a particular memory or register <font color="#245bdb">operand</font>
+- 3 types of data hazards
+	- read after write, RAW (true dependency)
+		- 1st instruction make modification, 2nd instruction reads the data in that location
+		- hazard occurs if read before writing completes
+	- write after read, WAR (antidependency)
+		- 1st instruction read, 2nd writes to that location
+		- hazard occurs if writing completes before read
+	- write after write, WAW (output dependency)
+		- 2 instructions both write to the same location
+		- hazard occurs if write operation take place in the reverse order of intended sequence
+
+#### branch hazard
+- when: <font color="#245bdb">wrong branch prediction</font> brings <font color="#245bdb">instructions</font> into the pipeline that must be <font color="#245bdb">discarded</font>
+- how to deal with
+	- *multiple streams*: allow pipeline to fetch two instructions, making use of two streams
+	- *prefetch branch target*: once recognized branch, target of branch is prefetched
+	- *loop buffer*: a small, high-speed memory <font color="#245bdb">retains most recently fetched instructions</font> in sequence. If a branch is to be taken, hardware firstly checks if the branch target is within the buffer.
+	- *delayed branch*: rearrange instructions within a program ➡ desire to let branch occur later
+	- *branch prediction*: predict whether a branch will be taken
+
+##### branch prediction
+- static branch prediction
+	- never taken
+	- always taken
+- dynamic branch prediction (based on previous execution history)
+	- 1-bit branch prediction
+	- 2-bit predictor
+
+
+
+### interrupt processing
+- two classes of events
+	- interrupts (signal from hardware causes)
+		- maskable interrupts: can be controlled and ignored by CPU (like keyboard input)
+		- non-maskable interrupts: always treated as high-priority, CPU can't ignore or disable (like hardware failure)
+	- exceptions (signal from software)
+		- processor-detected exceptions: errors that are detected by the CPU during normal operation and are critical for system stability (like divided-by-zero)
+		- programmed exceptions: instructions that generate an exceptions (like explicit system calls)
+
+## Lecture 15 Instruction-Level Parallelism, and Superscalar Processors
+
+### superscalar overview
+- what is superscalar: machine that is designed to improve the performance of execution of scalar instructions
+	- most applications are operating <font color="#245bdb">scalar quantities</font>
+- approach: ability to execute instructions <font color="#245bdb">independently</font> and <font color="#245bdb">concurrently</font> in different pipelines
+- improve by allowing instructions to be executed in a <font color="#245bdb">different order</font> from the program order.
 
 ## Lecture 18 Multi-core Computers
 
