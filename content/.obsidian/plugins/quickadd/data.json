@@ -115,7 +115,7 @@
       },
       "format": {
         "enabled": true,
-        "format": "---\ndate: {{date}}\ndescription: 'your description.'\n---\n"
+        "format": "---\ntitle: {{VALUE:title}}\ndate: {{date}}\ndraft: false\nauthor: HNO3\n---\n"
       },
       "insertAfter": {
         "enabled": false,

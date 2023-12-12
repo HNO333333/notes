@@ -1,5 +1,5 @@
 ---
-title: RTCSA notes
+title: Real Time Computing System Architecture Notes
 date: 2023-12-11
 draft: false
 author: HNO3
