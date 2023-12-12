@@ -1950,8 +1950,145 @@ instruction execute (load/store pipeline)
 #### types of parallel processor system
 
 single instruction, single data stream (SISD)
-- 
+- one processor execute one instruction to operate data stored in one memory
+- uniprocessor
 
+single instruction, multiple data stream (SIMD)
+- single instruction controls simultaneous execution of a number of processing elements
+- vector and array processors
+
+multiple instruction, single data stream (MISD)
+- a sequence of data transmitted to processors, each processor execute a different instruction sequence
+- not implemented
+
+multiple instruction, multiple data stream (MIMD)
+- set of processors simultaneously execute different instruction sequences on different data sets
+- symmetric multiprocessor (SMP), clusters and non-uniform memory access (NUMA) system
+
+```mermaid
+stateDiagram
+	s1: processor organization
+	s2: vector processor
+	s3: array processor
+	s4: shared memory (tightly coupled)
+	s5: shared memory (tightly coupled)
+
+
+    s1 --> SISD
+    s1 --> SIMD
+    s1 --> MISD
+    s1 --> MIMD
+    
+    SISD --> uniprocessor
+
+    SIMD --> s2
+    SIMD --> s3
+
+	MIMD --> s4
+	MIMD --> s5
+
+	s4 --> SMP
+	s5 --> NUMA
+```
+#### alternative computer organizations
+![[Pasted image 20231212165828.png|600]]
+
+### symmetric multiprocessor
+
+#### characteristic
+- two or more similar processors
+- share same memory
+	- processors <font color="#245bdb">connected</font> by a <font color="#245bdb">bus</font> or other internal connections
+	- <font color="#245bdb">memory access time</font> nearly the same for each processor
+- share access to <font color="#245bdb">I/O</font> devices
+- perform the same <font color="#245bdb">functions</font> (why called symmetric)
+- system controlled by integrated <font color="#245bdb">operating system</font> that provides interaction between <font color="#245bdb">processors</font> and <font color="#245bdb">programs</font>
+
+#### SMP's advantage over uni-processor
+- performance (due to parallelism)
+- availability (one processor failure won't halt the whole system)
+- incremental growth (performance further enhance by adding extra processor)
+- scaling
+
+| pros                                   | cons                                               |
+| -------------------------------------- | -------------------------------------------------- |
+| increase number of process execution   | complex process execution schedule                 |
+| single failure won't halt whole system | shared connection affects bus system data fetching |
+| more processors ➡ system enhancement   | expensive                                                   |
+
+#### SMP organization
+- each processor is <font color="#245bdb">self-contained</font> (control unit, ALU, registers, cache)
+- processor can communicate through memory
+- possible to exchange signals directly
+- memory is organized for simultaneous accesses
+- most common organization: time-shared bus
+
+#### direct memory access attractive features
+features provided to facilitate DMA transfers from I/O subsystems to processors
+- *addressing*: distinguish modules on the bus to know source and destination
+- *arbitration*: arbitrate competing request for bus control (via priority scheme)
+- *time-sharing*: if one module is using, other modules are locked out or even suspend operation until bus access is achieved
+
+#### bus organization attractive features
+- *simplicity*
+- *flexibility*: easy to expand the system
+- *reliability*
+
+disadvantage of bus organization
+- performance: all memory references pass through the common bus, performance limited by bus cycle time
+
+ways to improve performance
+- to reduce bus accesses: each processor can be equipped with a cache memory
+	- potential problem: if a word is altered in one cache it could conceivably invalidate a word in another cache (**cache coherence**)
+	- problem usually addressed via hardware rather than operating system
+
+### multiprocessor system design considerations
+- simultaneous concurrent processes
+	- OS routines need to be <font color="#245bdb">reentrant</font>: multiple processors can execute the same or different parts of the program concurrently
+	- OS <font color="#245bdb">tables and management structures</font> should be well managed to avoid <font color="#245bdb">deadlock</font> or <font color="#245bdb">invalid operations</font>
+- scheduling: avoid conflicts (assign ready processes to available processors)
+- synchronization
+- memory management: to ensure performance improvement due to parallelism
+- reliability and fault tolerance: OS should be aware of failure and change accordingly
+
+#### cache coherence
+software solutions
+- avoid reliance on hardware by using OS or compiler
+- overhead of detecting potential problems is transferred from run time to compile time (increase design complexity of software)
+- compiler based: detect potential unsafe cache and mark those items or more efficiently: determine safe time for shared variables
+
+hardware solutions
+- referred to as cache coherence protocols
+- 2 categories
+	- directory protocols
+		- <font color="#245bdb">central directory</font> maintains information about the <font color="#245bdb">status</font> of each memory block
+			- status: shared / exclusive / invalid
+		- read operation
+			- send request to directory first
+			- directory checks status (if it's shared status) and grant read permission
+		- write operation
+			- send request to directory first
+			- directory checks status, if it's shared status, then invalidate all other copies, transitioning block to exclusive state for requesting processor
+		- problem of this protocol: introduce additional complexity (centralized), but it's more efficient to be centralized
+	- snoopy protocols
+		- <font color="#245bdb">distribute</font> the responsibility for maintaining cache coherence among all cache controllers in each processor
+			- cache should know when the line is shared with other caches
+			- broadcast mechanism: when update performs, other caches should know
+			- each cache controller snoop the network to observe broadcast notification and react
+		- 2 approaches used: write update & write invalidate
+			- *write update*: multiple writers & multiple readers
+			- *write invalidate*: multiple readers, but only one writer at a time (one valid and all others invalid). writing processor has exclusive access
+				- states: modified / exclusive / shared / invalid (MESI)
+
+MESI protocol
+- *modified*: line in the cache has been modified (different from main memory) and is available only in this cache
+- *exclusive*: line in the cache is the same as that in main memory and is not present in any other cache
+- *shared*: line in the cache is the same as that in main memory and is present in another cache
+- *invalid*
+
+|                    | M          | E          | S                       | I   |
+| ------------------ | ---------- | ---------- | ----------------------- | --- |
+| write to this line | not to bus | not to bus | to bus and update cache | directly to bus    |
 
 ## Lecture 18 Multi-core Computers
 
