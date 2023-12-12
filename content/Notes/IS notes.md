@@ -276,10 +276,7 @@ author: HNO3
 <span style="background:rgba(3, 135, 102, 0.2)">Vigenère cipher</span>
 - contains Caesar ciphers, each cipher denoted by a key letter
 - plaintext: $P=p_0, p_1, ..., p_n$, key: $K=k_0, k_1, ..., k_m$. ($n>m$)
-- $$ \begin{aligned}&C=E(K,P)=(p_0+k_0)\bmod26,\:(p_1+k_1)\bmod26,\:\ldots\:,(p_{m-1}+k_{m-1})\bmod26,\\&(p_m+k_0)\bmod26,\:(p_{m+1}+k_1)\bmod26,\:\ldots\:,(p_{2m-1}+k_{m-1})\bmod26,\:\ldots\end{aligned}$$
-  $$
-C_{i}=(p_i + k_{i\space mod \space m})mod \space 26
-$$
+- $$ \begin{aligned}&C=E(K,P)=(p_0+k_0)\bmod26,\:(p_1+k_1)\bmod26,\:\ldots\:,(p_{m-1}+k_{m-1})\bmod26,\\&(p_m+k_0)\bmod26,\:(p_{m+1}+k_1)\bmod26,\:\ldots\:,(p_{2m-1}+k_{m-1})\bmod26,\:\ldots\end{aligned}$$$$C_{i}=(p_i + k_{i\space mod \space m})mod \space 26$$
 - Decryption: $p_{i} = (C_i-k_{i\space mod \space m})mod \space 26$
 - strength: multiple ciphertext letters for each plaintext letter, one for each unique letter of keyword
 - letter frequency is obscured, but still some frequency information remains

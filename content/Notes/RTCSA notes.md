@@ -1943,6 +1943,16 @@ instruction execute (load/store pipeline)
 - E5
 	- write back results into register file
 
+## Lecture 17 Parallel Processing
+
+### multiple processor organization
+
+#### types of parallel processor system
+
+single instruction, single data stream (SISD)
+- 
+
+
 ## Lecture 18 Multi-core Computers
 
 
