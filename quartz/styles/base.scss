@@ -18,7 +18,7 @@ section {
   box-sizing: border-box;
   background-color: var(--light);
   font-family: var(--bodyFont);
-  // color: var(--darkgray);
+  color: var(--darkgray);
   font-size: 17px;
 }
 
@@ -235,7 +235,7 @@ h5,
 h6,
 thead {
   font-family: var(--headerFont);
-  color: var(--dark);
+  // color: var(--dark);
   font-weight: revert;
   margin-bottom: 0;
 
