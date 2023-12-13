@@ -10,8 +10,8 @@ export default (() => {
       const { text: timeTaken, words: _words } = readingTime(text)
 
       if (fileData.dates) {
-        // segments.push(formatDate(getDate(cfg, fileData)!))
-        segments.push("mofidied at: " + formatDate(getmodifiedDate(cfg, fileData)!))
+        segments.push("📆" + formatDate(getDate(cfg, fileData)!))
+        // segments.push("mofidied at: " + formatDate(getmodifiedDate(cfg, fileData)!))
       }
 
       segments.push(timeTaken)
