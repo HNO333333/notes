@@ -9,10 +9,10 @@ aliases:
 publisher: ""
 citation key: "huangMachineLearningElectronic2021"
 DOI: ""
-"created date:": 2023-12-13T20:42:45+08:00
+"created date:": 2023-12-13T22:18:19+08:00
 "modified date:": 
 ---
-# (Z) Machine Learning for Electronic Design Automation: A Survey
+# Machine Learning for Electronic Design Automation: A Survey
 
 > [!ABSTRACT]- ABSTRACT
 >  
@@ -46,7 +46,7 @@ G. Huang _et al._, “Machine Learning for Electronic Design Automation: A Surve
 ## Reading notes
 
 
-*Imported: 2023-12-13 20:42*
+*Imported: 2023-12-13 22:18*
 
 ### ⭐ Interesting point (yellow)
 
@@ -82,6 +82,23 @@ G. Huang _et al._, “Machine Learning for Electronic Design Automation: A Surve
 
 > [!quote]+ Highlight ([page. 5](zotero://open-pdf/library/items/AUMCCBTI?page=5&annotation=6LULDE6J))
 > train an ML model that takes HLS reports as input and outputs a more accurate implementation report without conducting the time-consuming post-implementation 
+
+> [!quote]+ Highlight ([page. 6](zotero://open-pdf/library/items/AUMCCBTI?page=6&annotation=RNR3YRZC))
+> ML techniques have been applied recently to reduce the HLS tool’s prediction error of the operation delay 
+
+> [!quote]+ Highlight ([page. 7](zotero://open-pdf/library/items/AUMCCBTI?page=7&annotation=9AUQZBU2))
+> key functionality of XPPE is using the resource utilization of an application on one specific FPGA to estimate its performance on other FPGAs. 
+
+> [!quote]+ Highlight ([page. 7](zotero://open-pdf/library/items/AUMCCBTI?page=7&annotation=L2VPXFGL))
+> Overall workflow of XPPE 
+
+> [!quote]+ Highlight ([page. 8](zotero://open-pdf/library/items/AUMCCBTI?page=8&annotation=93A4XFQN))
+> The iterative-refinement DSE framework 
+
+### 📃 Interesting references (blue)
+
+> [!quote]+ Highlight ([page. 6](zotero://open-pdf/library/items/AUMCCBTI?page=6&annotation=A56ISWLB))
+> [143]. 
 
 ### 📅 Vocabulary, Names, Dates, Definitions (grey)
 
@@ -124,3 +141,6 @@ G. Huang _et al._, “Machine Learning for Electronic Design Automation: A Surve
 
 > [!quote]+ Highlight ([page. 4](zotero://open-pdf/library/items/AUMCCBTI?page=4&annotation=PTNVMMS4))
 > DRL has achieved great success in complicated tasks with large decision space 
+
+> [!quote]+ Highlight ([page. 5](zotero://open-pdf/library/items/AUMCCBTI?page=5&annotation=IYZA46ZY))
+> High-level synthesis (HLS) tools provide automatic conversion from C/C++/SystemC-based specification to hardware description languages like Verilog or VHDL. 

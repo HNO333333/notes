@@ -12,7 +12,7 @@ DOI: "{{DOI}}"
 "created date:": {{exportDate | format(“YYYY-MM-DD”)}}
 "modified date:": 
 ---
-# (Z) {{title}}
+# {{title}}
 
 > [!ABSTRACT]- ABSTRACT
 > {% if abstractNote %} 
@@ -30,6 +30,7 @@ DOI: "{{DOI}}"
 > {% if allTags %}**Keywords**:: {{allTags}}{% endif %}
 > {%- if bibliography %}**Bibliography:** {{bibliography}}{%- endif %}
 > **Related**:: {% for relation in relations -%} {%- if relation.title -%} [[{{relation.title}}]], {% endif -%} {%- endfor%}
+
 
 {% if isFirstImport %}
 ## Main ideas:
