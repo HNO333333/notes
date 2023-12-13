@@ -2446,7 +2446,111 @@ example
 - Q3: FCFS
 - scheduling: new process enters Q1, if not completed in one time quantum (8), moves to Q2; at Q2 if not completed in one time quantum (16), moves to Q3
 
+### scheduling in real-time system
+- critical part of RTOS
+- ensure processes executed in a timely & predictable manner to meet timing contraints
+- scheduler must support preemptive
 
+pool of ready tasks ➡ scheduler ➡ dispatcher ➡ CPU
+
+#### scheduler
+- responsibility: <font color="#00b050">select</font> next process/task to run from pool of ready tasks, determine <font color="#00b050">order</font> and <font color="#00b050">timing</font> of task execution on CPU
+- primary goal: maximize CPU utilization, optimize system performance, and ensure fairness among competing tasks
+
+#### dispatcher
+- context switch, save current task's state, load saved state of new task
+
+#### task
+categories of task
+- periodic tasks: start regularly in known intervals and must complete before relevant deadline
+- sporadic tasks: appear within a <font color="#00b050">known</font> bounded <font color="#00b050">frequency</font>, but the <font color="#00b050">time of arrival</font> is <font color="#00b050">not fixed</font>
+- aperiodic: tasks based on event may derived, neither arrival time nor burst time are known
+
+#### timing constraints
+- deadline: hard (strict) / soft (flexible) depends on criticality of the task
+- period
+- execution time
+	- worst-case execution time (WCET) used to determine if a task can meet its deadline
+
+2 types of real-time system
+- hard real-time system
+	- if not meet deadline: system failure
+	- deadline miss handling: strategy in RTOS for handling missed deadline. (recovery, retry, priority adjustment, resource allocation)
+- soft real-time system
+	- no mandatory requirement of completing deadline for every task
+	- if miss deadline: system just continue functioning
+
+#### resources allocation
+- what resources: CPU time, memory, I/O devices
+- *resource reservation*: reserve specific amount of CPU time for critical tasks.
+- *deadlock*: occurs when each process <font color="#00b050">holds</font> a resource and <font color="#00b050">wait</font> for other resource held by any other process
+
+#### preemption
+- allow higher-priority task to preempt execution of lower-priority task
+- critical for meeting strict deadline
+
+#### schedulability analysis
+- determine <font color="#00b050">whether</font> system can schedule all tasks while <font color="#00b050">meeting</font> their timing constraints and <font color="#00b050">deadlines</font>, involving calculating WCRT of tasks
+
+### scheduling algorithms
+3 types
+1. priority based
+	1. fixed priority
+	2. dynamic priority
+2. rate monotonic scheduling (RMS): shorter period gets higher priority, optimal for periodic tasks when deadline = periods
+3. earliest deadline first (EDF): assign priority based on closeness to deadline, flexible for handling aperiodic and sporadic tasks
+
+#### priority based
+
+for periodic tasks
+- processing time $t$, deadline $d$ and period $p$
+- rate of periodic task: $1/p$
+
+example
+![[RTCSA notes-20231213-3.png|450]]
+
+#### rate monotonic scheduling
+- useful for <font color="#00b050">periodic tasks</font> with well-defined and constant periods
+- RMS uses <font color="#00b050">fixed-priority</font> scheduling
+- <font color="#00b050">shortest period</font> (highest rate) is assigned the <font color="#00b050">highest priority</font>
+
+example
+T1
+-  C = 5 (computation time), D = 10 (relative deadline), priority = 1
+T2
+- C = 12, D = 30, priority = 2
+![[RTCSA notes-20231213-4.png|350]]![[RTCSA notes-20231213-5.png|350]]
+
+rate-monotonic analysis (RMA)
+- $$ U=\sum_{i=1}^n\frac{C_i}{T_i}\leq n^(2^{\frac12}-1)$$, where $C_i$ indicates computation time of each task, $T_i$ is the period of particular task, $n$ represents the number of tasks, $U$ is CPU utilization
+- if the inequality is satisfied, all tasks will always meet their deadline with RMS (schedulable)
+
+#### earliest deadline first scheduling
+- also referred to as earliest due date (EDD) or earliest deadline first (EDF) or Jackson's algorithm
+- optimal dynamic priority scheduling
+- closer to deadline ➡ higher priority
+- test of schedulability $$ U=\sum_{i=1}^n\frac{C_i}{T_i}\leq1$$
+pros & cons
+- pros
+	- suitable for <font color="#00b050">time-sensitive</font> applications
+	- efficient
+	- guarantee that <font color="#00b050">no task misses deadline</font> as long as CPU utilization is below 100%
+	- can handle both <font color="#00b050">periodic</font> tasks and <font color="#00b050">aperiodic</font> tasks
+- cons
+	- requires frequent monitoring of task deadlines, which can introduce some <font color="#00b050">runtime overhead</font>
+	- preemptions due to dynamic priority changes can impact overall system performance (frequent context switching)
+
+### (appendix) comparison among scheduling algorithms
+
+|                     | RMS                                      | EDF                                           |
+| ------------------- | ---------------------------------------- | --------------------------------------------- |
+| priority assignment | shorter period ➡ higher priority, fixed  | closer to deadline ➡ higher priority, dynamic |
+| schedulability      | rely on formula, mathematical guaranteed | optimal for uniprocessor, complex to analyze  |
+| deadline            | if schedulable, all meet deadline        | if U<100%, can meet deadline                  |
+| flexibility         | periodic tasks                           | both periodic and aperiodic                   |
+| resource sharing    | challenging due to fixed priority        | more effectively                              |
+| determinism         | yes                                      | yes                                           |
+| complexity          | simpler                                  | more complex                                              |
 
 # Lab
 
