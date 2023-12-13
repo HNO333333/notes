@@ -2175,6 +2175,277 @@ objective
 
 ## Lecture 19&20 CPU Scheduling
 
+### overview of CPU scheduler
+- scheduling: basis for multiprogrammed operating system
+- CPU scheduler: <font color="#00b050">select</font> from the pool of ready processes and <font color="#00b050">determine</font> which process should run next on CPU
+- 2 main types of CPU scheduling
+	- preemptive
+	- non-preemptive
+
+#### non-preemptive scheduling
+![[RTCSA notes-20231213-1.png|250]]
+(state transition of a process)
+- also referred to as <font color="#00b050">cooperative scheduling</font>, allow process to continue running until <font color="#00b050">voluntarily</font> give up the CPU until: 1) completion 2) enter waiting state
+- scheduler done NOT forcibly interrupt a running process
+- control over CPU is handed over from one process to another only when: running process decide to release it
+- simple to implement
+
+#### preemptive scheduling
+- allow OS to <font color="#00b050">forcibly interrupt</font> a currently executing process and move CPU to another process according to <font color="#00b050">scheduling algorithm</font>
+- provide better responsiveness and fairness (no single process can monopolize the CPU)
+- complex to implement
+
+### scheduling criteria
+- *CPU utilization*: as high as possible
+- *throughput*
+- *turnaround time*: total time taken by a process from arrival to completion
+- *waiting time*: total time taken waiting in the ready queue before it gets CPU time for execution
+- *response time*: amount of time when a request was submitted until first response is produced
+
+### process vs. thread
+- process
+	- fundamental unit of execution in OS
+	- represent <font color="#00b050">independent</font> program in execution, complete with its own memory space, resources and system state
+- thread
+	- lightweight unit of execution <font color="#00b050">within a process</font>
+	- threads within a process can <font color="#00b050">communicate</font> and share data more <font color="#00b050">easily</font> than processes, as they have access to the same memory
+	- threads can run concurrently, allow for multitasking within a single process
+
+### task & task states
+- task: individual units of work or process that OS manages
+- different states: ready, block (waiting), running
+	- transition of states
+	  ![[RTCSA notes-20231213-2.png|500]]
+
+### dispatcher
+- *dispatcher module*: give control of CPU to the process selected by short-term scheduler (<font color="#00b050">switching context</font>: save & restore)
+- *dispatch latency*: time takes for dispatcher to stop one process and start another running
+
+### scheduling algorithm
+
+6 common used scheduling algorithms
+1. First-Come, First-Served (FCFS)
+2. Shortest-Job-First (SJF)
+3. Shortest Remaining Time First (SRTF)
+4. Priority Based (PB)
+5. Round Robin(RR)
+6. Multiple-Level Queues (MLQ)
+#### FCFS
+
+| process | burst time |
+| ------- | ---------- |
+| $P_1$   | 24         |
+| $P_2$   | 3          |
+| $P_3$   | 3           |
+
+order of arrival: P1 ➡ P2 ➡ P3
+```mermaid
+---
+displayMode: compact
+---
+gantt
+    title tasks
+    dateFormat X
+    axisFormat %s
+    section P1
+    24   : 0, 24
+    section P2
+    3   : 24, 27
+    section P3
+    3   : 27,30
+```
+calculation
+- waiting time: P1 = 0; P2 = 24; P3 = 27
+- Average waiting time: (0 + 24 + 27)/3 = 17
+
+if arrive in the order: P2 ➡ P3 ➡ P1
+```mermaid
+---
+displayMode: compact
+---
+gantt
+    title tasks
+    dateFormat X
+    axisFormat %s
+    section P1
+    24   : 6, 30
+    section P2
+    3   : 0, 3
+    section P3
+    3   : 3,6
+```
+- waiting time for P1 = 6; P2 = 0; P3 = 3
+- average waiting time: (6 + 0 + 3)/3 = 3
+
+This is called: <font color="#00b050">convoy effect</font>
+- short process behind long process
+
+#### SJF
+- schedule according to the <font color="#00b050">length</font> of CPU <font color="#00b050">burst</font>
+- optimal at average waiting time
+- difficulty: <font color="#00b050">knowing the length</font> of next CPU request
+
+#### SRTF
+- allocate the job <font color="#00b050">closest to completion</font>
+- problem: starvation
+	- when: a process continually gets preempted by process with higher priority
+
+| process | arrival time | burst time |
+| ------- | ------------ | ---------- |
+| $P_1$   | 0            | 8          |
+| $P_2$   | 1            | 4          |
+| $P_3$   | 2            | 9          |
+| $P_4$   | 3            | 5          |
+```mermaid
+---
+displayMode: compact
+---
+gantt
+    title tasks
+    dateFormat X
+    axisFormat %s
+    section P1
+    1   : 0, 1
+    section P2
+    4   : 1, 5
+    section P4
+    5   : 5, 10
+    section P1
+    7   : 10, 17
+    section P3
+    9   : 17, 26
+```
+- Average waiting time = \[(10-1)+(1-1)+(17-2)+5-3)\]/4 = 26/4 = 6.5
+
+#### PB
+- each process is associated with a priority number (smaller ➡ higher priority)
+- problem: starvation
+- solution: aging - as time progress, increase the priority of the process
+
+| process | burst time | priority |
+| ------- | ---------- | -------- |
+| $P_1$   | 10         | 3        |
+| $P_2$   | 1          | 1        |
+| $P_3$   | 2          | 4        |
+| $P_4$   | 1          | 5        |
+| $P_5$   | 5          | 2         |
+```mermaid
+---
+displayMode: compact
+---
+gantt
+    title tasks
+    dateFormat X
+    axisFormat %s
+    section P2
+    1   : 0, 1
+    section P5
+    5   : 1, 6
+    section P1
+    10   : 6, 16
+    section P3
+    2   : 16, 18
+    section P4
+    1   : 18, 19
+```
+
+#### RR
+- each process gets a <font color="#00b050">small unit</font> of CPU <font color="#00b050">time</font> (time quantum q), after this period, the process is <font color="#00b050">preempted</font> and added to the <font color="#00b050">end</font> of ready queue
+- n processes in the ready queue and the time quantum is q, then each process gets 1/n of the CPU time
+- time interrupts every quantum to schedule the next process
+- performance
+	- q large ➡ FIFO
+	- q small ➡ overhead too high (a lot of context switch)
+
+when q = 4
+
+| process | burst time |
+| ------- | ---------- |
+| $P_1$   | 24         |
+| $P_2$   | 3          |
+| $P_3$   | 3           | 
+```mermaid
+---
+displayMode: compact
+---
+gantt
+    title tasks
+    dateFormat X
+    axisFormat %s
+    section P1
+    4   : 0, 4
+    section P2
+    3   : 4, 7
+    section P3
+    3   : 7, 10
+    section P1
+    4   : 10, 14
+	section P1
+    4   : 14, 18
+    section P1
+    4   : 18, 22
+    section P1
+    4   : 22, 26
+    section P1
+    4   : 26, 30
+```
+- higher turnaround time than SJF, but better response time
+- $q$ should be large compared to context switch time
+
+#### multilevel queue
+- employ multiple queues with different priority levels to schedule
+- based on pre-defined criteria to assign processes to specific queue
+- each queue operates on a particular scheduling algorithm
+- scheduling algorithm for specific queue is fixed
+
+example
+
+| process | arrival time | burst time | queue number |
+| ------- | ------------ | ---------- | ------------ |
+| $P_1$   | 0            | 4          | 1            |
+| $P_2$   | 0            | 3          | 1            |
+| $P_3$   | 0            | 8          | 2            |
+| $P_4$   | 10           | 5          | 1             |
+queue 1 has higher priority than queue 2, queue 1 uses RR with q=2, queue 2 uses FCFS
+```mermaid
+---
+displayMode: compact
+---
+gantt
+    title tasks
+    dateFormat X
+    axisFormat %s
+    section P1
+    2   : 0, 2
+    section P2
+    2   : 2, 4
+    section P1
+    2   : 4, 6
+    section P2
+    1   : 6, 7
+	section P3
+    3   : 7, 10
+    section P4
+    5   : 10, 15
+    section P3
+    5   : 15, 20
+```
+#### multilevel feedback queue (MLFQ)
+same as MLQ, but MLFQ dynamically adjust the priority of processes based on their behaviour
+- Processes are <font color="#00b050">initially</font> placed in a <font color="#00b050">queue with a high priority</font>. As a process <font color="#00b050">consumes</font> its time quantum <font color="#00b050">without completing</font>, its priority is <font color="#00b050">gradually lowered</font>.
+- parameters of MLFQ
+	- number of queues
+	- scheduling algorithms for each queue
+	- method used to determine when to upgrade a process
+	- method used to determine when to downgrade a process
+	- method used to determine a process will enter which queue when that process needs service
+
+example
+- Q1: RR, q=8
+- Q2: RR, q=16
+- Q3: FCFS
+- scheduling: new process enters Q1, if not completed in one time quantum (8), moves to Q2; at Q2 if not completed in one time quantum (16), moves to Q3
+
 
 
 # Lab

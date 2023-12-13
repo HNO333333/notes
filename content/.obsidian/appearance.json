@@ -1,16 +1,16 @@
 {
   "accentColor": "",
   "theme": "moonstone",
-  "baseFontSize": 17,
+  "baseFontSize": 18,
   "showViewHeader": false,
   "nativeMenus": false,
   "translucency": false,
   "cssTheme": "Things",
   "enabledCssSnippets": [
-    "tableStyles",
     "media-grid-snippet",
     "another_cursor"
   ],
   "interfaceFontFamily": "",
-  "textFontFamily": "Open Sans"
+  "textFontFamily": "Atkinson Hyperlegible",
+  "baseFontSizeAction": false
 }
