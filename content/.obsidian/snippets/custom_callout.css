@@ -1,0 +1,29 @@
+.callout[data-callout="quote-yellow"] {
+	--callout-color: 255, 212, 0;
+	--callout-icon: lucide-quote;
+}
+
+.callout[data-callout="quote-grey"] {
+	--callout-color: 170, 170, 170;
+	--callout-icon: lucide-quote;
+}
+
+.callout[data-callout="quote-blue"] {
+	--callout-color: 46, 168, 229;
+	--callout-icon: lucide-quote;
+}
+
+.callout[data-callout="quote-green"] {
+	--callout-color: 95, 178, 54;
+	--callout-icon: lucide-quote;
+}
+
+.callout[data-callout="quote-orange"] {
+	--callout-color: 241, 152, 55;
+	--callout-icon: lucide-quote;
+}
+
+.callout[data-callout="quote-red"] {
+	--callout-color: 255, 102, 102;
+	--callout-icon: lucide-quote;
+}

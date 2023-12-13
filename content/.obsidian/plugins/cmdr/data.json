@@ -18,13 +18,6 @@
       "name": "Commander: sync with message",
       "mode": "any",
       "color": "#61f56b"
-    },
-    {
-      "id": "quickadd:choice:98e5f83f-648b-4dce-ad31-2a19b9a7357c",
-      "icon": "camera",
-      "name": "QuickAdd: 内容收集",
-      "mode": "any",
-      "color": "#6368f2"
     }
   ],
   "rightRibbon": [],
@@ -66,7 +59,11 @@
   "explorer": [],
   "hide": {
     "statusbar": [],
-    "leftRibbon": []
+    "leftRibbon": [
+      "Open quick switcher",
+      "Open graph view",
+      "Open command palette"
+    ]
   },
   "spacing": 8,
   "advancedToolbar": {

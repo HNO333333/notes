@@ -10,7 +10,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     baseUrl: "HNO333333.github.io/notes",
-    ignorePatterns: ["private", "templates"],
+    ignorePatterns: ["templates", "private"],
     defaultDateType: "created",
     theme: {
       typography: {
@@ -49,7 +49,7 @@ const config: QuartzConfig = {
       Plugin.FrontMatter(),
       Plugin.TableOfContents({ maxDepth: 2 }),
       Plugin.CreatedModifiedDate({
-        priority: ["filesystem", "frontmatter"], // you can add 'git' here for last modified from Git but this makes the build slower
+        priority: ["frontmatter", "filesystem"], // you can add 'git' here for last modified from Git but this makes the build slower
       }),
       Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),

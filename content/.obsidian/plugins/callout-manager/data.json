@@ -1,0 +1,23 @@
+{
+  "callouts": {
+    "custom": [
+      "quote-yellow"
+    ],
+    "settings": {
+      "quote-yellow": [
+        {
+          "changes": {
+            "icon": "lucide-quote",
+            "color": "255, 213, 0"
+          }
+        }
+      ]
+    }
+  },
+  "calloutDetection": {
+    "obsidianFallbackForced": false,
+    "obsidian": true,
+    "theme": true,
+    "snippet": true
+  }
+}

@@ -1,5 +1,4 @@
 [
-  "obsidian-kanban",
   "editing-toolbar",
   "image2latex",
   "easy-typing-obsidian",
@@ -12,5 +11,6 @@
   "cmdr",
   "obsidian-git",
   "obsidian-paste-image-rename",
-  "ninja-cursor"
+  "ninja-cursor",
+  "obsidian-zotero-desktop-connector"
 ]

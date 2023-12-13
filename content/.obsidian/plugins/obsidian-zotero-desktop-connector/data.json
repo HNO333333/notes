@@ -1,0 +1,27 @@
+{
+  "database": "Zotero",
+  "noteImportFolder": "PaperNotes/",
+  "pdfExportImageDPI": 200,
+  "pdfExportImageFormat": "png",
+  "pdfExportImageQuality": 90,
+  "citeFormats": [
+    {
+      "name": "Citation",
+      "format": "formatted-bibliography",
+      "cslStyle": "ieee"
+    }
+  ],
+  "exportFormats": [
+    {
+      "name": "Import Zotero Note with template",
+      "outputPathTemplate": "PaperNotes/{{title}}.md",
+      "imageOutputPathTemplate": "imgs/{{citekey}}/.",
+      "imageBaseNameTemplate": "image",
+      "templatePath": "templates/zotTemp.md",
+      "cslStyle": "ieee"
+    }
+  ],
+  "citeSuggestTemplate": "[[{{citekey}}]]",
+  "openNoteAfterImport": true,
+  "whichNotesToOpenAfterImport": "first-imported-note"
+}
