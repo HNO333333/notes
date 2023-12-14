@@ -146,6 +146,81 @@ tags: "#reading"
 >  <span style="background:rgba(248, 255, 0, 0.28)">analyze the routed layout by machine learning to reduce lithography hotspots in the early stages</span>
 > ^RMTYXBY3aAUMCCBTIp15
 
+> [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=Z4CC7IRE)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">Yang et al. [162] introduces feature tensor extraction, which is aware of the spatial relations of layout patterns</span>
+> ^Z4CC7IREaAUMCCBTIp15
+
+> [!note] [@Page 16](zotero://open-pdf/library/items/AUMCCBTI?page=16&annotation=NW4UH5W7)
+>  ![[imgs/NW4UH5W7.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^NW4UH5W7aAUMCCBTIp16
+
+> [!note] [@Page 17](zotero://open-pdf/library/items/AUMCCBTI?page=17&annotation=XIMERB9J)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">The loss function is specially designed to reduce the mask complexity, which gives punishment to complicated output mask patterns</span>
+> ^XIMERB9JaAUMCCBTIp17
+
+> [!note] [@Page 17](zotero://open-pdf/library/items/AUMCCBTI?page=17&annotation=XUQLD7Z6)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">apply DAMO on full-chip layouts, a coarse-to-fine window splitting algorithm is proposed. First, it locates the regions of high via density and then runs KMeans++ algorithm on each cluster containing the via pattern to find the best splitting window.</span>
+> ^XUQLD7Z6aAUMCCBTIp17
+
+> [!note] [@Page 18](zotero://open-pdf/library/items/AUMCCBTI?page=18&annotation=BR9HY7G4)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">LithoGAN adopts a conditional GAN for shape modeling and a CNN for center prediction</span>
+> ^BR9HY7G4aAUMCCBTIp18
+
+> [!note] [@Page 19](zotero://open-pdf/library/items/AUMCCBTI?page=19&annotation=YCLDRUSJ)
+>  ![[imgs/YCLDRUSJ.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^YCLDRUSJaAUMCCBTIp19
+
+> [!note] [@Page 21](zotero://open-pdf/library/items/AUMCCBTI?page=21&annotation=YX5WB7T2)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">algorithms are also designed to find hierarchical structures, isolate generic templates (patterns), and recognize overlaps among structures.</span>
+> ^YX5WB7T2aAUMCCBTIp21
+
+> [!note] [@Page 21](zotero://open-pdf/library/items/AUMCCBTI?page=21&annotation=ND9XABNB)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">introduce transfer learning techniques into reinforcement learning.</span>
+> ^ND9XABNBaAUMCCBTIp21
+
+> [!note] [@Page 23](zotero://open-pdf/library/items/AUMCCBTI?page=23&annotation=6A5RYVFP)
+>  ![[imgs/6A5RYVFP.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^6A5RYVFPaAUMCCBTIp23
+
+> [!note] [@Page 24](zotero://open-pdf/library/items/AUMCCBTI?page=24&annotation=3EFEA2HP)
+>  ![[imgs/3EFEA2HP.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^3EFEA2HPaAUMCCBTIp24
+
+> [!note] [@Page 25](zotero://open-pdf/library/items/AUMCCBTI?page=25&annotation=R4CUX6TF)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">Machine learning for test set redundancy reduction</span>
+> ^R4CUX6TFaAUMCCBTIp25
+
+> [!note] [@Page 25](zotero://open-pdf/library/items/AUMCCBTI?page=25&annotation=352WGPLN)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">Machine learning for complexity reduction</span>
+> ^352WGPLNaAUMCCBTIp25
+
+> [!note] [@Page 26](zotero://open-pdf/library/items/AUMCCBTI?page=26&annotation=EU6P92IG)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">apply a decision tree for rule learning of microarchitecture behaviors</span>
+> ^EU6P92IGaAUMCCBTIp26
+
+> [!note] [@Page 27](zotero://open-pdf/library/items/AUMCCBTI?page=27&annotation=SMWA6A36)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">ML can help find the complex association in the specification test, so as to reduce the types and times of the test set, and finally complete the result inference with high quality.</span>
+> ^SMWA6A36aAUMCCBTIp27
+
+> [!note] [@Page 27](zotero://open-pdf/library/items/AUMCCBTI?page=27&annotation=JHTYWJP4)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">predict the test set quality and select good parts in advance, the cost can be reduced significantly.</span>
+> ^JHTYWJP4aAUMCCBTIp27
+
 ### definitions
 
 > [!note] [@Page 1](zotero://open-pdf/library/items/AUMCCBTI?page=1&annotation=4T9XCWVH)
@@ -250,12 +325,100 @@ tags: "#reading"
 >  <span style="background:rgba(92, 92, 92, 0.2)">mask optimization focuses only on the lithography process, ensuring that the fabricated chip matches the designed layout. Optical proximity correction (OPC) and sub-resolution assist feature (SRAF) insertion are two main methods to optimize the mask and improve the printability of the target pattern.</span>
 > ^JJN4TBUJaAUMCCBTIp15
 
+> [!note] [@Page 16](zotero://open-pdf/library/items/AUMCCBTI?page=16&annotation=TTUL73ET)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">Optical Proximity Correction For OPC, inverse lithography technique (ILT) and model-based OPC are two representative mask optimization methodologies</span>
+> ^TTUL73ETaAUMCCBTIp16
+
+> [!note] [@Page 19](zotero://open-pdf/library/items/AUMCCBTI?page=19&annotation=ZNG33ZM3)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">The reason for the discrepancy</span>
+> - **Notes**: difficulty of analog design: large design space, no uniform framework, suspect to noise
+> ^ZNG33ZM3aAUMCCBTIp19
+
+> [!note] [@Page 20](zotero://open-pdf/library/items/AUMCCBTI?page=20&annotation=HQK9H9KG)
+>  ![[imgs/HQK9H9KG.png]]
+>  <span style="background:rgba(92, 92, 92, 0.2)"></span>
+> ^HQK9H9KGaAUMCCBTIp20
+
+> [!note] [@Page 20](zotero://open-pdf/library/items/AUMCCBTI?page=20&annotation=GCCENH86)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">topology selection is efficient only when repetitive designs are needed such that a trained model can be reused</span>
+> ^GCCENH86aAUMCCBTIp20
+
+> [!note] [@Page 20](zotero://open-pdf/library/items/AUMCCBTI?page=20&annotation=R9N3RXPS)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">researchers focus on defining and extracting features from circuit topology</span>
+> ^R9N3RXPSaAUMCCBTIp20
+
+> [!note] [@Page 21](zotero://open-pdf/library/items/AUMCCBTI?page=21&annotation=69NM2RCC)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">Symmetry constraint are one of the most essential topoligical features in circuits.</span>
+> ^69NM2RCCaAUMCCBTIp21
+
+> [!note] [@Page 23](zotero://open-pdf/library/items/AUMCCBTI?page=23&annotation=4QF6Y25K)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">Analog layout is a hard problem because the parasitics in the layout have a significant impact on circuit performances</span>
+> ^4QF6Y25KaAUMCCBTIp23
+
+> [!note] [@Page 25](zotero://open-pdf/library/items/AUMCCBTI?page=25&annotation=22FM39EV)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">test set design, random generation algorithms and Automated Test Pattern Generation (ATPG) are usually used in the verification stage and the testing stage, respectively.</span>
+> ^22FM39EVaAUMCCBTIp25
+
+> [!note] [@Page 26](zotero://open-pdf/library/items/AUMCCBTI?page=26&annotation=5KSSTAR9)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">basic idea of CDG is to simulate, monitor, and evaluate the coverage contribution of different combinations of input and initial state</span>
+> - **Notes**: CDG: coverage-directed test generation
+> ^5KSSTAR9aAUMCCBTIp26
+
+> [!note] [@Page 27](zotero://open-pdf/library/items/AUMCCBTI?page=27&annotation=AHTZLID6)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">In the specification test, each performance parameter may have redundant information. However, this information needs advanced statistical methods to obtain.</span>
+> ^AHTZLID6aAUMCCBTIp27
+
+> [!note] [@Page 28](zotero://open-pdf/library/items/AUMCCBTI?page=28&annotation=E3H3NBUJ)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">“Unique” means that the test data has a different logical structure compared to other test data, and “testable” means that this test data can cover a great number of IP fault.</span>
+> ^E3H3NBUJaAUMCCBTIp28
+
 ### future work
 
 > [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=G6HKCT2V)
 >  
 >  <span style="background:#d3f8b6">In the future, we expect to see more advanced algorithms for logic synthesis be explored, and more metrics can be formulated to evaluate the results of logic synthesis.</span>
 > ^G6HKCT2VaAUMCCBTIp15
+
+> [!note] [@Page 20](zotero://open-pdf/library/items/AUMCCBTI?page=20&annotation=HA32ZXV5)
+>  
+>  <span style="background:#d3f8b6">automation tools for topology design are still much less explored due to its high degree of freedom</span>
+> ^HA32ZXV5aAUMCCBTIp20
+
+> [!note] [@Page 21](zotero://open-pdf/library/items/AUMCCBTI?page=21&annotation=DHFIH7DT)
+>  
+>  <span style="background:#d3f8b6">detect system symmetry with graph similarity</span>
+> ^DHFIH7DTaAUMCCBTIp21
+
+> [!note] [@Page 23](zotero://open-pdf/library/items/AUMCCBTI?page=23&annotation=5Q84QLLB)
+>  
+>  <span style="background:#d3f8b6">use GAN to guide the layout generation</span>
+> ^5Q84QLLBaAUMCCBTIp23
+
+> [!note] [@Page 24](zotero://open-pdf/library/items/AUMCCBTI?page=24&annotation=7JRG49FC)
+>  
+>  <span style="background:#d3f8b6">One obstacle is that the models are learned from a limited dataset and have limited flexibility</span>
+> ^7JRG49FCaAUMCCBTIp24
+
+> [!note] [@Page 24](zotero://open-pdf/library/items/AUMCCBTI?page=24&annotation=Z8CG8ZRQ)
+>  
+>  <span style="background:#d3f8b6">A generalizable model designed for a variety of circuits is desired in the future study</span>
+> ^Z8CG8ZRQaAUMCCBTIp24
+
+> [!note] [@Page 25](zotero://open-pdf/library/items/AUMCCBTI?page=25&annotation=2PFHNQFQ)
+>  
+>  <span style="background:#d3f8b6">Predicting accurate results with low precision test results derived from cheap testing methods is a promising solution to this problem.</span>
+> - **Notes**: solution to address the complexity of chip testing/verification
+> ^2PFHNQFQaAUMCCBTIp25
 
 ### valuable references
 
