@@ -100,6 +100,52 @@ tags: "#reading"
 >  <span style="background:rgba(248, 255, 0, 0.28)">The iterative-refinement DSE framework</span>
 > ^93A4XFQNaAUMCCBTIp8
 
+> [!note] [@Page 8](zotero://open-pdf/library/items/AUMCCBTI?page=8&annotation=UCEK3MZD)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">The basic idea of TED [95] is to select representative as well as the hard-to-predict samples from the design space, instead of the random sample used in previous work.</span>
+> ^UCEK3MZDaAUMCCBTIp8
+
+> [!note] [@Page 9](zotero://open-pdf/library/items/AUMCCBTI?page=9&annotation=UHKGQIE7)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">build an ML model to learn which parts of the design space should be focused on, eliminating the times of futile exploration</span>
+> - **Notes**: reduce the search space, 1st: local search, 2nd: meta search
+> ^UHKGQIE7aAUMCCBTIp9
+
+> [!note] [@Page 10](zotero://open-pdf/library/items/AUMCCBTI?page=10&annotation=4SN2IU24)
+>  ![[imgs/4SN2IU24.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^4SN2IU24aAUMCCBTIp10
+
+> [!note] [@Page 10](zotero://open-pdf/library/items/AUMCCBTI?page=10&annotation=PFJRIU52)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">Combining universal ML algorithms with domain knowledge can potentially improve the performance of the model.</span>
+> ^PFJRIU52aAUMCCBTIp10
+
+> [!note] [@Page 11](zotero://open-pdf/library/items/AUMCCBTI?page=11&annotation=7J9JDZ5Y)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">using ML algorithms to schedule existing traditional optimization strategies</span>
+> ^7J9JDZ5YaAUMCCBTIp11
+
+> [!note] [@Page 11](zotero://open-pdf/library/items/AUMCCBTI?page=11&annotation=UZ4JENDY)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">prediction on unlabeled flows are then used to select the optimal synthesis flow</span>
+> ^UZ4JENDYaAUMCCBTIp11
+
+> [!note] [@Page 14](zotero://open-pdf/library/items/AUMCCBTI?page=14&annotation=5PSEKP4D)
+>  ![[imgs/5PSEKP4D.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^5PSEKP4DaAUMCCBTIp14
+
+> [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=A8FFEL6Q)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">A popular practice is to formulate the EDA task as a computer vision (CV) task.</span>
+> ^A8FFEL6QaAUMCCBTIp15
+
+> [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=RMTYXBY3)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">analyze the routed layout by machine learning to reduce lithography hotspots in the early stages</span>
+> ^RMTYXBY3aAUMCCBTIp15
+
 ### definitions
 
 > [!note] [@Page 1](zotero://open-pdf/library/items/AUMCCBTI?page=1&annotation=4T9XCWVH)
@@ -178,9 +224,52 @@ tags: "#reading"
 >  <span style="background:rgba(92, 92, 92, 0.2)">Transductive experimental design (TED) [95] focuses on seeking the samples that describe the design space accurately</span>
 > ^ISG3QMWIaAUMCCBTIp8
 
+> [!note] [@Page 11](zotero://open-pdf/library/items/AUMCCBTI?page=11&annotation=E8E7DRS8)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">basic requirements of routing design rules must be considered in the placement stage. However, it is difficult to predict routing information in the placement stage accurately and fast</span>
+> ^E8E7DRS8aAUMCCBTIp11
+
+> [!note] [@Page 13](zotero://open-pdf/library/items/AUMCCBTI?page=13&annotation=P3XSPSCC)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">Power delivery network (PDN) design is a complex iterative optimization task, which strongly influences the performance, area and cost of a chip.</span>
+> ^P3XSPSCCaAUMCCBTIp13
+
+> [!note] [@Page 13](zotero://open-pdf/library/items/AUMCCBTI?page=13&annotation=XXRJKQWE)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">3D integration also brings challenges to the design optimization due to the expanded design space and the overhead of design evaluation.</span>
+> ^XXRJKQWEaAUMCCBTIp13
+
+> [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=X2KVQEH2)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">Lithography is a key step in semiconductor manufacturing, which turns the designed circuit and layout into real objects.</span>
+> - **Notes**: “光刻”
+> ^X2KVQEH2aAUMCCBTIp15
+
+> [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=JJN4TBUJ)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">mask optimization focuses only on the lithography process, ensuring that the fabricated chip matches the designed layout. Optical proximity correction (OPC) and sub-resolution assist feature (SRAF) insertion are two main methods to optimize the mask and improve the printability of the target pattern.</span>
+> ^JJN4TBUJaAUMCCBTIp15
+
+### future work
+
+> [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=G6HKCT2V)
+>  
+>  <span style="background:#d3f8b6">In the future, we expect to see more advanced algorithms for logic synthesis be explored, and more metrics can be formulated to evaluate the results of logic synthesis.</span>
+> ^G6HKCT2VaAUMCCBTIp15
+
 ### valuable references
 
 > [!note] [@Page 6](zotero://open-pdf/library/items/AUMCCBTI?page=6&annotation=A56ISWLB)
 >  
 >  <span style="background:rgba(0, 125, 255, 0.28)">[143].</span>
 > ^A56ISWLBaAUMCCBTIp6
+
+> [!note] [@Page 10](zotero://open-pdf/library/items/AUMCCBTI?page=10&annotation=TDX8T8BQ)
+>  
+>  <span style="background:rgba(0, 125, 255, 0.28)">[143]</span>
+> ^TDX8T8BQaAUMCCBTIp10
+
+> [!note] [@Page 11](zotero://open-pdf/library/items/AUMCCBTI?page=11&annotation=WCUY9KER)
+>  
+>  <span style="background:rgba(0, 125, 255, 0.28)">LSOracle [115] relies on DNN to dynamically decide which optimizer should be applied to different parts of the circuit.</span>
+> ^WCUY9KERaAUMCCBTIp11

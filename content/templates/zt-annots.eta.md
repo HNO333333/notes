@@ -4,7 +4,7 @@ const label = {
   "orange": "橙色",
   "yellow": "interesting insights",
   "gray": "definitions",
-  "green": "绿色",
+  "green": "future work",
   "cyan": "青色",
   "blue": "valuable references",
   "navy": "海军蓝",
