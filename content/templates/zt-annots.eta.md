@@ -6,7 +6,7 @@ const label = {
   "gray": "definitions",
   "green": "绿色",
   "cyan": "青色",
-  "blue": "蓝色",
+  "blue": "valuable references",
   "navy": "海军蓝",
   "purple": "紫色",
   "brown": "棕色",

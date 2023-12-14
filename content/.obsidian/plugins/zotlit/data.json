@@ -12,7 +12,7 @@
       "filename": "<%= it.title ?? it.authorsShort %>.md"
     }
   },
-  "updateAnnotBlock": false,
+  "updateAnnotBlock": true,
   "updateOverwrite": false,
   "autoPairEta": false,
   "autoTrim": [

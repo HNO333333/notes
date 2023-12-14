@@ -1,5 +1,5 @@
 ---
-callout: false
+callout: true
 ---
 <% const bgcolor = {
   "red": "rgba(255, 0, 3, 0.2)",
@@ -15,6 +15,7 @@ callout: false
   "magenta": "rgba(252, 0, 255, 0.28)",
 };%>
 
-> @[Page <%= it.pageLabel %>](<%= it.backlink %>)
-> <%= it.imgEmbed %><span style="background:<%= bgcolor[it.colorName] %>"><%= it.text %></span><% if (it.comment) { %>
+[!note] [@Page <%= it.pageLabel %>](<%= it.backlink %>)
+ <%= it.imgEmbed %>
+ <span style="background:<%= bgcolor[it.colorName] %>"><%= it.text %></span><% if (it.comment) { %>
 - **Notes**: <%= it.comment %><% } %>
