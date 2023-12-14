@@ -11,4 +11,4 @@ How about read your notes online!
 Here is a kind of "folder" thing:
 
 * notes about my course going on 👉 [[CourseNotes/index|Course Notes]]
-* notes for papers I read 👉 
+* notes for papers I read 👉 [[PaperNotes/index|Paper Notes]]
