@@ -1,10 +1,10 @@
 [Check at Zotero](<%= it.backlink %>) | <%= it.fileLink %>
-
+<% if (it.abstractNote) { %>
 > [!abstract]- ABSTRACT
-> <%= it.abstractNote.first().replace(/[\r\n]+/g, " ") %>
+> <%= it.abstractNote.first().replace(/[\r\n]+/g, " ") %><% } %>
 
 > [!info]- metadata
-> - publish date: <%= it.date.first() %>
+> - publish date: <% if (it.date) { %><%= it.date %><% } %>
 > - title: <%= it.title %>
 > - authors: <%= it.authorsShort %>
 > - tags: <% for (const $it of it.tags) { %>

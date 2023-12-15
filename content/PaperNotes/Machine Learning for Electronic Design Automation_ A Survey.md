@@ -5,8 +5,7 @@ zt-attachments:
 title: "Machine Learning for Electronic Design Automation: A Survey"
 citekey: huangMachineLearningElectronic2021
 import-date: 2023-12-13T07:34:30.000Z
-tags:
-  - "#finished"
+tags: "#reading"
 ---
 [Check at Zotero](zotero://select/library/items/PJAF3C8N) | [attachment](<file:///D:/my_files/studying_stuffs/zotero_paper_vault/storage/AUMCCBTI/2021_Machine%20Learning%20for%20Electronic%20Design%20Automation_Huang%20et%20al.pdf>)
 
