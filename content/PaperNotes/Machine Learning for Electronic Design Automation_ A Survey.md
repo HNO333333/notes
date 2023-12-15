@@ -5,7 +5,8 @@ zt-attachments:
 title: "Machine Learning for Electronic Design Automation: A Survey"
 citekey: huangMachineLearningElectronic2021
 import-date: 2023-12-13T07:34:30.000Z
-tags: "#reading"
+tags:
+  - "#finished"
 ---
 [Check at Zotero](zotero://select/library/items/PJAF3C8N) | [attachment](<file:///D:/my_files/studying_stuffs/zotero_paper_vault/storage/AUMCCBTI/2021_Machine%20Learning%20for%20Electronic%20Design%20Automation_Huang%20et%20al.pdf>)
 
@@ -221,6 +222,47 @@ tags: "#reading"
 >  <span style="background:rgba(248, 255, 0, 0.28)">predict the test set quality and select good parts in advance, the cost can be reduced significantly.</span>
 > ^JHTYWJP4aAUMCCBTIp27
 
+> [!note] [@Page 29](zotero://open-pdf/library/items/AUMCCBTI?page=29&annotation=PEGH36B8)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">Thus, a two-tier test method combining machine learning and specification testing is proposed to improve the accuracy of results</span>
+> ^PEGH36B8aAUMCCBTIp29
+
+> [!note] [@Page 30](zotero://open-pdf/library/items/AUMCCBTI?page=30&annotation=YNTPMU2J)
+>  ![[imgs/YNTPMU2J.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^YNTPMU2JaAUMCCBTIp30
+
+> [!note] [@Page 30](zotero://open-pdf/library/items/AUMCCBTI?page=30&annotation=AZ84PE7M)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">ML methods to make accurate and detailed power prediction only with high-level evaluation, which shows significant benefits for fast chip design and verification</span>
+> ^AZ84PE7MaAUMCCBTIp30
+
+> [!note] [@Page 31](zotero://open-pdf/library/items/AUMCCBTI?page=31&annotation=FWNMXA5M)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">a common practice is to use GNN for feature extraction and reinforcement learning for learning the policy</span>
+> ^FWNMXA5MaAUMCCBTIp31
+
+> [!note] [@Page 32](zotero://open-pdf/library/items/AUMCCBTI?page=32&annotation=P94FX2Z9)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">analytical placement problem is analogous to the training of a NN model</span>
+> ^P94FX2Z9aAUMCCBTIp32
+
+> [!note] [@Page 32](zotero://open-pdf/library/items/AUMCCBTI?page=32&annotation=B5BUL5IT)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">functionality of ML in the EDA workflow, we can group most researches into four categories: decision making in traditional methods, performance prediction, black-box optimization, and automated design.</span>
+> ^B5BUL5ITaAUMCCBTIp32
+
+> [!note] [@Page 32](zotero://open-pdf/library/items/AUMCCBTI?page=32&annotation=2RFH3WKK)
+>  
+>  <span style="background:rgba(248, 255, 0, 0.28)">This class of researches utilizes ML models to replace brute-force or empirical methods when deciding configurations</span>
+> - **Notes**: Decision making in traditional methods
+> ^2RFH3WKKaAUMCCBTIp32
+
+> [!note] [@Page 33](zotero://open-pdf/library/items/AUMCCBTI?page=33&annotation=QAX7HX6I)
+>  ![[imgs/QAX7HX6I.png]]
+>  <span style="background:rgba(248, 255, 0, 0.28)"></span>
+> ^QAX7HX6IaAUMCCBTIp33
+
 ### definitions
 
 > [!note] [@Page 1](zotero://open-pdf/library/items/AUMCCBTI?page=1&annotation=4T9XCWVH)
@@ -382,6 +424,21 @@ tags: "#reading"
 >  <span style="background:rgba(92, 92, 92, 0.2)">“Unique” means that the test data has a different logical structure compared to other test data, and “testable” means that this test data can cover a great number of IP fault.</span>
 > ^E3H3NBUJaAUMCCBTIp28
 
+> [!note] [@Page 28](zotero://open-pdf/library/items/AUMCCBTI?page=28&annotation=TPQAWCHY)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">observation point insertion reduces the test complexity in a different way, by decoupling the test of different modules</span>
+> ^TPQAWCHYaAUMCCBTIp28
+
+> [!note] [@Page 30](zotero://open-pdf/library/items/AUMCCBTI?page=30&annotation=BEY3KM6Q)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">In general, there is a tradeoff between the power estimation accuracy and simulation method complexity</span>
+> ^BEY3KM6QaAUMCCBTIp30
+
+> [!note] [@Page 32](zotero://open-pdf/library/items/AUMCCBTI?page=32&annotation=KSDWN8WK)
+>  
+>  <span style="background:rgba(92, 92, 92, 0.2)">EDA tools typically involve solving large-scale optimization problems with heavy numerical computation, especially at the physical design stage, and extensive work is devoted to accelerating these solvers with modern parallel computing hardware like multicore CPUs or GPUs</span>
+> ^KSDWN8WKaAUMCCBTIp32
+
 ### future work
 
 > [!note] [@Page 15](zotero://open-pdf/library/items/AUMCCBTI?page=15&annotation=G6HKCT2V)
@@ -419,6 +476,16 @@ tags: "#reading"
 >  <span style="background:#d3f8b6">Predicting accurate results with low precision test results derived from cheap testing methods is a promising solution to this problem.</span>
 > - **Notes**: solution to address the complexity of chip testing/verification
 > ^2PFHNQFQaAUMCCBTIp25
+
+> [!note] [@Page 35](zotero://open-pdf/library/items/AUMCCBTI?page=35&annotation=NMUJDK77)
+>  
+>  <span style="background:#d3f8b6">smart combination of machine learning and the traditional method is of great importance</span>
+> ^NMUJDK77aAUMCCBTIp35
+
+> [!note] [@Page 35](zotero://open-pdf/library/items/AUMCCBTI?page=35&annotation=EKLQXJQD)
+>  
+>  <span style="background:#d3f8b6">Trusted Machine Learning</span>
+> ^EKLQXJQDaAUMCCBTIp35
 
 ### valuable references
 
