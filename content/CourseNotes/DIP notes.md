@@ -1,6 +1,6 @@
 ---
 title: Digital Image Processing Notes
-date: 2023-12-16
+date: 2023-12-17
 draft: false
 author: HNO3
 ---
@@ -93,14 +93,37 @@ image quality assessment
 
 ### quantization & sampling
 
-quantization: ![[DIP notes-20231216-1.png|400]]
+quantization: 
+![[DIP notes-20231216-1.png|400]]
 less levels of the same color
 
-sampling:![[DIP notes-20231216-2.png|400]]
+sampling:
+![[DIP notes-20231216-2.png|400]]
 less pixels for a image or one pixel has larger area in the original image
 
 
 #### sampling
 ![[DIP notes-20231216-3.png|400]]
 - signal spectrum has square shape: rectangular sampling is most efficient.
-- 
+- 2D sampling-reciprocal lattices: sampling periodically with equal intervals in any <font color="#00b050">two directions in space domain</font>, the corresponding spectrum also repeats periodically with equal intervals in two <font color="#00b050">frequency directions</font>
+	- $U^TV=2\pi I$
+![[DIP notes-20231217-1.png|450]]
+
+sampling efficiency
+- density: under the condition of lossless, calculate the number of samples per unit area
+	- $S.D.=\dfrac{1}{det(V)}=\dfrac{det(U)}{4\pi^2}$
+
+### quantization
+- definition: process between analog samples and discrete-valued samples is called quantization
+- $d$: decision level, $r$: reconstruction level, $r_i=Q(d_i)$, then the quantization error is $e=d-Q(d)$, and quantization noise is $\varepsilon^2=E[e^2]$
+
+*scalar quantization*: given number of reconstruction levels $k$, design a quantizer and optimize its loss
+- optimal mean square error quantizer, loss function: $\boldsymbol{\varepsilon}^2=\sum_{i=0}^{k-1}\int_{z_i}^{z_{i+1}}(z-q_i)^2p(z)dz$.
+- linear quantization: Separate \[z0 ,zk) into k sub-intervals，each of which is of the same length, uniform quantization is the optimal quantization if z is uniformly distributed.
+
+*vector quantization*: also called block quantization or pattern matching quantization: encode values from a vector space into a finite set of values from a discrete <font color="#00b050">subspace of lower dimension</font> (less storage space or <font color="#00b050">compressed</font>), and this is usually done via <font color="#00b050">projection</font> or using <font color="#00b050">codebook</font>.
+
+*halftoning*: used in printing, this process reduce visual reproductions to an image that is printed with only <font color="#00b050">one color</font> of ink, utilizing <font color="#00b050">optic illusion</font> and perceptual <font color="#00b050">grayscale</font>, which will sacrifice <font color="#00b050">resolution</font>
+
+*Dither*: applying noise used to randomize quantization error
+
