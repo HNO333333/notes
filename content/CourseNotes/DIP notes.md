@@ -127,3 +127,94 @@ sampling efficiency
 
 *Dither*: applying noise used to randomize quantization error
 
+
+## Chapter 4 Image Transforms
+
+### Discrete Fourier Transform (DFT2)
+
+formula: 
+DFT:$$ F(u,\nu)=\frac{1}{\sqrt{MN}}\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}f(x,y)e^{-j2\pi(ux/M+vy/N)}$$
+
+IDFT:
+$$ f(x,y)=\frac{1}{\sqrt{MN}}\sum_{u=0}^{M-1}\sum_{v=0}^{N-1}F(u,v)e^{j2\pi(ux/M+yy/N)}$$
+
+properties of DFT
+- $|F(u, v)|$ has even symmetry about the origin, aka $|F(u,v)| = |F(-u,-v)|$
+- conjugate symmetric ($f$ is real function): $F^*(u,v)=F(-u,-v)$, $F(u,v)=F^*(-u,-v)*$
+- $F(0,0)$ is the <font color="#00b050">DC component</font>, represents the <font color="#00b050">average value</font> of the image
+- <font color="#00b050">translation</font> has no effect on the spectrum of $F(u, v)$
+- <font color="#00b050">rotation</font>: if $f$ rotate for $x$ degree, then $F$ will rotate for the same degree
+- applying DFT <font color="#00b050">twice</font> = rotate image by 180 degree
+- <font color="#00b050">centering</font> the FT: $DFT[f(x,y)(-1)^{x+y}]=F(u-M/2,v-N/2)$
+- <font color="#00b050">separability</font>: 2D DFT can be computed by twice 1D DFT
+
+from DFT to DCT: DFT is impractical to implement complex domain, so we just take the real part of transformation kernel ➡ DCT
+
+### Discrete Cosine Transformation (DCT)
+- DCT express function or signal in terms of sum of sinusoids with different frequencies and amplitudes
+- formula
+	- DCT: $$ F(u,v)=C(u)C(v)\sqrt{\frac{2}{MN}}\sum_{x=0}^{M+1}\sum_{y=0}^{N+1}f(x,y)\cos\biggl[\frac{\pi}{M}u\biggl(x+\frac{1}{2}\biggr)\biggr]\mathrm{cos}\biggl[\frac{\pi}{N}v\biggl(y+\frac{1}{2}\biggr)\biggr]$$
+	- IDCT: $$ f(x,y)=\sqrt{\frac2{MN}}\sum_{u=0}^{M-1}\sum_{v=0}^{N-1}C(u)C(v)F(u,v)\cos\left[\frac\pi Mu(x+\frac12)\right]\cos\left[\frac\pi Nv(y+\frac12)\right]$$
+- properties
+	- forward/inverse transformation kernel are the <font color="#00b050">same</font>
+	- transformation kernel is <font color="#00b050">separable</font> $F = G\cdot f \cdot G^T$
+	- <font color="#00b050">flipping</font> has no effect on the 2D DCT spectrum of an image
+- application of DCT
+	- lossy compression, keep most of the low frequency components, due to its "energy compaction" property
+
+### DHT
+
+Hadamard Transform: a generalized class of Fourier transforms
+- decomposes input signal into a superposition of <font color="#00b050">Walsh functions</font>
+	- Walsh matrix: entries of the matrix are either +1 or −1 and its rows as well as columns are <font color="#00b050">orthogonal</font> (dot product is zero)
+	- Walsh function: each <font color="#00b050">row</font> of a Walsh matrix correspond to a Walsh function
+
+DHT ([reference video](https://www.youtube.com/watch?v=eWFC8rU1z10))
+- formula
+	- DHT: $$ H(u,\nu)=\frac1N\sum_{x=0}^{N-1}\sum_{y=0}^{N-1}f(x,y)(-1)^{\sum_{i=0}^{n-1}[b_i(x)b_i(u)+b_i(y)b_i(v)]}$$
+	- IDHT: $$ f(x,y)=\frac{1}{N}\sum_{u=0}^{N-1}\sum_{v=0}^{N-1}H(u,\nu)(-1)^{\sum_{i=0}^{n-1}[b_i(x)b_i(u)+b_i(y)b_i(v)]}$$, where image $f$ is $N\times N$, $N = 2^n$, $b_k(z)$ is the value of the $k$th bit of $z$ in binary representation
+- calculation: $H = G \cdot f \cdot G$, and $f = G \cdot H \cdot G$
+	- $G$ can be calculated by $G_{N} = \dfrac{1}{\sqrt{N}}\begin{bmatrix}H_{N/2}&H_{N/2}\\H_{N/2}&-H_{N/2}\end{bmatrix}$, where $H_2 = \dfrac{1}{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}$
+- properties
+	- forward and inverse transformation kernel of DHT are the same
+	- DHT is separable
+- ordering schemes of Walsh function
+	1. sequency: can be derived from the ordering of the Hadamard matrix by first applying the bit-reversal permutation and then the Gray-code permutation OR: label each row's <font color="#00b050">number of sign changes</font> and <font color="#00b050">re-order</font> the rows in ascending order. eg: $\begin{bmatrix}1&1&1&1&1&1&1&1\\1&-1&1&-1&1&-1&1&-1\\1&1&-1&-1&1&1&-1&-1\\1&-1&-1&1&1&-1&-1&1\\1&-1&-1&1&1&-1&-1&1\\1&1&1&1&-1&-1&-1&-1\\1&-1&1&-1&-1&1&-1&1\\1&1&-1&-1&-1&-1&-1&1\\1&-1&-1&1&-1&1&1&-1\end{bmatrix}$ ➡ $\begin{bmatrix}1&1&1&1&1&1&1&1\\1&1&1&1&-1&-1&-1&-1\\1&1&-1&-1&-1&-1&1&1\\1&1&-1&-1&1&1&-1&-1\\1&-1&-1&1&1&-1&-1&1\\1&-1&-1&1&1&-1&-1&1\\1&-1&-1&1&-1&1&1&-1\\1&-1&1&-1&-1&1&-1&-1\\1&-1&1&-1&1&-1&1&-1\end{bmatrix}$
+	2. Hadamard (as shown in previous section)
+	3. dyadic
+
+### Karhunen-Loeve Transform (KLT)
+
+KL theorem
+- representation of a stochastic process as an infinite linear combination of <font color="#00b050">orthogonal functions</font>, $X_t=\sum_{i=1}^\infty Y_ie_i(t)$
+- <font color="#00b050">coefficients</font> in the KL theorem are <font color="#00b050">random variables</font> and the expansion <font color="#00b050">basis</font> depends on the process, allowing it to adapt to process
+- <font color="#00b050">orthogonal functions</font> determined by <font color="#00b050">covariance function</font> of the process
+
+empirical version is known as <font color="#00b050">KL Transform</font> (coefficients computed from samples), closely related to principal component analysis (PCA)
+- covariance: $$ \begin{aligned}&C_x=\frac1L\sum_{i=1}^L(X_i-m_x)(X_i-m_x)^\mathrm{T}=\frac1L\left[\sum_{i=1}^LX_iX_i^\mathrm{T}\right]-m_xm_x^\mathrm{T}\\&\boldsymbol{m}_x=E\{\boldsymbol{X}\}=\frac1L\sum_{i=1}^LX_i\end{aligned}$$, where $X_i$: $i$ th sample vector, $L$ is the size of sample set
+	- image size: $M\times N$, size of $C_x$: $MN \times MN$, size of $m_x$: $MN\times 1$
+- diagonalize covariance matrix: $$ C_x\to\{\lambda_i,\vec{u}_i\}\quad\quad P=\begin{bmatrix}\vec{u}_1,...,\vec{u}_i,...\end{bmatrix}^T$$, $Y = P(X-m_x)$, $X = P^TY+m_x$
+- arrange eigenvalues in descending order, KL approximation is the one that minimize total mean square error $\varepsilon=\sum_{i=K+1}^{N\times N}\lambda_i$
+- pros and cons of KL transform
+	- pro: decorrelates the original signal
+	- con: computational cost, not suitable for data with a non-Gaussian/non-exponential probability distribution
+
+### DWT
+
+wavelets and wavelet transform: often used to replace conventional Fourier transform
+- wavelet: small waves of varying frequencies and limited duration
+- wavelet transform vs. FT: both frequency-localized, and wavelet transform have an additional <font color="#00b050">time-localization </font>property
+
+Short-time Fourier Transform (STFT)
+- formula: $$ \mathrm{WFT}_{\int}(b,\omega)=\frac1{\sqrt{2\pi}}\int_{R}f(x)W^{*}(x-b)\mathrm{e}^{-\mathrm{j}\omega x}\mathrm{d}x$$, where $W$ is windowing function, and inverse STFT: $$ f(x)=\frac{1}{\sqrt{2\pi}}\iint_{R^2}\mathrm{WFT}_f(b,\omega)W(x-b)\mathrm{e}^{\mathrm{i}ox}\mathrm{d}\omega\mathrm{d}b$$
+- STFT has <font color="#00b050">fixed</font> resolution
+	- <font color="#00b050">width</font> of the windowing function relates to how the signal is represented
+- why DWT: wavelet transform and <font color="#00b050">multiresolution</font> analysis can give good time resolution for high-frequency events and good frequency resolution for low-frequency events, the combination best suited for many real signals
+
+DWT
+- image pyramid
+	- collection of <font color="#00b050">decreasing resolution</font> images arranged in the shape of a pyramid, used for representing images at more than one resolution
+- subband coding
+	- An image is <font color="#00b050">decomposed</font> into a set of <font color="#00b050">bandlimited</font> components, called subbands. The subbands can be reassembled to <font color="#00b050">reconstruct</font> the original image without error
+- wavelet series: representation of a square-integrable (real or complex-valued) function by a certain orthogonal series generated by a wavelet: $\psi_{a,b}(x)=|a|^{\frac12}\psi{\left(\frac{x-b}a\right)}$, where $\psi$: mother wavelet has a finite-length or fast-decaying oscillating waveform, $a$ and $b$ are scaling and translation parameters
+- basic idea: use some small but well known wavelets as <font color="#00b050">probes</font> to compare its similarity with the signal (image). By scaling & translation the detection can have different scales.
