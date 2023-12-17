@@ -285,3 +285,82 @@ homomorphic filtering
 - Illumination and reflectance combine multiplicatively: $$ \begin{aligned}f(x,y)&=f_i(x,y)\cdot f_r(x,y)\\\\0&<f_i(x,y)<\infty\\\\0&<f_r(x,y)<1\end{aligned}$$
 	- $f_i$ and $f_r$ are not separable, but their approximate locations in frequency domain can be located
 	- $$ g(x,y)=F^{-1}\{T[F[f(x,y)]]\}$$
+## Chapter 6 Image Restoration
+
+goal of restoration: from degraded image to original image
+
+evaluation of restoration: compare the difference between original image and recovered image
+
+traditional vs. modern image restoration
+- traditional: stable, linear position invariant, prior knowledge of signal and noise required
+- modern: not stable, non-linear, no prior knowledge required
+
+### image degradation model
+![[DIP notes-20231217-4.png|450]]
+- $G(u,v) = H(u,v)F(u,v) + N(u,v)$
+- restoration: given $g$ and some information about $H$ and $n$, and try to obtain an estimate $\hat{f}$ of original image
+- property of $H$
+	- linear
+		- additivity
+		- homogeneity: $$ H[k_1f_1(x,y)+k_2f_2(x,y)]=k_1H[f_1(x,y)]+k_2H[f_2(x,y)]$$
+	- position invariant: $$ H[f(x-a,y-b)]\quad=\quad g(x-a,y-b)$$
+
+$$ g(x,y)=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(\alpha,\beta)h(x,\alpha,y,\beta)d\alpha d\beta+n(x,y) $$
+- simplify: $g=Hf+n$
+- $h(x,\alpha,y,\beta)$: impulse response of $H$, referred to as <font color="#00b050">point spread function</font> (PSF)
+- size: $f$ is $A\times B$, $h$ is $C\times D$, by zero padding, they are extended to $(A+C-1)\times(B+D-1)$
+
+### restoration in the presence of noise only
+- remove <font color="#00b050">periodic noise</font>: can be reduced significant <font color="#00b050">frequency domain</font> filtering, <font color="#00b050">parameters</font> of noise can be estimated by inspection of <font color="#00b050">Fourier spectrum</font> of the image
+- noise PDF estimation: <font color="#00b050">intensity values</font> in the noise component may be considered random variables characterized by PDF
+
+### inverse filtering
+$$ G(u,v)=H(u,v)F(u,v)+N(u,v)$$  $$ \hat{F}(u,\nu)=F(u,\nu)+\frac{N(u,\nu)}{H(u,\nu)}$$
+### Wiener filtering / minimum mean square error filtering
+- error measure: $e^2 = E[(f - \hat{f})^2]$
+- best estimation: $\hat{F}(u,\nu)=\left[\frac1{H(u,\nu)}\cdot\frac{|H(u,\nu)|^2}{|H(u,\nu)|^2+K}\right]G(u,\nu)$
+
+### constrained least squares filtering
+$$ \begin{aligned}\min_{\hat{f}}\left\{\hat{f}^TC^TC\hat{f}\right\}&=\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}\left[\nabla^2\hat{f}(x,y)\right]^2\\\\s.t.\quad\left\|\boldsymbol{g}-\boldsymbol{H}\hat{\boldsymbol{f}}\right\|^2&=\left\|\boldsymbol{n}\right\|^2\end{aligned}$$
+solution: $\hat{f}_e=\left(\begin{bmatrix}\dot{h}_e\end{bmatrix}^T\begin{bmatrix}\dot{h}_e\end{bmatrix}+\alpha\begin{bmatrix}\dot{C}_e\end{bmatrix}^T\begin{bmatrix}\dot{C}_e\end{bmatrix}\right)^{-1}\begin{bmatrix}\dot{h}_e\end{bmatrix}^T\mathbf{g}_e$
+
+residual: $r = (g-H\hat{f})$, $\psi(y)=r^Tr=||r||^2$
+1. specify initial value of $y$
+2. compute $\psi(y)$
+3. keep this process until this condition is satisfied: $$ \left\|r\right\|^2=\left\|n\right\|^2\pm a$$, or after $$ \mathrm{increasing~}\gamma\quad\mathrm{if}\quad\left\|r\right\|^2<\left\|n\right\|^2-a$$, return to step 2, or after $$ \text{decreasing }\gamma\quad\mathrm{if}\quad\left\|r\right\|^2>\left\|n\right\|^2+a$$
+4. use new value of $\gamma$ to compute $\psi(y)$
+
+
+$$ \hat{F}=\frac{\boldsymbol{G}}{\boldsymbol{H}}\quad\quad\quad\hat{F}=\left[\frac{H^*}{\mid H\mid^2+\gamma[S_n/S_f]}\right]G\quad\quad\quad\hat{F}=\left[\frac{H^*}{\mid H\mid^2+\gamma\left|P\right|^2}\right]G$$
+- observation first
+- experimentation
+- mathematical modeling
+
+example: blue caused by uniform linear linear motion
+$$ g(x,y)=\int_0^Tf[x-x_0(t),y-y_0(t)]dt$$
+$$ G(u,v)=F(u,\nu){\int_0^T\exp\{-j2\pi[ux_0(t)+\nu y_0(t)]\}dt} \\ = F(u,v)H(u,v)$$
+
+
+### geometric image transformation
+- Image translation, scaling, rotation
+- Generalized linear geometrical transformation
+- Affine transformation
+- Perspective transformation
+
+geometric image modification
+- <font color="#00b050">shear parallel</font> to $x1$ axis: $$ \begin{bmatrix}y_1\\y_2\end{bmatrix}=\begin{bmatrix}1&k_2\\0&1\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}\quad \quad y_1=x_1+k_2x_2$$, ![[DIP notes-20231217-5.png|150]]
+- scale parallel to $x1$ axis: $$ \begin{bmatrix}y_1\\y_2\end{bmatrix}=\begin{bmatrix}s_1&0\\0&1\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}\quad\quad\quad\quad\quad\quad\quad\quad y_1=s_1x_1$$, ![[DIP notes-20231217-6.png|150]]
+- clockwise rotation: $$ \begin{bmatrix}y_1\\y_2\end{bmatrix}=\begin{bmatrix}\cos\theta&\sin\theta\\-\sin\theta&\cos\theta\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}$$
+- counter-clockwise rotation: $$ \begin{bmatrix}y_1\\y_2\end{bmatrix}=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}$$
+- translation: $$ \begin{bmatrix}y_1\\y_2\\1\end{bmatrix}=\begin{bmatrix}1&0&b_1\\0&1&b_2\\0&0&1\end{bmatrix}\begin{bmatrix}x_1\\x_2\\1\end{bmatrix} \quad \quad y_1=x_1+b_1, y_2=x_2+b_2$$
+- affine transformation: translation+scaling+rotation+reflection+shear+…
+	- every linear transformation is affine, not every affine transformation is linear
+	- linear transformation followed by a translation$$ \vec{y}=Affine(\vec{x})=A\vec{x}+\vec{b}\quad\quad\quad\quad\vec{y}=M\vec{t}=\left[\begin{array}{cc}A&\vec{b}\end{array}\right]\left[\begin{array}{c}\vec{x}\\1\end{array}\right]$$
+	- properties of affine transformations:
+		1. [collinearity](https://en.wikipedia.org/wiki/Collinearity "Collinearity") between points: three or more points which lie on the same line (called collinear points) continue to be collinear after the transformation.
+		2. [parallelism](https://en.wikipedia.org/wiki/Parallel_(geometry) "Parallel (geometry)"): two or more lines which are parallel, continue to be parallel after the transformation.
+		3. [convexity](https://en.wikipedia.org/wiki/Convex_set "Convex set") of sets: a convex set continues to be convex after the transformation. Moreover, the [extreme points](https://en.wikipedia.org/wiki/Extreme_point "Extreme point") of the original set are mapped to the extreme points of the transformed set.
+		4. ratios of lengths of parallel line segments stays the same
+		5. [barycenters](https://en.wikipedia.org/wiki/Barycenter "Barycenter") of weighted collections of points.
+
+
