@@ -604,3 +604,57 @@ $$ THT(f)=f-(f\circ g)$$
 bottom hat transformation: used for dark objects on a light background
 $$ BHT(f)=(f\bullet g)-f$$
 
+## Chapter 9 Image Compression
+
+### fundamental concepts
+
+- entropy of single event: $$ I(E)=\log\frac1{P(E)}=-\log P(E)$$
+- entropy of zero-memory source: $$ H=-\sum_iP(a_i)\log P(a_i)$$, where $a_i$ is source
+- Shannon's first theorem: $$ H=\lim_{n\to\infty}\frac{L_{\mathrm{avg},n}}n$$, as the length of a stream of independent and identically-distributed random variable (i.i.d.) data tends to infinity, it is impossible to compress such data such that the code rate (average number of bits per symbol) is less than the Shannon entropy of the source
+- average code length: $R(x) = \sum_iP(x_i)L_i$
+- coding efficiency: $\dfrac{H(x)}{R(x)}$
+- compression ratio: $$ c=\frac{b_1}{b_2}=\frac{R_{before}(x)}{R_{after}(x)}=\frac{ceil(\log_2(L))}{R_{after}(x)}$$
+- signal noise ration (SNR): $$ 10\log\frac{\sigma_x^2}{\sigma_e^2}$$
+### image data redundancy
+- coding redundancy
+- spatial and temporal redundancy
+- irrelevant information
+
+### model of image compression
+INPUT $f$ ➡ ENCODER {mapper + quantizer + symbol coder} ➡ DECODER {symbol decoder + inverse mapper} ➡ OUTPUT $\hat{f}$
+
+#### Huffman
+Huffman's procedure:
+1. create source reductions by ordering probabilities of symbols under consideration and combining the lowest probability symbols into a single symbol that replaces them in the next source reduction
+2. code each reduced source, starting with the smallest source and working back to the original source
+![[DIP notes-20231218-8.png|450]]
+- Huffman code is an <font color="#00b050">instantaneous</font> <font color="#0070c0">uniquely</font> <font color="#ffc000">decodable</font> block code
+	- block code: each symbol is mapped into a fixed sequence of code symbols
+	- instantaneous: each code word can be decoded without referencing succeeding symbols
+	- uniquely decodable: any string of code symbol can be decoded in only one way
+
+#### arithmetic coding
+
+Entire sequence of source symbols is assigned a single arithmetic code word. The <font color="#00b050">code word</font> itself <font color="#00b050">defines an interval</font> of real numbers between 0 and 1. As the <font color="#00b050">number of symbols</font> in the message <font color="#00b050">increases</font>, the <font color="#00b050">interval</font> used to represent it becomes <font color="#00b050">smaller</font> and the number of information units required to represent the interval becomes larger.
+
+![[DIP notes-20231218-9.png|450]]
+
+#### running length coding (RLC)
+
+RLC compresses image by representing runs of <font color="#00b050">identical intensities</font> as run-length pairs, where each run-length pair specifies the <font color="#00b050">start</font> of a new intensity & the <font color="#00b050">number</font> of consecutive pixels that have that intensity (using 57 to represent 57 continuous zeros)
+
+#### other coding methods
+- bit-plane
+- block transform coding
+- predictive coding
+
+### digital image watermark
+
+- one or more items of information inserted into digital images
+- visible watermark
+	- opaque or semi-transparent sub-image or image is placed on top of another image: $f_w = (1-\alpha)f + \alpha w$, where $\alpha$ controls visibility of watermark
+- invisible watermark
+	- fragile invisible watermark (LSB watermarked image): $f_w = 4(f/4) + w/64$
+		- can't be seen, insert watermark as redundant information, will be destroyed by any modification of the images
+	- can also be implemented in transform domain: compute DCT, locate its $K$ largest coefficients by magnitude, then create a watermark by <font color="#00b050">generating</font> $K$-element pseudo-random <font color="#00b050">sequence of numbers</font>, taken from a Gaussian distribution with 0 mean and unit variance, after this embed watermark image from previous step into $K$ largest DCT coefficients using $c_i' = c_i (1 + \alpha w_i)\quad\quad 1\le i \le K$. And at last compute the inverse DCT.
+
