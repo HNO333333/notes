@@ -1,4 +1,4 @@
 title: "<%= it.title %>"
 citekey: "<%= it.citekey %>"
-import-date: "<%= it.dateAccessed %>"
+Date: "<%= it.dateAccessed.toISOString().split('T')[0]%>"
 tags: "#reading"

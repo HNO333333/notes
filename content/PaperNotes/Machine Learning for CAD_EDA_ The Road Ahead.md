@@ -5,7 +5,9 @@ zt-attachments:
 title: "Machine Learning for CAD/EDA: The Road Ahead"
 citekey: kahngMachineLearningCAD2023
 import-date: 2023-12-13T07:30:04.000Z
-tags: "#reading"
+tags:
+  - "#reading"
+date: 2023-12-15
 ---
 [Check at Zotero](zotero://select/library/items/HAWHP93V) | [attachment](<file:///D:/my_files/studying_stuffs/zotero_paper_vault/storage/ERAEH4NC/Kahng%20-%202023%20-%20Machine%20Learning%20for%20CADEDA%20The%20Road%20Ahead.pdf>)
 

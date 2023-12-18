@@ -1,13 +1,13 @@
 ---
-tags: []
-title: 'ML4EDA notes'
+tags: 
+title: ML4EDA notes
 parent: ""
 collections:
-    - ML4EDA
+  - ML4EDA
 version: 0
 libraryID: 1
 itemKey: FMW6W23R
-
+date: 2023-12-15
 ---
 # ML4EDA notes
 

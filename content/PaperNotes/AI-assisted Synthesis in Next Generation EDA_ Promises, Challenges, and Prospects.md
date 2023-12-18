@@ -5,7 +5,9 @@ zt-attachments:
 title: "AI-assisted Synthesis in Next Generation EDA: Promises, Challenges, and Prospects"
 citekey: wuAIassistedSynthesisNext2022
 import-date: 2023-12-13T07:32:20.000Z
-tags: "#reading"
+tags:
+  - "#reading"
+date: 2023-12-15
 ---
 [Check at Zotero](zotero://select/library/items/78JRZEHX) | [attachment](<file:///D:/my_files/studying_stuffs/zotero_paper_vault/storage/QJBKAC2H/2022_AI-assisted%20Synthesis%20in%20Next%20Generation%20EDA_Wu%20et%20al.pdf>)
 

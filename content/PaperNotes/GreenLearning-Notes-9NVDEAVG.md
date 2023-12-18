@@ -1,13 +1,13 @@
 ---
-tags: []
-title: 'GreenLearning Notes'
+tags: 
+title: GreenLearning Notes
 parent: ""
 collections:
-    - GreenML
+  - GreenML
 version: 0
 libraryID: 1
 itemKey: 9NVDEAVG
-
+date: 2023-12-15
 ---
 # GreenLearning Notes
 
