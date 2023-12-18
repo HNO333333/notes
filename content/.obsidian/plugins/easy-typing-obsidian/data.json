@@ -48,10 +48,6 @@
   ],
   "userConvertRulesStrList": [
     [
-      "$|",
-      "$|$"
-    ],
-    [
       "{|$",
       "{|}$"
     ],
@@ -62,6 +58,10 @@
     [
       "->|",
       "➡|"
+    ],
+    [
+      "$|",
+      "$|$"
     ]
   ],
   "userSelRuleSettingsOpen": false,

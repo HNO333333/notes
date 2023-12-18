@@ -1075,7 +1075,7 @@ author: HNO3
 		- blockchain router
 		- hash timelocks
 
-## Lecture 15 Blockchain Consensus
+## Lecture 15-16 Blockchain Consensus
 
 - definition of consensus
 	- reach a common agreement
@@ -1173,3 +1173,236 @@ comparison between PoW and PoS
 	- ability to support increasing load of transactions & the number of nodes in the network
 	- off-chain solutions
 		- built on the top of the main chain blockchain and handle most of the transaction off-chain
+
+### PAXOS
+
+#### main idea of PAXO
+- allows consensus over a value under unreliable communications
+- <font color="#00b050">majority</font> represents the whole — if more than half of processes choose a value, that value is the consensus
+- scenarios
+	- messages can pass through network without corrupted
+	- fail-stop model: process can fail but not present Byzantine fault (not operate in malicious way)
+
+#### nodes in PAXOS
+three roles:
+1. *proposer*: an <font color="#00b050">elected</font> proposer acts as a single <font color="#00b050">leader</font> to <font color="#00b050">propose</font> a new value. Proposers handle client <font color="#00b050">requests</font>.
+2. *acceptor*: <font color="#00b050">evaluate</font> and <font color="#00b050">accept</font> or <font color="#00b050">reject</font> proposals proposed by the proposers according to rules and conditions
+3. *learner*: learn the decision or the agreed-upon value
+
+#### phases in PAXOS
+- two phases: prepare & accept
+- end of prepare phase: majority of acceptors have <font color="#00b050">promised</font> a specific proposal number
+- end of the accept phase: majority of acceptors have <font color="#00b050">accepted</font> a proposed value, and consensus is reached
+
+##### prepare phase
+procedure
+- proposer <font color="#00b050">receives a request</font> to reach consensus on a value by a client
+- <font color="#00b050">sends a message</font> prepare (n) to a majority or all acceptors
+- acceptor <font color="#00b050">receives</font> this prepare (n) message, it makes a “<font color="#00b050">promise</font>”
+
+at this phase: <font color="#00b050">no value</font> is proposed for a decision yet. Here $n$ represents the proposal number, which must be globally <font color="#00b050">unique</font> and <font color="#00b050">greater</font> than any proposal number this proposer used before. Acceptors in the majority will respond.
+- If <font color="#00b050">no previous promise</font> has been made by responding to this prepare ($n$) message, then the acceptor now promises to <font color="#00b050">ignore any request less than the proposal number n</font>. It <font color="#00b050">records n</font> and <font color="#00b050">replies</font> with message <font color="#00b050">promise(n)</font>.
+- If the acceptor has <font color="#00b050">previously promised</font>, that is, already responded to another prepare message with some proposal number lower than n, acceptors will
+	- if acceptor has <font color="#00b050">not received</font> any accept messages from proposer in accept phase: <font color="#00b050">store</font> the <font color="#00b050">higher</font> proposal number and <font color="#00b050">sends</font> a promise message to the proposer
+	- if acceptor has received an accept message earlier with other lower proposal number, it must have <font color="#00b050">already accepted a proposed value</font> from some proposer. Previous full proposal is now <font color="#00b050">sent along with the promise message</font> to the proposer, <font color="#00b050">indicating</font> that the acceptor has already accepted a value.
+
+##### accept phase
+procedure
+1. proposer waits until it gets response from majority of the acceptors for this proposal $n$
+2. when responses are received, the proposer <font color="#00b050">evaluates</font> what value v should be sent in the accept message
+3. proposer now <font color="#00b050">sends an accept message</font> – a <font color="#00b050">full proposal</font> of the form accept <font color="#00b050">(n, v)</font> – to the acceptors, where n is the promised proposal number and v is the actual proposed value
+4. when an acceptor receives this accept(n, v) message, it <font color="#00b050">replies with accepted(n, v)</font> and sends accepted(n, v) to all <font color="#00b050">learners</font> or ignores the proposal
+5. if a majority of acceptors accept the value v in the proposal, then <font color="#00b050">v becomes the decided value</font> of the protocol i.e., consensus is reached
+
+number of acceptors
+- in order to tolerate $f$ faulty acceptors, at least a set consisting of $2f + 1$ acceptors is required
+
+how does proposer evaluate what value $v$ should be sent in the accept message:
+- if proposer <font color="#00b050">received</font> one or more promise messages with <font color="#00b050">full proposals</font>, it chooses value $v$ in the proposal with <font color="#00b050">highest proposal number</font>
+- if <font color="#00b050">no</font> promise messages received by proposer include a full proposal, proposer can choose <font color="#00b050">any</font> value
+
+what do acceptors do when receive accept(n,v) message
+- if the acceptor has <font color="#00b050">promised not to</font> accept this proposal number previously, it will <font color="#00b050">ignore</font> the message
+- if it <font color="#00b050">has responded</font> to the corresponding prepare request with the same n, that is, prepare(n), only then it replies with accepted(n, v) <font color="#00b050">indicating acceptance</font> of the proposal
+- finally, acceptors send accepted(n,v) to all learners
+
+![[IS notes-20231218-1.png|600]]
+
+
+### RAFT
+
+#### main idea
+- RAFT: Replicated And Fault Tolerant
+- key idea: enable state machine replication with a persistent log
+- allows cluster reconfiguration which enables <font color="#00b050">cluster membership</font> changes without service interruption
+- RAFT allows <font color="#00b050">log compaction</font> to alleviate the issue of consuming too much storage and slow rebuild after node crashes
+- scenarios: no byzantine failures, unreliable network communiacation, asynchronous communication and processors
+
+#### nodes in RAFT
+three roles:
+1. leader: receives client <font color="#00b050">requests</font>, manages replication <font color="#00b050">logs</font>, and manages <font color="#00b050">communication</font> with the followers
+2. follower: nodes are <font color="#00b050">passive</font> in nature and only <font color="#00b050">respond</font> to Remote Procedure Call (RPCs), <font color="#00b050">never initiate</font> any communication
+3. candidate: used by a node that is trying to become a leader by <font color="#00b050">requesting votes</font>
+
+![[IS notes-20231218-2.png|500]]
+
+#### phases in RAFT
+2 phases:
+- leader election
+- log replication
+
+##### leader election
+process
+1. all nodes start up as followers
+2. followers will run as followers as long as they keep receiving valid RPCs from a leader or candidate
+3. if a follower does <font color="#00b050">not receive heartbeats</font> from the leader for some time, then an “<font color="#00b050">election timeout</font>” occurs, which indicates that the leader has failed. Now the follower node undertakes the candidate role and attempts to become the leader by starting the election process
+4. if a node receives votes from the <font color="#00b050">majority</font> of the nodes, then it becomes the leader, other nodes are followers. If no one wins the elections and election timeout occurs, the election process <font color="#00b050">starts again</font> with a new term
+
+leader election
+
+![[IS notes-20231218-3.png|500]]
+
+##### log replication
+process
+1. client <font color="#00b050">sends command</font>s/requests to the leader to be executed by the replicated state machines
+2. leader assigns a <font color="#00b050">term</font> and <font color="#00b050">index</font> to the command so that the command can be <font color="#00b050">uniquely identified</font> in the logs held by nodes. Leader appends this command to its log
+3. when the leader has a <font color="#00b050">new entry</font> in its log, at the same time it sends out the <font color="#00b050">requests</font> to replicate this command via the <font color="#00b050">AppendEntries RPC</font> to the follower nodes
+4. when the leader is <font color="#00b050">able to replicate</font> the command to the majority of the follower nodes, that is, <font color="#00b050">acknowledged</font>, the entry is considered committed on the cluster.
+5. leader <font color="#00b050">executes</font> the command in its state machine and returns the <font color="#00b050">result</font> to the client. It also notifies the followers that the entry is committed via the AppendEntries RPC, and the followers execute committed commands in their state machines
+
+logs:
+
+![[IS notes-20231218-4.png|400]]
+
+log replication:
+
+![[IS notes-20231218-5.png|500]]
+
+[more of RAFT](http://thesecretlivesofdata.com/raft/)
+
+### PBFT
+
+#### main idea
+- Practical Byzantine fault tolerance (PBFT), is a protocol designed to provide consensus in the presence of Byzantine faults
+- PBFT constitutes three subprotocols called *normal operation*, *view change*, and *checkpointing*
+
+subprotocols
+- normal operation: a mechanism executed when everything is running normally, and the system is <font color="#00b050">error-free</font>
+- view change: runs when a <font color="#00b050">faulty leader node</font> is detected in the system
+- checkingpoint: discard the old data from the system
+
+#### nodes in PBFT
+3 roles (modules):
+1. replicas: participants
+2. leader: or primary node, handles the <font color="#00b050">communication</font> with the client
+3. backup: rest of the nodes except the leader
+
+minimum number required: $n=3f+1$, where $n$ is the number of nodes and $f$ is the number of <font color="#00b050">faculty nodes</font>
+
+#### phases in PBFT
+3 phases
+- pre-prepare
+- prepare
+- commit
+
+##### pre-prepare
+process
+1. accepts <font color="#00b050">request</font> from client
+2. <font color="#00b050">assign</font> it to next <font color="#00b050">sequence number</font>. This sequence number is the order in which the request is going to be executed
+3. <font color="#00b050">broadcast</font> this information as the pre-prepare message to all backup replicas
+
+##### prepare
+1. accepts the pre-prepare message only if the replica has not accepted any pre-prepare messages for the same view or sequence number before
+2. sends the prepare message to all replicas
+
+##### commit
+1. replica waits for $2f + 1$ prepare messages with the same view, sequence, and request
+2. sends a <font color="#00b050">commit message</font> to all replicas
+3. waits until a $2f + 1$ valid commit message <font color="#00b050">arrives</font> and is <font color="#00b050">accepted</font>
+4. <font color="#00b050">executes</font> the received request
+5. sends a reply containing the execution <font color="#00b050">result</font> to the client
+
+![[IS notes-20231218-6.png]]
+
+
+## Lecture 17-18 Application of Blockchain
+
+### cognitive radio (CR) network
+
+#### background
+- communication system: can be wireless and wire-based with different data rates
+- wireless communication: required radio spectrum, which can be classified as 1) licensed spectrum 2) unlicensed spectrum
+	- licensed spectrum: managed by governments and telecom operators needs to buy it then provide to customers
+	- unlicensed spectrum: used free of charge by anyone at any time, also called: Industrial, Scientific, and Medical (ISM) band
+- why CR: wireless radio spectrum is <font color="#00b050">underutilized</font>, and lot of licensed radio spectrum is not being utilized. The primary reason for CR is the <font color="#00b050">static allocation</font> of the spectrum by the regulatory bodies. To efficiently utilize wireless radio spectrum, we can use wireless radio spectrum dynamically, new paradigm introduced: Dynamic Spectrum Access (DSA), which is used by CR.
+
+#### basic of CR
+
+nodes in CR: 2 types co-exist
+- primary radio (PR) nodes: <font color="#00b050">licensed</font> users and can only use the licensed spectrum
+- secondary users (SU): can only use the licensed spectrum when it is not being utilized by the primary users and do not cause harmful interference to the PR nodes, required to leave the frequency band when a primary radio node arrives over it
+
+CR network vs. primary network
+
+![[IS notes-20231218-7.png]]
+
+ad hoc CRN is formed in the presence of primary radio network in which CR nodes communicate with each other using different channels owned by the primary network when these channels are unoccupied by the primary radio nodes![[IS notes-20231218-8.png]]
+
+*collision-free communication* (CFC)
+- desirable in networks
+- role of medium access <font color="#00b050">protocols</font> is to allow devices to access the medium (resource) without making a collision with other devices
+
+different medium access protocols
+
+![[IS notes-20231218-9.png]]
+
+why need collision-free communication
+- if not: packets will be lost, re-transmission will be required and thus result in energy and time consumption
+
+Dynamic Spectrum Sharing in CR
+- enable use of LTE and 5G <font color="#00b050">simultaneously</font> in the same frequency band (different radios coexistence in the same carrier using spectrum sharing)
+- helps in determining the <font color="#00b050">demand</font> for different radios in real-time
+- how: available bandwidth of the network is divided into independent parts and dynamically assigns respective mobile communications standard it can be ideally used for available frequencies
+
+Issues of DSS in CR
+- *self-aware*: should be able to know what's going on inside, then according to it to determine actions to achieve goals
+- *self-configuration*: should be able to <font color="#00b050">adapt</font> immediately with least human intervention to configure
+- *self-healing*: network state can be <font color="#00b050">evaluated</font> and <font color="#00b050">corrective actions</font> should be initialized without interrupting system operation. (resilient to impact of failing components)
+- *self-optimizing*: ability of the network environment to efficiently <font color="#00b050">maximize resource allocation</font> and <font color="#00b050">utilization</font> to achieve goals with least human intervention
+- *self-protecting*: ability of <font color="#00b050">detecting</font> hostile or intrusive behavior and taking autonomous actions to make itself less vulnerable
+
+### blockchain enabled CR
+
+how blockchain help
+- blockchain provides <font color="#00b050">verification</font> and <font color="#00b050">validation</font> schemes to ensure the security
+- <font color="#00b050">decentralized</font> validation algorithm of blockchain enables a medium access protocol of CR to be <font color="#00b050">more accessible</font>, and the implementation will be easier since there is no need for a central-authority node
+- <font color="#00b050">lacking a centralized node</font> for validating and monitoring spectrum access makes overall system more <font color="#00b050">robust</font> against <font color="#00b050">single-point failure</font>
+
+steps carried out:
+1. each group reach local consensus to allocate resources
+2. broadcast information to all CR nodes
+3. CR nodes will not use these resources
+4. results in collision avoidance in channel hopping sequence-based CR network
+
+benefits of using blockchain in CR network
+1. lack of central entity
+	- <font color="#00b050">remove reliance</font> of buying and selling spectrum without going to the central entity or spectrum regulator
+	- <font color="#00b050">enhance spectrum assigning process</font> by making the buying and selling more faster than getting permission from a centralized regulator
+2. immutability 
+	- keep spectrum management-related records safe and secure
+	- records cannot be tampered
+3. availability
+	- make dynamic spectrum management distributed ledger more available, and attackers are difficult to modify
+	- no need to contact regional/national spectrum regulator every time when evaluating white spaces and determining spectrum opportunities
+4. DoS resilient
+	- denial of service attack resilient, compromise to a single node or few nodes will not hinder the activities of system
+5. non-repudiation
+	- more transparent and auditable
+6. smart contract integration
+	- bring new business models, rule-based spectrum management and assigning policies
+
+Issues of Blockchain-enabled CR
+- who manage the blockchain system? will spectrum broker own the ledger? how do nodes join/leave blockchain network?
+- how will consensus be reached? which consensus protocol will be used? which blockchain system will be used?
+- Is existing spectrum access methods sufficient?
+- local copy of ledger required blockchain system, which is a problem for mobile devices.
