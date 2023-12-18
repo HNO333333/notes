@@ -364,3 +364,91 @@ geometric image modification
 		5. [barycenters](https://en.wikipedia.org/wiki/Barycenter "Barycenter") of weighted collections of points.
 
 
+## Chapter 7 Image Segmentation
+
+definition: process of separating or grouping an image into different parts
+
+based on these features:
+- color
+- edge
+- texture
+
+### connectivity
+
+*4-adjacency*: up/down/left/right, $N_4(p)$, if $q$ is in $N_4(p)$, then $p$ and $q$ are 4-adjacent.
+
+*8-adjacency*: diagonal neighbors $N_D(p)$ + 4-adjacent $N_4(p)$
+
+*m-adjacency*: $p$ and $q$ are m-adjacent if 
+- $q$ is in $N_4(p)$ OR
+- $q$ in $N_D(p)$ and $N_4\left(p\right)\cap N_4\left(q\right)$ has NO pixels whose values are the same used to define adjacency
+
+*path*:
+
+![[DIP notes-20231218-1.png|450]]
+
+- 4-adjacency: no path
+- 8-adjacency: 4
+- m-adjacency: 7
+
+foreground and background MUST have different definition of connectivity to segment them, or there will be ambiguity.
+
+- $p$ and $q$ are connected in $S$ (a subset of pixels in an image) if there's a path
+- $S$ is a <font color="#00b050">connected set</font> or <font color="#00b050">region</font> if there's only one connected component.
+- two regions are adjacent if their union is a connected set. if not adjacent: disjoint
+
+view segmentation in connectivity: $R$ represents entire spatial region, then segmentation is a process that partitions $R$ into $N$ subregions that
+- $$ \bigcup_{i=1}^NR_i=R$$
+- $R_i$ is a connected set
+- $R_i \cap R_j = \varnothing$
+- $Q(R_i) = TRUE$
+- $Q(R_i\cup R_j)=FALSE$ for any adjacent region
+
+### segmentation methods
+
+#### amplitude thresholding
+
+- bilevel luminance thresholding
+	- group light objects and dark background into two dominant modes based on a selected threshold $T$
+	- $$ g(x,y)=\begin{cases}1&\quad f(x,y)\geq T\\0&\quad f(x,y)<T\end{cases}$$
+- basic global thresholding
+	- use single threshold over entire image
+- multilevel luminance thresholding
+- multilevel color component thresholding
+	- set threshold for each color
+- amplitude (color component) projection
+
+global thresholding vs. variable thresholding
+- global: noise and non-uniform illumination will influence the performance of thresholding algorithm
+- variable: image partitioning, moving averages
+
+#### region
+- region growing
+	- seeds
+	- similar criteria (like: connectivity)
+	- stopping rule
+
+#### clustering
+- measure each pixel at coordinate $(i,j)$ with a vector $v_{ij}$
+- measurement can be: point gray values, color components, neighborhood features (like moving window mean, standard deviation, mode)
+- classification: find a plane/line that separates different classes with maximum margin
+	- within cluster scatter matrices: $S_W=\frac1K\sum_{k=1}^K\frac1{M_k}\sum_{x_i\in S_k}(x_i-u_k)(x_i-u_k)^T$, where $u_k$ is the center of the cluster, $S_k$ is the whole set of the cluster, $x_i$ is the object in the cluster
+	- between cluster scatter matrices: $S_B=\frac1K\sum_{k=1}^K(u_k-u_0)(u_k-u_0)^T$, $u_0$ is the global center
+
+#### edge detection
+- gradient
+- kernels
+	- Roberts
+	- Prewitt
+	- Sobel
+	- Laplacian
+- Hough transform
+	- *point-line duality* between xy-plane and pq-plane. ![[DIP notes-20231218-2.png|400]]
+		- <font color="#00b050">principle line</font> in image plane can be found by <font color="#00b050">identifying points</font> in parameter space.
+	- *point-circle duality* between xy-plane and ab-plane. ![[DIP notes-20231218-3.png|400]]
+		- principle <font color="#00b050">circles</font> in image plane can be found by identifying <font color="#00b050">points</font> in parameter space
+- Snakes
+	- internal forces, image forces, external constraint forces, molding a closed contour to the boundary of an object in an image (draw a larger region encloses the object, then shrink gradually to find the edge of object)
+- graph cut
+	- graph is used to represent the image, pixels in the image are represented by nodes on the graph, then a Min-Cut/Max-Flow algorithm is used to segment the graph
+

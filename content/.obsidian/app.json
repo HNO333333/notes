@@ -16,5 +16,6 @@
     "margin": "0",
     "downscalePercent": 90
   },
-  "propertiesInDocument": "visible"
+  "propertiesInDocument": "visible",
+  "showLineNumber": false
 }
