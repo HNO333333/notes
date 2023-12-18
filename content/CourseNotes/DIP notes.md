@@ -452,3 +452,155 @@ global thresholding vs. variable thresholding
 - graph cut
 	- graph is used to represent the image, pixels in the image are represented by nodes on the graph, then a Min-Cut/Max-Flow algorithm is used to segment the graph
 
+## Chapter 8 Morphological Image Processing
+
+set theory
+- image is a <font color="#00b050">set</font>
+- spatial operation basically is set operation
+
+structuring element (SE): small sets used to <font color="#00b050">probe</font> an image under study for properties of interest
+
+more detailed explanation can be found here: [reference](https://homepages.inf.ed.ac.uk/rbf/HIPR2/morops.htm)
+
+### binary morphology
+
+#### erosion & dilation
+
+erosion
+- $E=A\Theta B=\left\{\vec{z}\mid B_z\subseteq A\right\}$ or $A\Theta B=\left\{\vec{z}\mid B_z\cap A^C=\emptyset\right\}$, where $B_z$ is the translation of $B$ by vector $z$.
+- erosion <font color="#00b050">shrinks</font> (thins) objects in binary image, image details <font color="#00b050">smaller</font> than SE are filtered from the image
+```
+    1 1 1 1 1 1 1 1 1 1 1 1 1        
+    1 1 1 1 1 1 0 1 1 1 1 1 1    
+    1 1 1 1 1 1 1 1 1 1 1 1 1    
+    1 1 1 1 1 1 1 1 1 1 1 1 1   
+    1 1 1 1 1 1 1 1 1 1 1 1 1                
+    1 1 1 1 1 1 1 1 1 1 1 1 1               1 1 1
+    1 1 1 1 1 1 1 1 1 1 1 1 1               1 1 1
+    1 1 1 1 1 1 1 1 1 1 1 1 1               1 1 1
+    1 1 1 1 1 1 1 1 1 1 1 1 1        
+    1 1 1 1 1 1 1 1 1 1 1 1 1    
+    1 1 1 1 1 1 1 1 1 1 1 1 1    
+    1 1 1 1 1 1 1 1 1 1 1 1 1   
+    1 1 1 1 1 1 1 1 1 1 1 1 1
+```
+after erosion:
+```
+    0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 1 1 1 1 0 0 0 1 1 1 1 0
+    0 1 1 1 1 0 0 0 1 1 1 1 0
+    0 1 1 1 1 1 1 1 1 1 1 1 0
+    0 1 1 1 1 1 1 1 1 1 1 1 0
+    0 1 1 1 1 1 1 1 1 1 1 1 0 
+    0 1 1 1 1 1 1 1 1 1 1 1 0
+    0 1 1 1 1 1 1 1 1 1 1 1 0 
+    0 1 1 1 1 1 1 1 1 1 1 1 0 
+    0 1 1 1 1 1 1 1 1 1 1 1 0
+    0 1 1 1 1 1 1 1 1 1 1 1 0
+    0 1 1 1 1 1 1 1 1 1 1 1 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0
+```
+- only when B is **completely contained** inside A that the pixels values are retained, otherwise it gets deleted or eroded
+
+dilation
+- $D=A\oplus B=\left\{\vec{z}\mid\hat{B}_z\cap A\neq\emptyset\right\}$, notice $\hat{B_z}$ is the symmetric ($x,y$ ➡ $-x,-y$)!
+- grows or thickens objects in a binary image. Gaps narrower than the SE are bridged
+```
+	0 0 0 0 0 0 0 0 0 0 0
+    0 1 1 1 1 0 0 1 1 1 0   
+    0 1 1 1 1 0 0 1 1 1 0  
+    0 1 1 1 1 1 1 1 1 1 0
+    0 1 1 1 1 1 1 1 1 1 0              1 1 1
+    0 1 1 0 0 0 1 1 1 1 0              1 1 1
+    0 1 1 0 0 0 1 1 1 1 0              1 1 1
+    0 1 1 0 0 0 1 1 1 1 0       
+    0 1 1 1 1 1 1 1 0 0 0   
+    0 1 1 1 1 1 1 1 0 0 0   
+    0 0 0 0 0 0 0 0 0 0 0
+```
+after dilation:
+```
+    1 1 1 1 1 1 1 1 1 1 1
+    1 1 1 1 1 1 1 1 1 1 1   
+    1 1 1 1 1 1 1 1 1 1 1  
+    1 1 1 1 1 1 1 1 1 1 1
+    1 1 1 1 1 1 1 1 1 1 1
+    1 1 1 1 1 1 1 1 1 1 1
+    1 1 1 1 0 1 1 1 1 1 1
+    1 1 1 1 1 1 1 1 1 1 1       
+    1 1 1 1 1 1 1 1 1 1 1   
+    1 1 1 1 1 1 1 1 1 0 0   
+    1 1 1 1 1 1 1 1 1 0 0
+```
+- For each pixel in A that has a value of 1, **superimpose** B, with the center of B aligned with the corresponding pixel in A. Each pixel of every superimposed B is <font color="#00b050">included</font> in the dilation of A by B.
+
+#### opening and closing
+
+opening
+- $$ A\circ B=(A\Theta B)\oplus B$$
+- Opening smooths the contour of an object, breaks narrow isthmuses, and eliminates thin protrusions.![[DIP notes-20231218-6.png|450]]
+
+closing
+- $A\bullet B=(A\oplus B)\ominus B$
+- tends to smooth sections of contours, fuses narrow breaks and long thin gulfs, eliminates small holes and fills gaps in the contour. ![[DIP notes-20231218-7.png|450]]
+
+properties of opening and closing
+- opening
+	- $A \circ B$ is a subset of $A$
+	- if $C$ is a subset of $D$, then $C \circ B$ is a subset of $D \circ B$
+	- $A \circ B \circ B=A \circ B$
+- closing
+	- $A$ is the subset of $A \bullet B$
+	- if $C$ is a subset of $D$, then $C \bullet B$ is a subset of $D \bullet B$
+	- $A \bullet B \bullet B=A \bullet B$
+#### properties
+- commutative: $$ A\oplus B=B\oplus A$$
+- associate property: $$ \begin{aligned}(A\oplus B_1)\oplus B_2&=A\oplus(B_1\oplus B_2)\\(A\Theta B_1)\Theta B_2&=A\Theta(B_1\oplus B_2)\end{aligned}$$
+- distributed property: $$ \begin{aligned}(A_1\cap A_2)&\Theta B=(A_1\Theta B)\bigcap(A_2\Theta B)\\A&\Theta(B_1\cup B_2)=(A\Theta B_1)\bigcap(A\Theta B_2)\end{aligned}$$
+- duality: $$ \begin{aligned}A^C\oplus\hat{B}&=(A\Theta B)^C\\A^C\Theta\hat{B}&=(A\oplus B)^C\end{aligned}$$
+- SE decomposition
+	- $$ A\Theta(B_1\oplus B_2)=(A\Theta B_1)\Theta B_2$$
+
+#### hit-or-miss transformation
+- goal: find the location of certain object
+- template matching: $X \textregistered T$, $T = (T_1, T_2)$, where $T_1$ is the foreground and $T_2$ is the background
+- match: $T_1$ finds a match in $A$ and $T_2$ finds a match in $A^C$. Hit points are marked as 1 and miss points are marked as 0
+- usage
+	- erosion: for $\begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}$, mark hit points as 1 and miss points as 0
+	- dilation: for $\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\end{pmatrix}$, mark hit points as 0, and miss points as 1
+
+#### basic morphological algorithms
+- boundary extraction: $$ \begin{aligned}Edge(A)&=A-(A\Theta B)\\Edge(A)&=(A\oplus B)-A\end{aligned}$$
+- thinning: $A \otimes B = A - A\textregistered B = A \cup (A \textregistered B)^C$
+	- the thinning operation is calculated by <font color="#00b050">translating the origin</font> of the SE ($B$) to each possible pixel position, and comparing it with the underlying image pixels ($A$). If the foreground and background pixels in the structuring element <font color="#00b050">exactly match</font> foreground and background pixels in the image, then the image pixel underneath the origin of the structuring element is <font color="#00b050">set to background (zero)</font>. Otherwise it is left unchanged
+- thickening:  $A\odot B=A\cup A\textregistered B$
+	- calculated by <font color="#00b050">translating the origin</font> of the SE ($B$) to each possible pixel position, and comparing it with the underlying image pixels ($A$). If the foreground and background pixels in the structuring element <font color="#00b050">exactly match</font> foreground and background pixels, then the image pixel underneath the origin of the structuring element is set to <font color="#00b050">foreground (one)</font>. Otherwise it is left unchanged.
+- shrinking
+	- Erase black pixels such that an object 1) without holes erodes to a <font color="#00b050">single pixel</font> at or near its center of mass, and 2) an object with holes erodes to a <font color="#00b050">connected ring</font> lying midway between each hole and its nearest outer boundary
+- skeletonizing
+	- skeleton or stick figure representation of an object can be used to describe its structure, also called <font color="#00b050">medial axis transformation</font>, analogy with prairie fire
+- hole filling
+- convex hull
+- pruning
+
+### gray-scale morphology
+
+gray-scale morphology is an extension based on binary image morphology: $OR(a,b) \to max(a,b)$, $AND(a,b) \to min(a,b)$
+
+erosion:
+$$ E(z_1,z_2)=(A\Theta B)_z=\min_{z_1+i,z_2+j\in D_A,i,j\in D_B}[A(z_1+i,z_2+j)-B(i,j)]$$
+
+dilation:
+$$ D(z_1,z_2)=(A\oplus B)_z=\max_{z_1+i,z_2+j\in D_A,i,j\in D_B}[A(z_1+i,z_2+j)+B(i,j)]$$
+
+opening & closing: same expression, opening is used to <font color="#00b050">remove small, bright details</font>, while closing is used to <font color="#ffc000">attenuate dark features</font>
+
+morphological gradient:
+$$ Grad(f)=(f\oplus g)-(f\Theta g)$$
+
+top hat transformation: used for light objects on a dark background
+$$ THT(f)=f-(f\circ g)$$
+
+bottom hat transformation: used for dark objects on a light background
+$$ BHT(f)=(f\bullet g)-f$$
+
