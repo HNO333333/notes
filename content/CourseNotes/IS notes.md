@@ -378,7 +378,7 @@ author: HNO3
 	  $LD_1 = RD_0 = LE_{16}=RE_{15}$
 	  $RD_1=LD_0 \oplus F(RD_0,K16)=RE_{16} \oplus F(RD_0,K16)=[LE_{15}\oplus F(RE_{15},K_{16})]\oplus F(RE_{15},K_{16})$
 	- XOR properties
-		- $$[A\oplus B]\oplus C = A \oplus [B\oplus C] $$ $$D \oplus D = 0 $$$$E \oplus 0 = E$$
+		- $$[A\oplus B]\oplus C = A \oplus [B\oplus C] $$ $$D \oplus D = 0 $$ $$$E \oplus 0 = E$$
 	- each iteration encryption: $LE_i = RE_{i-1}$, $RE_i=LE_{i-1}\oplus F(RE_{i-1},K-i)$
 	- ![[IS notes-20231212-15.png]] ![[IS notes-20231212-16.png]]
 
