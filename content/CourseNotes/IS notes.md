@@ -972,6 +972,7 @@ author: HNO3
 	- merkle tree
 		- verify the set of all transaction quickly within a block
 		- binary tree represent transactions in a block
+		- detailed explanation: each <font color="#00b050">transaction</font>, a separate <font color="#00b050">hash</font> value is calculated. Then, the two hash values are <font color="#00b050">combined</font> to generate a new hash going upward toward the root. Then at the root, all the hash values are combined to create a new hash value. This hash value is then used for integrity and verification purpose. Now, if this hash value has been modified, it means, some transactions within the block have been modified
 	- nonce
 	- confirmation
 	- time stamp
@@ -985,6 +986,11 @@ author: HNO3
 	- consortium and private blockchain provide more confidentiality to users, however, nodes need more trust in such environment, and the identity should be known within the network
 
 ### Blockchain Platforms
+
+types
+1. suitable only for cryptocurrency
+2. supports smart contract
+3. available over the cloud
 
 - examples of applications of blockchain
 	- asset management & tracking
@@ -1104,8 +1110,8 @@ author: HNO3
 - consensus finality in PoW is not guaranteed
 - miner acts both leader and validator node
 - main idea of PoW
-	- higher the hash rate, higher the chances to solve the PoW cryptographic puzzle
-	- node that solves PoW puzzle is winner, which will be able to add block to the block chain and win the reward
+	- <font color="#00b050">higher the hash rate</font>, <font color="#00b050">higher the chances</font> to solve the PoW cryptographic puzzle
+	- node that solves PoW puzzle is winner, who will be able to add block to the blockchain and win the reward
 - PoW nodes
 	- leader node: win the mining process
 	- wining probability: $$ P_{w_i}=\frac{\varphi_i}{\sum_{j=1}^N\varphi_j}$$, where $i$ is the participating node, $N$ is the total number of nodes, and $\varphi$ is the computational power
@@ -1181,6 +1187,8 @@ comparison between PoW and PoS
 		- built on the top of the main chain blockchain and handle most of the transaction off-chain
 
 ### PAXOS
+
+[reference textbook](https://link.springer.com/chapter/10.1007/978-1-4842-8179-6_7#Sec4)
 
 #### main idea of PAXO
 - allows consensus over a value under unreliable communications
@@ -1284,7 +1292,7 @@ log replication:
 
 ![[IS notes-20231218-5.png|500]]
 
-[more of RAFT](http://thesecretlivesofdata.com/raft/)
+[visualization of RAFT](http://thesecretlivesofdata.com/raft/)
 
 ### PBFT
 
@@ -1312,7 +1320,7 @@ minimum number required: $n=3f+1$, where $n$ is the number of nodes and $f$ is t
 - commit
 
 ##### pre-prepare
-process
+process (if not specified, subject is <font color="#00b050">leader node</font>)
 1. accepts <font color="#00b050">request</font> from client
 2. <font color="#00b050">assign</font> it to next <font color="#00b050">sequence number</font>. This sequence number is the order in which the request is going to be executed
 3. <font color="#00b050">broadcast</font> this information as the pre-prepare message to all backup replicas
@@ -1350,9 +1358,9 @@ nodes in CR: 2 types co-exist
 
 CR network vs. primary network
 
-![[IS notes-20231218-7.png]]
+![[IS notes-20231218-7.png|600]]
 
-ad hoc CRN is formed in the presence of primary radio network in which CR nodes communicate with each other using different channels owned by the primary network when these channels are unoccupied by the primary radio nodes![[IS notes-20231218-8.png]]
+ad hoc CRN is formed in the presence of primary radio network in which CR nodes communicate with each other using different channels owned by the primary network when these channels are unoccupied by the primary radio nodes![[IS notes-20231218-8.png|550]]
 
 *collision-free communication* (CFC)
 - desirable in networks
@@ -1360,12 +1368,12 @@ ad hoc CRN is formed in the presence of primary radio network in which CR nodes 
 
 different medium access protocols
 
-![[IS notes-20231218-9.png]]
+![[IS notes-20231218-9.png|575]]
 
 why need collision-free communication
 - if not: packets will be lost, re-transmission will be required and thus result in energy and time consumption
 
-Dynamic Spectrum Sharing in CR
+Dynamic Spectrum Sharing (DSS) in CR
 - enable use of LTE and 5G <font color="#00b050">simultaneously</font> in the same frequency band (different radios coexistence in the same carrier using spectrum sharing)
 - helps in determining the <font color="#00b050">demand</font> for different radios in real-time
 - how: available bandwidth of the network is divided into independent parts and dynamically assigns respective mobile communications standard it can be ideally used for available frequencies
@@ -1384,8 +1392,8 @@ how blockchain help
 - <font color="#00b050">decentralized</font> validation algorithm of blockchain enables a medium access protocol of CR to be <font color="#00b050">more accessible</font>, and the implementation will be easier since there is no need for a central-authority node
 - <font color="#00b050">lacking a centralized node</font> for validating and monitoring spectrum access makes overall system more <font color="#00b050">robust</font> against <font color="#00b050">single-point failure</font>
 
-steps carried out:
-1. each group reach local consensus to allocate resources
+steps carried out for collision-free communication:
+1. each group reaches local consensus to allocate resources
 2. broadcast information to all CR nodes
 3. CR nodes will not use these resources
 4. results in collision avoidance in channel hopping sequence-based CR network
