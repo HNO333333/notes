@@ -8,8 +8,8 @@
   "cssTheme": "Things",
   "enabledCssSnippets": [
     "media-grid-snippet",
-    "another_cursor",
-    "custom_callout"
+    "custom_callout",
+    "another_cursor"
   ],
   "interfaceFontFamily": "",
   "textFontFamily": "Atkinson Hyperlegible",

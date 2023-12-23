@@ -1,6 +1,6 @@
 ---
 title: Real Time Computing System Architecture Notes
-date: 2023-12-11
+date: 2023-12-23
 draft: false
 author: HNO3
 ---
@@ -13,7 +13,7 @@ author: HNO3
 	- system program
 		- software that interfaces with the hardware
 		- example: drivers, interrupt handlers, task schedulers, compilers, assemblers, linkers, locators
-		- operating system: specialized collection of system programs that manage physical resources of computer
+		- operating system: specialized collection of system programs that manage physical resources of computer ^os
 	- application programs
 		- programmed to solve specific problems
 - system
@@ -210,7 +210,7 @@ author: HNO3
 	- for efficient usage
 	- act as control program
 - ![[RTCSA notes-20231212-157.png]]
-- services of OS
+- services of OS ^service-of-os
 	1. multitasking
 	2. manage memory sharing
 	3. handle input and output
@@ -327,7 +327,7 @@ author: HNO3
 		- CPU state
 		- OS state
 	- <font color="#953734">program</font>: instructions stored on the disk
-	- <font color="#953734">process</font>: program with execution context
+	- <font color="#953734">process</font>: program with execution context ^diff-program-process
 	- <font color="#953734">thread</font>: lightweight process, a process can have multiple threads
 - process control block (PCB) or Task Control Block (TCB)
 	- contains all relevant information for the process
@@ -434,7 +434,8 @@ author: HNO3
 		- output module
 			- report results
 - computer components from top level view
-	- ![[RTCSA notes-20231212-162.png]]
+	- ![[RTCSA notes-20231212-162.png|450]]
+	- CPU
 	- memory module: consist a set of locations, defined by sequentially numbered addresses
 		- each location contains binary number that can be interpreted as data/instruction
 	- I/O module: transfer data from/to external devices to CPU and memory
@@ -459,6 +460,8 @@ author: HNO3
 		- specify particular I/O device
 	- I/O buffer register (I/O BR)
 		- exchange data between I/O and CPU
+
+
 - basic instruction cycle
 	- processor does actual work by executing instructions specified in the program
 	- two steps of instruction processing
@@ -483,8 +486,8 @@ author: HNO3
 	- instruction format
 		- <span style="background:rgba(240, 200, 0, 0.2)">{opcode (0-3)}</span> - <span style="background:rgba(5, 117, 197, 0.2)">{address (4-15)}</span>
 	- example of program execution
-		- ![[RTCSA notes-20231212-164.png|350]]
-- ![[RTCSA notes-20231212-165.png]]
+		- ![[RTCSA notes-20231212-164.png|325]]
+- ![[RTCSA notes-20231212-165.png|550]]
 	- states
 		- instruction address calculation (*IAC*): determine the address of next instruction to execute
 		- instruction fetch (*IF*): read instruction from memory into processor
@@ -797,7 +800,7 @@ author: HNO3
 		  = number of bits used to represent integer
 		  = instruction length
 		- addressable units: some = word, while some allow addressing at byte level
-			- $2A=N$, where $A$ is length in bits, $N$ is number of addressable units
+			- $2^A=N$, where $A$ is length of address in bits, $N$ is number of <font color="#00b050">addressable units</font>
 		- unit of transfer: number of bits read out of or written into memory at a time, need NOT equal to word/addressable unit
 	- block
 		- data are often transferred in larger unit for external memory, referred to as blocks
@@ -809,7 +812,7 @@ author: HNO3
 	- direct 
 		- involved a shared read-write mechanism
 		- individual blocks/records have unique address based on physical location
-		- access time is variable
+		- access time is <font color="#00b050">variable</font>
 	- random
 		- each location has unique, physical wired addressing mechanism
 		- time to access is independent of sequence of prior address and it's <font color="#00b050">constant</font>
@@ -886,7 +889,7 @@ author: HNO3
 >		1. page containing required word is mapped from secondary memory to the main memory
 >		2. then mapped from main memory to cache memory
 >		3. then required word delivered to CPU
-> ![[RTCSA notes-20231212-179.png|475]]
+> 		![[RTCSA notes-20231212-179.png|475]]
 
 - usage: temporarily store frequently used instructions/data for quicker processing by CPU
 - cache is an extension of computer's main memory
@@ -1021,8 +1024,8 @@ In direct mapping [reference: cache mapping techniques](https://www.gatevidyalay
 	- number of blocks in main memory = $2^s$
 	- number of lines in a set = $v$
 	- number of sets: $K = 2^d$
-	- number of lines in cache = $m=kv=k\times 2^d$
-	- size of cache = $k\times 2^{d+w}$
+	- number of lines in cache = $m=Kv=K\times 2^d$
+	- size of cache = $K\times 2^{d+w}$
 	- size of tag = $(s-d)$ bits
 - varying associativity over cache size
 	- ![[RTCSA notes-20231212-189.png]]
@@ -1092,7 +1095,7 @@ Accessing I/O devices: I/O module interfaces to the system bus and controls one 
 - provides means of exchanging data between the environment and the system
 - I/O module and system connected with a link
 	- used to exchange <font color="#00b050">control</font>, <font color="#00b050">status</font> and <font color="#00b050">data</font>
-- category of external devices
+- category of external devices ^category-external-device
 	- human readable
 	- machine readable
 	- communication
@@ -1192,7 +1195,7 @@ Accessing I/O devices: I/O module interfaces to the system bus and controls one 
 	9. restore PSW and PC values from stack
 - ![[RTCSA notes-20231212-194.png]]
 - design issues of interrupt I/O
-	- how does processor determine which device issued interrupt
+	- how does processor determine which device issued interrupt ^howtoknowinterruptdevice
 		- solutions
 			- multiple interrupt lines
 				- between the processor and I/O modules
@@ -2552,6 +2555,113 @@ pros & cons
 | determinism         | yes                                      | yes                                           |
 | complexity          | simpler                                  | more complex                                              |
 
+# Tutorial and Past Exams
+
+## Tutorial 1
+
+- <font color="#00b050">distinction</font> between computer *organization* and computer *architecture*?
+	- architecture: design of <font color="#00b050">internal workings</font> of computer system (hardware components), involving decisions about the <font color="#00b050">organization of hardware</font>, concerned with optimizing the <font color="#00b050">performance</font> and <font color="#00b050">efficiency</font> of computer system (<font color="#6425d0">high-level</font> design decision)
+	- organization: physical <font color="#00b050">implementation</font> of architecture design, including decisions about <font color="#00b050">interconnection</font> and <font color="#00b050">communication</font> between components (<font color="#6425d0">low-level</font> implementation details)
+- distinction between computer *structure* and computer *function*
+	- structure: describe <font color="#6425d0">organization</font> of computer <font color="#6425d0">hardware</font> components
+	- function: describe <font color="#6425d0">tasks</font> that computer performs
+- main <font color="#6425d0">structural components</font> of a computer
+	- CPU: central control unit, role: interpret instruction, process data
+	- I/O components: 
+		- input: accept data and instruction and convert into signals
+		- output: report result after processing
+- main structural <font color="#00b050">components</font> of a <font color="#00b050">processor</font>
+	- control unit: control the operation of CPU
+	- arithmetic and logic unit (ALU): data processing
+	- registers: provide storage internal to the CPU
+- what is <font color="#00b050">embedded system</font>, and examples
+	- *definition*: embedded system is a computer system designed to perform one or a few <font color="#00b050">dedicated functions</font>, containing one or more computers (or processors) having a <font color="#00b050">central role in the functionality</font> of the system, but the system is not explicitly called a computer, a computing device with <font color="#00b050">tightly coupled hardware and software integration</font> that are designed to perform a dedicated function
+	- examples: mobile phones, washing machines, drones
+- <font color="#00b050">considerations</font> of embedded system design:
+	- environmental
+	- performance
+	- economic
+	- consequential (safety, reliability, securtiy)
+- definition of <font color="#00b050">real-time system</font>
+	- Real-time system is a system that <font color="#00b050">responds within specified times</font>. (Not necessarily fast – must meet timing deadline).
+- types of real-time system
+	- *soft*: performance is <font color="#00b050">degraded</font> but <font color="#00b050">not destroyed</font> by failure to meet response-time constraints. example: telephone switches
+	- *firm*: <font color="#00b050">a few</font> missed deadlines <font color="#00b050">will not</font> lead to total failure, but missing more than a few may lead to complete or catastrophic system failure, example: online trading system
+	- *hard*: failure to meet even a single deadline may lead to complete or catastrophic system failure, example: flight controller system
+- techniques to increase speed of contemporary processors
+	- *pipelining*: processor moves data or instructions into a conceptual pipe with all stages of the pipe processing simultaneously
+	- *branch prediction*: processor looks ahead in the instruction code fetched from memory and tries to guess which way a branch of instructions will go
+	- *superscalar execution*: ability to issue more than one instruction in every processor clock cycle
+	- *data flow analysis*: processor analyze which instruction are dependent on each other's result or data, then create an optimized schedule of instructions
+- Explain the differences among multicore systems, MICs, and GPGPUs
+	- all are parallel computing architectures.
+	- multicore: computer that has multiple processors on a single chip, allowing them to perform tasks simultaneously.
+	- MICs: many integrated cores, much more cores than multicore system
+	- GPGPUs: general-purpose graphic processing units, specialized processors that are designed to handle complex calculations required for graphics processing
+- desirable characteristics of benchmark program
+	- Relevance: Benchmarks should measure relatively <font color="#00b050">vital features</font>.
+	- Representativeness: Benchmark performance metrics should <font color="#00b050">be broadly accepted</font> by industry and academia.
+	- Equity: All systems should be <font color="#00b050">fairly compared</font>.
+	- Repeatability: Benchmark results can be <font color="#00b050">verified</font>.
+	- Cost-effectiveness: Benchmark tests are <font color="#00b050">economical</font>.
+- comparison of speed by clock cycle time & CPI
+	- formula: $time=clock\:cycle \times CPI$
+	- example: A (clock cycle time: 250 ps, CPI: 2), B (clock cycle time: 500 ps, CPI: 1.2). Then A: 500 ps / instruction, B: 600 ps / instruction. A is faster than B by 20%
+
+
+## Tutorial 2
+
+- categories of functions are specified by computer instruction
+	- data processing
+	- data storage
+	- data movement
+	- control
+- states that define an instruction execution
+	- instruction <font color="#00b050">fetch</font>
+	- instruction <font color="#00b050">address calculation</font>
+	- instruction operation <font color="#00b050">decoding</font>
+	- operand address calculation
+	- operand <font color="#00b050">fetch</font>
+	- data <font color="#00b050">operation</font>
+	- operand <font color="#00b050">store</font>
+	- <font color="#00b050">interrupt</font>
+- QPI protocol layers
+	- high-level <font color="#00b050">rules</font> for exchanging packets of data between devices.
+- PCIe protocol layers
+	- _physical_: actual wires carrying signals
+	- _data link_: transmission and flow control
+		- data packets by data link layer (DLL) called Data Link Layer Packets (DLLPs)
+	- _transaction_: generate and consume data packets used to implement load/store data transfer mechanisms & manage flow control of packets
+		- data packets generated and consumed by TL are called Transaction Layer Packets (TLPs)
+- sequential / direct / random access
+	- sequential: data organized and stored in a sequential order, each new record append at the end of file
+	- direct: each block or record has a unique address based on its physical location, access time is variable
+	- random: Each addressable location in memory has a unique, physically wired-in addressing mechanism. Any location can be selected at random and directly addressed and accessed. access time is constant
+- direct / associate / set-associate mapping [ref here](http://www2.ece.ohio-state.edu%2F~zheng%2Fece5362%2Flecture-notes%2FLecture21.pdf&usg=AOvVaw2eHETxDJmI-NG5TlgNd2Xp&opi=89978449)
+	- direct: map each block of main memory into only one possible cache line
+	- associate: each main memory block to be loaded into any line of the cache
+	- set-associate: cache consists of sets, each set consists of lines. given block maps to any line in a given set.
+- direct mapped cache, main memory address is viewed as 3 fields
+	- For a direct-mapped cache, a main memory address is viewed as consisting of three fields: the <font color="#00b050">tag</font>, the <font color="#00b050">index</font>, and the <font color="#00b050">offset</font>. 
+		- The tag is the high-order bits of the memory address and uniquely identifies the <font color="#00b050">memory block</font>. 
+		- The <font color="#00b050">cache line</font> to which the memory block is mapped is determined based on the index bits
+		- the offset bits specify the <font color="#00b050">position</font> of the data within the line
+- associate cache, 2 fields
+	- For an associative cache, a main memory address is viewed as consisting of two fields: the <font color="#00b050">tag</font> and the <font color="#00b050">offset</font>. The tag is used to identify the memory block, while the offset specifies the position of the data within the block. Associative mapping allows <font color="#00b050">any block of main memory to be stored in any cache line</font>, making it more flexible than direct mapping. However, it requires more hardware to implement and is more complex than direct mapping.
+- category of external devices
+	- [[RTCSA notes#^category-external-device|answer]]
+- difference between memory-mapped I/O and isolated I/O
+	- [[RTCSA notes#I/O mapping]]
+- how does processor know which device issued the interrupt
+	- [[RTCSA notes#^howtoknowinterruptdevice|Answer]]
+- definition of operating system
+	- [[RTCSA notes#^os|answer]]
+- key services provided by an OS
+	- [[RTCSA notes#^service-of-os|answer]]
+- difference between program and process
+	- [[RTCSA notes#^diff-program-process|answer]]
+
+
 # Lab
 
 ## Lab 1
@@ -2623,5 +2733,4 @@ or we can use less steps:
 - CLK, MOSI, MISO, CS
 - full duplex, synchronous
 - on STM32
-
 
