@@ -4,6 +4,9 @@ date: 2023-12-23
 draft: false
 author: HNO3
 ---
+- [ref textbook: Computer Organization and Architecture 10th edition](http://home.ustc.edu.cn/~louwenqi/reference_books_tools/Computer%20Organization%20and%20Architecture%2010th%20-%20William%20Stallings.pdf)
+- [ref textbook 8th edition solution manual](https://www.studocu.com/row/document/beijing-university-of-posts-and-telecommunications/computer/solution-manual-computer-organization-and-architecture-8th-edition/21390211)
+
 
 # Lectures
 
@@ -1690,6 +1693,10 @@ From early to latest
 - things need to consider
 	- CO stage may depend on contents of a <font color="#00b050">register</font> that can be <font color="#00b050">altered</font> by the <font color="#00b050">previous instruction</font> in the pipeline
 
+![[RTCSA notes-20231224-1.png|350]]![[RTCSA notes-20231224-2.png|350]]
+
+(instruction 3 is a conditional branch to instruction 15, and once the instruction 3 is executed, then the next instruction will be 15 rather than in original order)
+
 ### pipeline hazards
 - some part of pipeline need to <font color="#00b050">stall</font> (called <font color="#00b050">pipeline bubble</font>) until the condition allows to continue
 - 3 types of hazards
@@ -2661,6 +2668,9 @@ pros & cons
 - difference between program and process
 	- [[RTCSA notes#^diff-program-process|answer]]
 
+## More from previous exams
+
+- [FLAG register](https://en.wikipedia.org/wiki/FLAGS_register)
 
 # Lab
 
