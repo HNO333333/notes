@@ -9,7 +9,7 @@ author: HNO3
 
 ### Definitions
 
-- Definition of Information Security
+- Definition of Information
 	- protecting information and information systems from unauthorized access, use, disclosure, disruption, modification, or destruction
 - cost of security should NOT greater than the value of what it is protecting
 - Definition of Security
@@ -1201,7 +1201,7 @@ comparison between PoW and PoS
 three roles:
 1. *proposer*: an <font color="#00b050">elected</font> proposer acts as a single <font color="#00b050">leader</font> to <font color="#00b050">propose</font> a new value. Proposers handle client <font color="#00b050">requests</font>.
 2. *acceptor*: <font color="#00b050">evaluate</font> and <font color="#00b050">accept</font> or <font color="#00b050">reject</font> proposals proposed by the proposers according to rules and conditions
-3. *learner*: learn the decision or the agreed-upon value
+3. *learner*: <font color="#00b050">learn</font> the decision or the agreed-upon value
 
 #### phases in PAXOS
 - two phases: prepare & accept

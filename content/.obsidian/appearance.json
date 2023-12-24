@@ -9,7 +9,7 @@
   "enabledCssSnippets": [
     "media-grid-snippet",
     "custom_callout",
-    "another_cursor"
+    "cursor_smoother"
   ],
   "interfaceFontFamily": "",
   "textFontFamily": "Atkinson Hyperlegible",
