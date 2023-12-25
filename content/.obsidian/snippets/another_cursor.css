@@ -1,7 +1,7 @@
 /* iAWriter-ish style. */
 .cursorWrapper .x-cursor {
   background: rgba(49, 177, 235, 1);
-  width: 1.5px;
+  width: 2px;
   left: 0px;
   top: calc( 2px - var(--header-height));
   height: calc(-2px + var(--cursor-height));

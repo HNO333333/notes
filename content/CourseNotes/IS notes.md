@@ -14,13 +14,13 @@ author: HNO3
 - cost of security should NOT greater than the value of what it is protecting
 - Definition of Security
 	- <span style="background:rgba(160, 204, 246, 0.55)">"CIA"</span>: confidentiality, integrity and availability
-		- confidentiality
+		- <font color="#00b050">confidentiality</font>
 			- data confidentiality: not available or disclosed to unauthorized individuals
 			- privacy: control by whom and to whom that information may be disclosed
-		- integrity
+		- <font color="#00b050">integrity</font>
 			- data integrity: information or programs are changed only in a specific and authorized manner
 			- system integrity: system performs its intended function, free from deliberate or unauthorized manipulation
-		- availability
+		- <font color="#00b050">availability</font>
 			- system work promptly and service is not denied to authorized users
 		- CIA(AA) model
 			- authenticity: property of being genuine and able to be trusted and verified
@@ -29,17 +29,15 @@ author: HNO3
 ### Evaluation of Information Security
 
 <span style="background:rgba(3, 135, 102, 0.2)">Design Principles</span>
-
 - "3Ds": defense, detection, deterrence
-- Defense
+- <font color="#00b050">Defense</font>
 	- reduce the likelihood of compromise
-- Detection
+- <font color="#00b050">Detection</font>
 	- react to security incident
-- deterrence
+- <font color="#00b050">Deterrence</font>
 	- reduce frequency of compromise
 
 <span style="background:rgba(3, 135, 102, 0.2)">How to Build a Secure System</span>
-
 - authority
 - framework
 - assessment
@@ -49,34 +47,31 @@ author: HNO3
 - ![[IS notes-20231212-1.png|500]]
 
 <span style="background:rgba(3, 135, 102, 0.2)">Risk Analysis</span>
-
 - formula: $Risk = Probability(Threat + Exploit \space of \space Vulnerability) \times Cost \space of \space Damage$
 - Threat
 	- threat vector
-		- describe origin and the path to reach target
-		- identify: create table containing lists of threats along with sources and targets
+		- describe <font color="#00b050">origin</font> and the <font color="#00b050">path</font> to reach <font color="#00b050">target</font>
+		- identify: create <font color="#00b050">table</font> containing lists of threats along with sources and targets
 	- threat sources and targets
-	- types of attacks
-		- category
-			- **virus**: self-replicating programs, every time host file is executed, virus executed, too
-			- **worm**: use its own code to replicate, does not directly modify other host code to replicate
-			- **Trojan horse**: pose legitimate programs that are activated by unsuspecting user
+	- <span style="background:#d3f8b6">types of attacks</span>
+		- **virus**: self-replicating programs, every time host file is executed, virus executed, too
+		- **worm**: use its own code to replicate, does not directly modify other host code to replicate
+		- **Trojan horse**: pose legitimate programs that are activated by unsuspecting user
 	- malicious mobile code
 	- advanced persistent threats
 	- manual attacks
 
 <span style="background:rgba(3, 135, 102, 0.2)">OSI security architecture</span>
-
-- useful to managers as a way of organizing the task of providing security
-- definition of OSI architecture
-	- **security attack**: any action that compromises security of information owned by an organization
-	- **security mechanism**: process that designed to detect, prevent or recover from attack
-	- **security service**: service enhances security of system and information transfer, making use of security mechanisms to provide service
+- useful to <font color="#00b050">managers</font> as a way of organizing the task of providing security
+- OSI architecture focuses on three aspects:
+	- **security attack**: any action that <font color="#00b050">compromises security of information</font> owned by an organization
+	- **security mechanism**: process that designed to <font color="#00b050">detect</font>, <font color="#00b050">prevent</font> or <font color="#00b050">recover</font> from attack
+	- **security service**: service <font color="#00b050">enhances security</font> of system and information transfer, making use of security mechanisms to provide service
 
 <span style="background:rgba(3, 135, 102, 0.2)">Active and Passive Attack</span>
 
-- **Passive**: the goal is to *obtain information*
-- **Active**: goal: may change the data or harm the system
+- **Passive**: the goal is to <font color="#00b050">obtain information</font>
+- **Active**: goal: may <font color="#00b050">change</font> the data or <font color="#00b050">harm</font> the system
 	- example: modification, masquerading, replaying, repudiation, denial of service
 	- masquerading
 		- take place when: pretending to be another entity
@@ -96,7 +91,7 @@ author: HNO3
 - fail-safe default
 	- default: lack of access
 - complete mediation
-	- every access must be checked against access control mechanism
+	- <font color="#00b050">every access must be checked</font> against access control mechanism
 - open design
 	- mechanism should be open
 - separation of privilege
@@ -120,31 +115,31 @@ author: HNO3
 	- interface should respond the way that least likely to astonish users
 
 <span style="background:rgba(3, 135, 102, 0.2)">Attack Surfaces & Attack Trees</span>
-
-- attack surfaces
-	- consists of the reachable and exploitable vulnerabilities in a system
+- *attack surfaces*
+	- consists of the <font color="#00b050">reachable</font> and <font color="#00b050">exploitable</font> vulnerabilities in a system
 	- examples
 		- open ports facing web
 		- services available inside firewall
 		- code process incoming data
 		- interfaces
 		- employee with access to sensitive information
-	- categories of attack surfaces
-		- Network attack surface
-		- Software attack surface
-		- Human attack surface
+	- <span style="background:#d3f8b6">categories of attack surfaces</span>
+		- <font color="#00b050">Network</font> attack surface
+		- <font color="#00b050">Software</font> attack surface
+		- <font color="#00b050">Human</font> attack surface
 - defense in depth and attack surfaces
 	- ![[IS notes-20231212-2.png|253]]
+	- <font color="#00b050">larger & shallower</font> the surface is, higher the risk is
 	- attack surface analysis: useful to assess the scale and severity of threats
 	- analysis of vulnerability: useful for developers aware of where security mechanism required
 	- defined attack surfaces -> find ways to make surface smaller -> less risk
 	- attack surface provides guidance on setting priorities for testing
 
 - Attack Trees
-	- definition: branching, hierarchical data structure that represents a set of potential techniques for exploiting security vulnerabilities
-	- root node: security incident as the goal of attack
+	- definition: branching, hierarchical <font color="#00b050">data structure</font> that represents a set of potential techniques for <font color="#00b050">exploiting security vulnerabilities</font>
+	- <font color="#00b050">root</font> node: security incident as the <font color="#00b050">goal</font> of attack
 	- branches and sub-nodes: ways to reach goal
-	- leaf node: ways to initiate attacks
+	- <font color="#00b050">leaf</font> node: ways to <font color="#00b050">initiate</font> attacks
 	- each node other than a leaf is either an **AND**-node or an **OR**-node
 		- goal represented by **AND**-node: all subgoals must be achieved
 		- goal represented by **OR**-node: a least one subgoal must be achieved
@@ -153,16 +148,14 @@ author: HNO3
 
 
 <span style="background:rgba(3, 135, 102, 0.2)">3 Components Involved in Authentication</span>
-
-- User terminal and user (UT/U)
+- User terminal and <font color="#00b050">user</font> (UT/U)
 	- attack target the user equipment
-- Communication channel (CC)
+- Communication <font color="#00b050">channel</font> (CC)
 	- focus on communication link
-- Internet banking server (IBS)
+- Internet banking <font color="#00b050">server</font> (IBS)
 	- offline attacks against server host the banking application
 
 <span style="background:rgba(3, 135, 102, 0.2)">5 Attack Strategies</span>
-
 - **User Credential Compromise**
 	- against any elements of attack surface
 - **Injection of Commands**
@@ -175,7 +168,7 @@ author: HNO3
 
 <span style="background:rgba(3, 135, 102, 0.2)">Model for Network Security</span>
 
-- ![[IS notes-20231212-4.png]]
+- ![[IS notes-20231212-4.png|450]]
 - message transferred by internet service
 - security is to protect information transmission
 - techniques for providing security
@@ -184,17 +177,17 @@ author: HNO3
 	- trusted third party may be needed
 
 <span style="background:rgba(3, 135, 102, 0.2)">4 Basic Tasks</span>
-- algorithm for performing the security-related transformation
-- Generate the secret information to be used with the algorithm.
-- methods for the distribution and sharing of the secret information
-- Specify a protocol to be used that makes use of algorithm and information to achieve particular security service
+- <font color="#00b050">algorithm</font> for performing the security-related <font color="#00b050">transformation</font>
+- Generate the secret information (<font color="#00b050">key-generation</font>) to be used with the algorithm.
+- methods for the distribution and sharing of the secret information (<font color="#00b050">key-distribution</font>)
+- Specify a <font color="#00b050">protocol</font> to be used that makes use of algorithm and information to achieve particular security service
 
 ## Lecture 3-5 Encryption Techniques
 
 ### Symmetric Cipher Model
 
 - other names: conventional encryption, single-key encryption
-- definitions
+- definitions of basic concepts
 	- *plaintext*: original information
 	- *ciphertext*: coded message
 	- *enciphering / encryption*: plaintext -> ciphertext
@@ -203,27 +196,33 @@ author: HNO3
 	- *cipher / cryptographic system*: scheme for encryption
 	- *cryptanalysis*: techniques used to decipher
 	- *cryptology*: cryptography + cryptanalysis
-- 5 components of symmetric cipher model
+- <span style="background:#d3f8b6">5 components of symmetric cipher model</span>
 	- plaintext
 	- encryption algorithm
 	- secret key
 	- ciphertext
 	- decryption algorithm
-- requirement of security
-	- strong encryption algorithm
+- <span style="background:#d3f8b6">requirement of security</span> (加密算法+密钥分发保管)
+	- strong encryption <font color="#00b050">algorithm</font>
 	- sender and receiver should obtain copies of secret key in a secure way and must keep key secure
-- model ![[IS notes-20231212-5.png]]
+- model
+	- ![[IS notes-20231212-5.png|500]]
 	- Y = E(K,X)
 	- X = D(K,Y)
-- how to characterize cryptographic system
-	- type of operations used for encryption
-	- number of keys used
-	- way to cipher plaintext
-- unconditionally secure scheme
-	- ciphertext does not contain enough information to determine plaintext
-	- no encryption algorithm is unconditionally secure
+- how to <span style="background:#d3f8b6">characterize cryptographic system</span> (3 dimensions)
+	- type of <font color="#00b050">operations</font> used for encryption transformation
+		- two types: <font color="#00b050">substitution</font> + <font color="#00b050">transposition</font>
+		- fundamental requirement: no information lost OR operation reversible
+		- "*product system*": system involves <font color="#00b050">multiple stages</font> of substitution and transposition
+	- number of <font color="#00b050">keys</font> used
+		- types: asymmetric, two-key, public-key encryption...
+	- way to <font color="#00b050">process</font> cipher plaintext
+		- types: <font color="#00b050">block</font> cipher (in 1 block, out 1 block), <font color="#00b050">stream</font> cipher (continuous processing input and output one element at a time)
+- <span style="background:#d3f8b6">unconditionally secure scheme</span>
+	- *definition*: ciphertext does not contain enough <font color="#00b050">information</font> to determine plaintext
+	- no encryption algorithm is unconditionally secure (except one-time pad)
 - criteria of encryption algorithm (*computationally secure*)
-	- cost of breaking > value of encrypted information
+	- cost of breaking > value of encrypted information OR
 	- time of breaking > useful lifetime of information
 
 
@@ -293,7 +292,7 @@ author: HNO3
 
 <span style="background:rgba(3, 135, 102, 0.2)">One-Time Pad</span>
 - key is as long as the message, used one-time then discarded
-- no way to attack (attack will result in multiple plausible results, can't determine which one is correct)
+- no way to attack (attack may result in multiple plausible results, can't determine which one is correct)
 - challenges
 	- problem of generating large quantities of random keys
 	- key distribution and protection
@@ -315,14 +314,14 @@ author: HNO3
 	- overhead to hide relatively few bit of information (capacity is low)
 	- once system is discovered, it will become worthless
 - advantage
-	- 
+	- can be used to secretly send messages without the transmission being detected. (encryption will flag traffic as secret/important, steganography will not draw attention)
 
 ## Lecture 6 Block Cipher
 
 ### Stream Cipher
 - encrypts a digital data one bit or one byte at a time
 - example: Vigenere cipher, Vernam cipher
-- limitation: keystream must be provided to both users in advance via some independent and secure channel
+- limitation: (distribution) keystream must be provided to both users in advance via some independent and secure channel
 - introduce insurmountable logistical problems
 - ![[IS notes-20231212-10.png]]
 
@@ -338,11 +337,12 @@ author: HNO3
 - Nonsingular and singular transformation
 	- 1 to 1 mapping -> nonsingular
 - idea to approximate ideal block cipher
-	- utilizing execution of multiple ciphers in sequence so that the result will be stronger
+	- for block cipher: larger the block size (n) & more arbitrary substitution ➡ more secure, but n can't be impractically large
+	- utilizing execution of <font color="#00b050">multiple ciphers in sequence</font> so that the result will be stronger
 
 
 <span style="background:rgba(3, 135, 102, 0.2)">General n-bit-n-bit Block Substitution</span>
-- ![[IS notes-20231212-12.png]]
+- ![[IS notes-20231212-12.png|300]]
 - vulnerable to frequency attack
 	- small block size will result this problem
 
@@ -352,7 +352,7 @@ author: HNO3
 		- each plaintext element uniquely replaced by a corresponding ciphertext element
 	- permutation
 		- each plaintext element uniquely replaced by a permutation of that sequence
-	- basic idea: confusion and diffusion
+	- basic idea: <font color="#00b050">confusion and diffusion</font>
 - confusion and diffusion
 	- ideal: all statistics of the ciphertext are independent of the particular key used
 	- *diffusion*: statistical structure of plaintext is dissipated into long-range statistics of the ciphertext (avoid finding plaintext from ciphertext)
@@ -370,7 +370,7 @@ author: HNO3
 - *decryption*
 	- same process, reverse order keys
 	- no need to different algorithms
-- realization of Feistel network depends on these parameters
+- realization of Feistel network depends on these parameters (<font color="#00b050">design features</font>)
 	- *block size*: larger -> more secure
 	- *key size*: larger -> more secure, lower speed
 	- *number of rounds*: more -> more secure
@@ -398,7 +398,7 @@ author: HNO3
 	- ![[IS notes-20231212-17.png|450]]
 	- 64-bit key input, but last 8 bits used as parity bits or set arbitrary
 	- exact structure of Feistel cipher
-	- Avalanche Effect
+	- <span style="background:#d3f8b6">Avalanche Effect</span>
 		- small change in plaintext or key should produce a significant change in ciphertext
 		- this effect happens in DES
 - strength of DES
@@ -409,36 +409,36 @@ author: HNO3
 - timing attacks
 	- information about the key or plaintext is obtained by observing how long it takes a given implementation to perform decryption on various ciphertext
 
-### Block Cipher Design Principle
+### Block Cipher Design Principles
 - 3 critical aspects of block cipher design
-	- number of rounds
+	- **number of rounds**
 		- criteria: known cryptanalysis require greater effort than brute-force key search attack
 		- more than 16 rounds will make the cryptanalysis method less efficient than brute-force search
-	- design of function $F$
+	- **design of function $F$**
 		- non-linear
 		- hard to approximate $F$ by a set of linear equations
 		- should have good avalanche properties
 		- strict avalanche criterion (SAC): any output bit will change with probability 0.5 when any single input bit is inverted
 		- bit independence criterion (BIC): output bots j and k should change independently when any single input bit is inverted
-	- key scheduling
+	- **key scheduling**
 		- select subkeys to maximize the difficulty of deducing individual subkeys and the difficulty to work back to the main key
 
 ## Lecture 8 AES
 
 <span style="background:rgba(3, 135, 102, 0.2)">Introduction</span>
-- symmetric block cipher
+- symmetric block cipher, <font color="#00b050">not</font> a Feistel structure
 - operate on 8-bit bytes
 - XOR: addition of two bytes
 - multiplication: in finite field GF, with $m(x)=x^8+x^4+x^3+x+1$
 	- irreducible polynomial: can't be expressed by product of lower degree polynomials
 
 ### general structure of AES
-- ![[IS notes-20231212-18.png]]
+- ![[IS notes-20231212-18.png|550]]
 - input: 128bits, key length: 16/24/32 bytes
 - input converted into 4\*4 matrix, copied into state array which is modified at each stage.
 - key is also depicted as a square matrix of bytes
 - each word is 4 bytes, total key schedule is 44 words for 128-bit key
-- ordering of key matrix is by column ![[IS notes-20231212-19.png]]
+- ordering of key matrix is by column ![[IS notes-20231212-19.png|600]]
 - number of rounds
 	- 10 for 16-byte key, 12 for 24-byte key, 14 for 32-byte key
 - N-1 rounds functions
@@ -464,7 +464,7 @@ author: HNO3
 		- ![[IS notes-20231212-26.png]]
 		- state (1st matrix) XOR round key
 - final round
-	- only three transformation
+	- only three transformation (no MixColumns)
 - before first round
 	- only AddRoundKey operation
 - detail structure
@@ -473,9 +473,9 @@ author: HNO3
 		- not modify half: every round process the whole block
 	- key expanded into an array of 44 32-bit words, 4 distinct words serve as a round key
 		- RotWord: one-byte circular left shift
-	- 4 stages each round: 1 permutation, 3 substitution
+	- 4 stages each round: <font color="#00b050">1 permutation, 3 substitution</font>
 		- SubBytes: Uses an S-box to perform a byte-by-byte substitution of the block
-		- ShiftRows: A simple permutation
+		- ShiftRows: A simple <font color="#00b050">permutation</font>
 		- MixColumns: A substitution that makes use of arithmetic over GF(2^8)
 		- AddRoundKey: A simple bitwise XOR of the current block with a portion of the expanded key
 	- only AddRoundKey stage uses key, other stage is reversible and can be done without knowing the key
@@ -495,7 +495,7 @@ author: HNO3
 	- session key generation
 		- secret key for symmetry encryption is generated for particular session and is valid for a short period of time
 - randomness
-	- criteria
+	- <span style="background:#d3f8b6">criteria</span>
 		- uniform distribution
 		- independence
 	- unpredictability
@@ -503,46 +503,44 @@ author: HNO3
 		- enhance: pretend to generate random number
 - TRNGs, PRNGs, and PRFs
 	- use algorithms to generate is not statistically random
-	- TRNG
-		- input: source of true randomness
+	- *TRNG*
+		- input: source of true randomness (ex.: instantaneous value of system clock)
 		- conversion to binary -> random bit stream
-	- PRNG
-		- input: a fixed value (seed)
-		- deterministic algorithm sometimes needs the output of previous step as also input for the next step of generation
+	- *PRNG*
+		- input: a fixed value (seed) + (maybe) previous output
 		- can be reproduced if the adversary knows the algorithm and the seed
-	- PRF (Pseudo-Random Function)
+	- *PRF* (Pseudo-Random Function)
 		- used to produce a pseudo-random string of bits of fixed length
-		- input: seed, context-specific value and previous output
+		- input: seed, <font color="#00b050">context-specific value</font> and previous output
 		- no difference between PRF and PRNG
 
 ### PRNG requirements
 - adversary who doesn't know the seed is unable to determine the pseudorandom string
 - normally 128-bit key, but PRF does not generate effectively random 128-bit output values, it may be possible to narrow the possibilities and use brute-force
-- how to test randomness
-	- uniformity: any point in generation, the occurrence of 0 and 1 is equally likely
-	- scalability: test can also be applied to subsequence extracted at random from the original sequence
-	- consistency: behavior of generator must be consistent across starting value (seed)
+- how to <span style="background:#d3f8b6">test randomness</span>
+	- *uniformity*: any point in generation, the occurrence of 0 and 1 is equally likely
+	- *scalability*: test can also be applied to subsequence extracted at random from the original sequence
+	- *consistency*: behavior of generator must be consistent across starting value (seed)
 - examples of tests
 	- <font color="#e36c09">frequency test</font>: number of zeros should be approximately the same as that of ones
 	- <font color="#e36c09">runs test</font>: focus on total number of run (an uninterrupted sequence of identical bits bounded before and after with a bit of the opposite value)
 	- <font color="#e36c09">Maurer's universal statistical test</font>: focus on the number of bits between matching patterns, in order to detect whether the sequence can be compressed without loss of information (if can compress: not random)
-- unpredictability
-	- two forms
-		- <font color="#0070c0">forward unpredictability</font>: seed unknown, next output should be unpredictable in spite of any knowledge of previous bits
-		- <font color="#0070c0">backward unpredictability</font>: can't determine the seed from knowing generated values
+- <span style="background:#d3f8b6">two forms of unpredictability</span>
+	- <font color="#0070c0">forward unpredictability</font>: seed unknown, next output should be unpredictable in spite of any knowledge of previous bits
+	- <font color="#0070c0">backward unpredictability</font>: can't determine the seed from knowing generated values
 - seed requirement
+	- must be unpredictable
 	- typically, seed is generated by TRNG
 
-### PRNG algorithms
-- two categories
-	- purpose-built algorithms
-		- only designed for generating pseudo-random bit stream
-	- algorithms based on existing cryptographic algorithms
-		- Cryptographic algorithms randomising input data
-			- three cryptographic algorithms are used to generate PRNGs
-				1. symmetric block ciphers
-				2. asymmetric ciphers
-				3. hash functions and message authentication codes
+### PRNG algorithms (2 types)
+- purpose-built algorithms
+	- only designed for generating pseudo-random bit stream
+- algorithms based on existing cryptographic algorithms
+	- Cryptographic algorithms randomising input data
+		- <span style="background:#d3f8b6">3 cryptographic algorithms to generate PRNGs</span>
+			1. <font color="#00b050">symmetric</font> block ciphers
+			2. <font color="#00b050">asymmetric</font> ciphers
+			3. <font color="#00b050">hash</font> functions and message authentication codes
 
 ### Linear Congruential Generators
 - parameterized with four numbers
@@ -553,8 +551,7 @@ author: HNO3
 - $$ \begin{aligned}X_{n+1}\:=\:(aX_n\:+\:c)\bmod m\end{aligned}$$
 	- range: $0\le X_m \le m$
 - selection of $a,c,m$ is critical (if wrongly selected, it will be periodic)
-	- how to select
-		- $m$: very large to produce long sequence of random numbers (usually chosen to be maximum representable non-negative number of a computer)
+	- $m$: <font color="#00b050">very large</font> to produce long sequence of random numbers (usually chosen to be maximum representable non-negative number of a computer)
 - test for evaluation of random number generator
 	1. function should be a full-period generating function (all number from 0 to m-1 should be generated before repeating)
 	2. generated sequence should appear random
@@ -566,10 +563,9 @@ author: HNO3
 	- once the value of seed is chosen, the sequence is determined
 	- knowledge of small part of the sequence is sufficient to determine the parameters of the algorithm (known $X_0, X_1, X_2, X_3$, then $a,c,m$ can be solved)
 - to alleviate this drawback
-	- make actual sequence used nonreproducible
-		- use internal system clock to modify random number stream
-			- restart sequence after $N$ numbers using the current clock value as the new seed
-			- add current clock value and mod $m$
+	- make actual sequence used <font color="#00b050">nonreproducible</font>: use <font color="#00b050">internal system clock</font> to modify random number stream
+		- <font color="#00b050">restart sequence</font> after $N$ numbers using the current clock value as the new seed
+		- <font color="#00b050">add current clock value</font> and mod $m$
 
 ### Blum Blum Shub (BBS) Generator
 - procedure
@@ -639,7 +635,7 @@ author: HNO3
 ## Lecture 10 PKCS & Network Security
 
 ### Diffie-Hellman Algorithm
-- [Reference: Wikipedia](https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2-%E8%B5%AB%E7%88%BE%E6%9B%BC%E5%AF%86%E9%91%B0%E4%BA%A4%E6%8F%9B)
+- [Reference: Wikipedia](https://zh.wikipedia.org/wiki/%E8%BF%AA%E8%8F%B2-%E8%B5%AB%E7%88%BE%E6%9B%BC%E5%AF%86%E9%91%B0%E4%BA%A4%E6%8F%9B), scenario: <font color="#00b050">key exchange</font>
 - based on the effectiveness on the difficulty of computing discrete logarithms
 	- basis: for any integer $b$ and $a$, and prime number $p$, we can find a unique exponent $i$ such that 
 	  $$ b\equiv a^i\left(\operatorname{mod}p\right)\quad\text{where}\:\:0\leq i\leq(p-1)$$
@@ -659,11 +655,11 @@ author: HNO3
 		- how to overcome: digital signatures, public-key certificates
 
 ### Network Access Control (NAC) and Security
-- NAC: umbrella term for managing access to a network
-	- authenticate users logging in
-	- data access
-	- actions to be performed
-	- examine the health of users' devices
+- <span style="background:#d3f8b6">NAC</span>: umbrella term for managing access to a network
+	- <font color="#00b050">authenticate</font> users logging in
+	- data <font color="#00b050">access</font>
+	- <font color="#00b050">actions</font> to be performed
+	- <font color="#00b050">examine</font> the health of users' devices
 -  Components NAC Deal With
 	- <font color="#548dd4">access router</font> (AR)
 		- node attempts to access the network
@@ -684,8 +680,8 @@ author: HNO3
 			- between supplicant and authentication server: policy server
 				- policy server will perform checks, verify compliance with requirements from secure configuration baseline
 		- purposes of authentication
-			- verify identity (determine privilege)
-			- result in establishment of session keys to enable future communication
+			- verify <font color="#00b050">identity</font> (determine privilege)
+			- result in <font color="#00b050">establishment of session keys</font> to enable future communication
 	- once authenticate: NAS enable AR to interact with resources in the network
 - NAC enforcement methods
 	- IEEE802.1X & VLAN
@@ -758,7 +754,7 @@ author: HNO3
 ### DLT
 - ledger: records of maintenance of property
 	- maintenance: transactions/ownership
-- classification
+- <span style="background:#d3f8b6">classification</span>
 	1. in terms of identity of nodes
 		- permissioned
 		- permissionless
@@ -767,60 +763,60 @@ author: HNO3
 		- private
 - comparison with database management system (DBMS)
 	- DLT
-		- no central entity
-		- consensus through mining nodes
+		- <font color="#00b050">no central</font> entity
+		- <font color="#00b050">consensus</font> through mining nodes
 		- data kept by every node
-		- has common records, global view and is distributed
+		- has common records, global view and is <font color="#00b050">distributed</font>
 	- DBMS: centralized management, consensus through central entity
 
 ### Blockchain
-- data structure for DLT
+- <span style="background:#d3f8b6">data structure for DLT</span>
 	- linear linked list of blocks (blockchain)
 	- directed acyclic graph (DAG)
 	- tree-like data structures
 - blockchain is NOT essentially chain of blocks, it can be DAG as well
-- definition of blockchain
+- <span style="background:#d3f8b6">definition of blockchain</span>
 	- data is read only and cannot be modified once it is entered into the blockchain and new data can only be appended at the end of blockchain, making blockchain highly immutable
-- key feature of blockchain
+- <span style="background:#d3f8b6">key feature of blockchain</span>
 	- eliminate third party involvement in maintaining the blockchain network
-- components of blockchain
-	- block: transactions are assembled in blocks
-	- chain: each of these blocks is linked together to form blockchain
-	- transactions: store information
+- <span style="background:#d3f8b6">components of blockchain</span>
+	- *block*: basic component, where transactions are assembled in blocks
+	- *chain*: each of these blocks is <font color="#00b050">linked</font> together to form blockchain
+	- *transactions*: store <font color="#00b050">information</font>
 
 #### Features of Blockchain System
-- decentralization
+- *decentralization*
 	- no central entity or intermediary to control or validate the transactions
 	- users have data control capability
-- transparency
+- *transparency*
 	- anyone can track transaction history
-- immutability
+- *immutability*
 	- once transaction added to blockchain can validated by the participating nodes, it can't be changed
-- availability
+- *availability*
 	- ledger can be accessed by all nodes
-- pseudonymity
+- *pseudonymity*
 	- identity is partially revealed, making blockchain system privacy aware
-- security
+- *security*
 	- strong public & private keys
 	- hashing algorithms
 	- digital signatures
 	- encryption techniques
-- non-repudiation
+- *non-repudiation*
 	- once transaction was added and validated, it can't be disowned by the blockchain node
-- auditability
+- *auditability*
 	- public blockchain: one can audit whole ledger itself
 	- private blockchain: only authorized entity can perform audit
-- data tampering
+- *data tampering*
 	- blockchain store the hash of the previous block
 
 ## Lecture 12 Overview of Blockchain System
 
 ### Blockchain Classifications
-- from network perspective
+- from <span style="background:#d3f8b6">network perspective</span>
 	- public
 	- private
 	- consortium
-- from access permission perspective
+- from <span style="background:#d3f8b6">access permission perspective</span>
 	- permissioned
 		- consortium blockchain
 		- private blockchain
@@ -845,10 +841,11 @@ author: HNO3
 #### Private Blockchain Network—Permissioned
 - node can join or leave with the permission from central entity
 - completely centralized
+- miners are selected a priori
 
 #### Consortium Blockchain Network—Permissioned
-- not completely centralized nor decentralized
-- nodes can join or leave with the permission from the consortium of nodes
+- not completely centralized nor decentralized (partially centralized)
+- nodes can join or leave with the permission from the <font color="#00b050">consortium</font> of nodes
 - not all the nodes can validate transactions
 
 ### Blockchain and Database Maintenance
@@ -902,14 +899,14 @@ author: HNO3
 
 - classification of nodes
 	- common classification
-		- full
+		- *full*
 			- keep full copy of ledger
 			- participate in transaction verification without reference to external nodes
 			- participate in routing
-		- lightweight
+		- *lightweight*
 			- keep header of each block then reference to external node when required
 			- participate in routing
-		- miner (functionality)
+		- *miner* (functionality)
 			- carry consensus, responsible for publishing block
 			- most powerful nodes, can change state of blockchain network
 	- in terms of transaction
@@ -930,11 +927,11 @@ author: HNO3
 - *Application*
 	- directly interacts with user
 - *Virtualization and Smart Contract*
-	- interact with user machine and responsible to compile blockchain node
+	- interact with user machine and responsible to <font color="#00b050">compile</font> blockchain node & <font color="#00b050">visualize</font>
 - *Consensus*
-	- manage and reach consensus in P2P network
-	- operate at network level
-	- dictate which protocol to be used and how to follow protocol to achieve consensus
+	- <font color="#00b050">manage</font> and <font color="#00b050">reach</font> consensus in P2P network
+	- operate at <font color="#00b050">network level</font>
+	- dictate which <font color="#00b050">protocol</font> to be used and how to follow protocol to achieve consensus
 - *Network and OS*
 	- managing underlying network services and operation over blockchain network
 	- manage: communication mechanism, peer discovery, routing and peer-to-peer network
@@ -988,9 +985,9 @@ author: HNO3
 ### Blockchain Platforms
 
 types
-1. suitable only for cryptocurrency
-2. supports smart contract
-3. available over the cloud
+1. suitable only for <font color="#00b050">cryptocurrency</font>
+2. supports <font color="#00b050">smart contract</font>
+3. available over the <font color="#00b050">cloud</font>
 
 - examples of applications of blockchain
 	- asset management & tracking
@@ -1004,6 +1001,15 @@ types
 	- virtual currency
 		- transfer assets value
 		- paid for mining process
+	- features
+		- cryptography
+		- p2p network architecture
+		- hashing algorithm
+		- public/private key encryption
+		- distributed storage
+		- logically centralized
+		- consensus algorithm
+		- time stamping of transactions
 	- working principle of BitCoin
 		1. A participating node <font color="#548dd4">send a transaction</font> to neighboring nodes
 		2. Neighboring nodes <font color="#548dd4">check</font> this transaction
@@ -1060,13 +1066,13 @@ types
 		- efficient and quick responding consensus algorithms required
 		- fast interarrival time of blocks
 		- offload transactions from the main blockchain to side chain
-			- off-chain transactions
-			- only hash in the main blockchain while other data stored in off-chain solutions
+			- *off-chain transactions*: offload the transactions from the main blockchain to the side chain
+			- only <font color="#00b050">hash</font> in the main blockchain while other data stored in off-chain solutions
 		- sharding: proposed to handle transaction capacity
 			- essence: splitting the network into smaller blockchains
 			- blockchain nodes are <font color="#548dd4">divided</font> into multiple groups (shards) and each shard handle a certain amount of transactions in <font color="#548dd4">parallel</font>
-			- but need to consider how different groups of nodes communicate with each other
-- Interoperability
+			- but need to consider how different groups of nodes <font color="#00b050">communicate</font> with each other
+- Interoperability (互通性)
 	- implement and operate multiple distributed ledgers
 	- ledgers can be developed by different organizations and thus designed for specific purposes
 	- interoperability then required among ledgers to share information
@@ -1091,7 +1097,7 @@ types
 
 - definition of consensus
 	- reach a common agreement
-	- decision of consensus reached, it will be communicated to other parties and the system state must be updated
+	- decision of consensus reached, it will be <font color="#00b050">communicated</font> to other parties and the system state must be <font color="#00b050">updated</font>
 	- there are different settings of consensus
 - two types of nodes in consensus
 	- legitimate nodes
@@ -1101,9 +1107,10 @@ types
 		- crash failure: legitimate node causes
 		- byzantine failure: malicious node causes
 - main responsibility of consensus protocol
-	- maintain data in blockchain
+	- <font color="#00b050">maintain</font> data in blockchain
 		- originality, ordering and tamper-resistance
-	- reach agreement among nodes
+	- <font color="#00b050">reach agreement</font> among nodes
+
 ### Proof of Work
 - PoW: consensus algorithms used in blockchain networks
 - building block of Bitcoin blockchain, designed for public blockchain
@@ -1111,7 +1118,7 @@ types
 - miner acts both leader and validator node
 - main idea of PoW
 	- <font color="#00b050">higher the hash rate</font>, <font color="#00b050">higher the chances</font> to solve the PoW cryptographic puzzle
-	- node that solves PoW puzzle is winner, who will be able to add block to the blockchain and win the reward
+	- node that solves PoW puzzle is winner, who will be able to <font color="#00b050">add</font> block to the blockchain and win the <font color="#00b050">reward</font>
 - PoW nodes
 	- leader node: win the mining process
 	- wining probability: $$ P_{w_i}=\frac{\varphi_i}{\sum_{j=1}^N\varphi_j}$$, where $i$ is the participating node, $N$ is the total number of nodes, and $\varphi$ is the computational power
@@ -1123,7 +1130,7 @@ types
 	- computationally expensive
 - fault-tolerant of PoW
 	- susceptible to 51% attack
-		- control more than 50% of the network's mining hash rate
+		- control more than 50% of the network's mining hash rate (computational power)
 	- fault-tolerant to Byzantine Failure
 	- attack-resistant against Sybil attacks
 		- Sybil attack: malicious blockchain node create multiple pseudo identities to launch this attack
@@ -1132,16 +1139,15 @@ types
 - main idea of PoS
 	- selection of miners depends on the amount of stakes each node carries instead of computational power
 		- higher stake a node has, higher chances to select that node as a winning miner node
-- advantage
+- <span style="background:#d3f8b6">advantage</span>
 	- less consumption of energy
 	- lower requirement in terms of computation power
 	- faster transaction confirmation speed
-- PoS winner
-	- form of stake
-		- amount of cryptocurrency
-		- digital token
-		- energy
-		- computational power
+- form of stake
+	- amount of cryptocurrency
+	- digital token
+	- energy
+	- computational power
 - issues of PoS
 	- subject to dominance by the most significant token holders
 	- positive feedback loop (more token -> higher winning probability -> more reward -> more token)
