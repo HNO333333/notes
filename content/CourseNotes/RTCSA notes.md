@@ -2671,6 +2671,17 @@ pros & cons
 ## More from previous exams
 
 - [FLAG register](https://en.wikipedia.org/wiki/FLAGS_register)
+- register set in ARM Cortex M4
+	- general-purpose registers
+	- stack pointer
+	- link register
+	- program counter
+	- special-purpose program status register
+- rationale for multiple buses in ARM Cortex M series
+	- Harvard architecture: data and instruction memory are separate, so multiple buses allow processor to fetch data and instruction simultaneously without interfering with each other
+- compare zero-address instruction and three-address instruction
+	- zero-address: simple, execution faster (not require any operand fetching or addressing), use less memory space, BUT limited in functionality and not allow flexibility in addressing modes or operand types
+	- three-address: more flexible (complex operation, wide range of addressing modes), more complex, more memory space, slower to execute
 
 # Lab
 
