@@ -1166,7 +1166,7 @@ comparison between PoW and PoS
 | centralization            | centralized in nature                                | algorithm determines winner based on the size of stake              |
 | specialized equipment     | GPU                                                  | standard server-grade service is sufficient for PoS system          |
 | efficiency                | less energy efficient, less expensive, more reliable | cost and energy efficient, less reliable                            |
-| adding a malicious block  | need more than 50% of computing power                | hackers should have more than 51% f all cryptocurrency              |
+| adding a malicious block  | need more than 50% of computing power                | hackers should have more than 51% of all cryptocurrency              |
 | security                  | greater the hash, more secure the work               | stake helps lock crypto assets to secure the network for the reward |
 | forking                   | naturally prevent constant forkng                    | forking is not automatically discouraged by PoS                                                                    |
 
@@ -1422,7 +1422,7 @@ benefits of using blockchain in CR network
 	- bring new business models, rule-based spectrum management and assigning policies
 
 Issues of Blockchain-enabled CR
-- who manage the blockchain system? will spectrum broker own the ledger? how do nodes join/leave blockchain network?
-- how will consensus be reached? which consensus protocol will be used? which blockchain system will be used?
-- Is existing spectrum access methods sufficient?
-- local copy of ledger required blockchain system, which is a problem for mobile devices.
+- high computational overhead
+- ownership of ledger
+- capacity
+- storage requirement of nodes
