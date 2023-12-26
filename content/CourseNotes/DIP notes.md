@@ -237,11 +237,11 @@ frequency domain processing
 - 2D filter (LPF for smoothing, HPF for sharpening)
 
 ### spatial domain filtering
-#### histogram (intensity transformation techniques)
+#### histogram (intensity transformation techniques
 - definition: <font color="#00b050">estimate</font> of the <font color="#00b050">probability</font> of occurrence of each intensity level in an image
 - $$ P(r_k)=\frac{n_k}{MN},\quad k=0,1,...,L-1$$, where $MN$: the total number of pixels, $r_k$: $k$th intensity value, $n_k$: number of pixels with intensity $r_k$
-- *histogram equalization*: <font color="#00b050">mapping</font> original PDF to another whose distribution is more uniform. spread the histogram of the input image, resulting a <font color="#00b050">contrast enhancement</font> $$ s_{k}=T(r_{k})=(L-1)\sum_{i=0}^{k}p_{r}(r_{j})=(L-1)P_{r}^{\prime}(k)=\frac{L-1}{MN}\sum_{i=0}^{k}n_{j}$$
-	- ![[DIP notes-20231217-2.png|450]]
+- *histogram equalization*: [geeksforgeeks ref](https://www.geeksforgeeks.org/histogram-equalization-in-digital-image-processing/) <font color="#00b050">mapping</font> original PDF to another whose distribution is more uniform. spread the histogram of the input image, resulting a <font color="#00b050">contrast enhancement</font> $$ s_{k}=T(r_{k})=(L-1)\sum_{i=0}^{k}p_{r}(r_{j})=(L-1)P_{r}^{\prime}(k)=\frac{L-1}{MN}\sum_{i=0}^{k}n_{j}$$
+	- ![[DIP notes-20231217-2.png|550]] (这个图公式是不是有点问题...rounding那里不应该加0.5的)
 - *histogram modification*
 	- histogram specification: uniform histogram is not best choice
 	- method used to generate a processed image that has a specified histogram is called histogram specification
@@ -251,7 +251,7 @@ frequency domain processing
 		3. compute histogram of given image
 		4. compute all values of transformation function and store them in a table
 		5. convert the histogram of given image to the new image based on the values in the table
-	- ![[DIP notes-20231217-3.png|400]]
+	- ![[DIP notes-20231217-3.png|600]]
 
 #### image smoothing
 
@@ -628,10 +628,25 @@ Huffman's procedure:
 1. create source reductions by ordering probabilities of symbols under consideration and combining the lowest probability symbols into a single symbol that replaces them in the next source reduction
 2. code each reduced source, starting with the smallest source and working back to the original source
 ![[DIP notes-20231218-8.png|450]]
+
+> [!NOTE] here is another clearer way [(ref)](https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/)
+> ![[DIP notes-20231226-1.png]]
+> combine lowest probability from leaves to root (down to up), then write the code from root (up to down)
+
 - Huffman code is an <font color="#00b050">instantaneous</font> <font color="#0070c0">uniquely</font> <font color="#ffc000">decodable</font> block code
 	- block code: each symbol is mapped into a fixed sequence of code symbols
 	- instantaneous: each code word can be decoded without referencing succeeding symbols
 	- uniquely decodable: any string of code symbol can be decoded in only one way
+- pros and cons
+	- pros
+		- efficient to achieve high compression ratio by assigning shorter code to more frequent symbols
+		- prefix-free, no ambiguity when decoding
+		- lossless
+		- fast and error resilient
+	- cons
+		- require frequency information in advance
+		- may produce complex and large code trees
+		- ineffective for data with few symbols (already highly compressed)
 
 #### arithmetic coding
 

@@ -7,7 +7,7 @@
   height: calc(-2px + var(--cursor-height));
   /* height: calc(12px + var(--cursor-height)); */
   transition: opacity;
-  transition: all 100ms;
+  transition: all 150ms;
 }
 /* The cursor colour in a light theme */
 .theme-light .x-cursor {
