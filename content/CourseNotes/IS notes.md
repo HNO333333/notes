@@ -1342,7 +1342,7 @@ process (if not specified, subject is <font color="#00b050">leader node</font>)
 4. <font color="#00b050">executes</font> the received request
 5. sends a reply containing the execution <font color="#00b050">result</font> to the client
 
-![[IS notes-20231218-6.png]]
+![[IS notes-20231218-6.png|650]]
 
 
 ## Lecture 17-18 Application of Blockchain

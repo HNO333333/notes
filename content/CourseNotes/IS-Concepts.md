@@ -377,12 +377,106 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - long latency
 - computational expensive
 
-### false tolerant of PoW
+### fault tolerant of PoW
 - susceptible to 51% attack
 - fault-tolerant to Byzantine attack
 - attack resistant to Sybil attack (creating pseudo identities to launch attack)
 
+### main idea of PoS
+- selection of miners depends on amount of stakes each node carries
 
+### pros and cons of PoS
+- pro
+	- less energy consumption
+	- lower computational power requirement
+	- faster transaction confirmation speed
+- con
+	- subject to dominance by the most significant token holders
+	- positive feedback loop
+	- message transmission loss and delay
+	- reward incentivization
+
+### comparison between PoW & PoS
+| aspect of comparison | PoW | PoS |
+| ---- | ---- | ---- |
+| mining/validating a block | amount of computational work | amount of stake |
+| distribution of reward | mines the block first wins | validator doesn't receive a block award since paid by network fee |
+| competition | use computer processing power to solve puzzles | algorithm determines winner based on the size of stake |
+| centralization | centralized in nature | algorithm determines winner based on the size of stake |
+| specialized equipment | GPU | standard server-grade service is sufficient for PoS system |
+| efficiency | less energy efficient, less expensive, more reliable | cost and energy efficient, less reliable |
+| adding a malicious block | need more than 50% of computing power | hackers should have more than 51% of all cryptocurrency |
+| security | greater the hash, more secure the work | stake helps lock crypto assets to secure the network for the reward |
+| forking | naturally prevent constant forkng | forking is not automatically discouraged by PoS |
+
+### main idea of PAXOS
+- allow consensus over a value under unreliable communications. "majority represents the whole"
+![[IS notes-20231218-1.png|600]]
+
+### main idea of RAFT
+- enable state machine replication with a persistent log, allow cluster reconfiguration, enabling cluster membership changes without service interruption
+![[IS-Concepts-20231226-1.png]]
+
+### main idea of PBFT
+- designed to provide consensus in the presence of Byzantine faults
+![[IS notes-20231218-6.png|650]]
+### 3 subprotocols of PBFT
+- normal operation
+- view change
+- checkpointing
+
+### licensed & unlicensed spectrum
+- *licensed*: managed by governments and telecom operators needs to buy it then provide to customers
+- *unlicensed*: used free of charge by anyone at any time
+
+### why cognitive radio
+- wireless radio spectrum is underutilized. CR uses dynamic spectrum access (DSA) paradigm, which can utilize wireless radio spectrum efficiently
+
+### 2 types of nodes in CR
+- *primary radio node*: licensed users, can only use licensed spectrum
+- *secondary users*: can only use licensed spectrum when it's not being used by primary users and do not cause harmful inference to primary radio node. When primary radio node arrives, has to leave the frequency
+
+### if not collision-free communication
+- lost packets
+- re-transmission required
+- energy and time consumption
+
+### advantage of sharing spectrum
+- enable to use LTE and 5G simultaneously in the same frequency band
+- determine the demand of different radios in real-time
+
+### issue of DSS in CR
+- sweet aware
+- self-configuration
+- self-healing
+- self-optimizing
+- self-protecting
+
+### how blockchain help CR
+- blockchain provides verification and validation schemes to ensure security
+- decentralized validation algorithm of blockchain enable medium access protocol of CR more accessible and implementation be easier
+- lacking centralized node makes overall system more robust against single-point failure
+
+### procedure for collision-free communication with blockchain
+- each group reach local consensus to allocate resources
+- broadcast information to all CR nodes
+- CR nodes will not use these resources
+- result in collision avoidance in CR network
+
+### pros & cons of using blockchain in CR
+pros
+- lack of central entity
+- immutability 
+- availability
+- DoS resillient
+- non-repudiation
+- smart contract integration
+
+cons
+- high computational overhead
+- ownership of ledger
+- capacity
+- storage requirement of nodes
 
 
 
