@@ -9,7 +9,7 @@ author: HNO3
 
 ### Definitions
 
-- Definition of Information
+- Definition of Information Security
 	- protecting information and information systems from unauthorized access, use, disclosure, disruption, modification, or destruction
 - cost of security should NOT greater than the value of what it is protecting
 - Definition of Security

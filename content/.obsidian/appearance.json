@@ -1,6 +1,6 @@
 {
   "accentColor": "",
-  "theme": "moonstone",
+  "theme": "system",
   "baseFontSize": 18,
   "showViewHeader": false,
   "nativeMenus": false,
@@ -8,7 +8,6 @@
   "cssTheme": "Things",
   "enabledCssSnippets": [
     "media-grid-snippet",
-    "custom_callout",
     "another_cursor"
   ],
   "interfaceFontFamily": "",
