@@ -209,6 +209,7 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 ### basic idea of Feistel cipher
 - *confusion*: complicate relationship between <font color="#00b050">statistics of ciphertext</font> and <font color="#00b050">value of encryption key</font> (via: determine one ciphertext by multiple plaintext) (from ciphertext can't determine key)
 - *diffusion*: statistical structure of plaintext is dissipated (by complex substitution) (from ciphertext can't determine plaintext)
+
 ![[IS notes-20231212-13.png|450]]
 
 ### why Feistel cipher
