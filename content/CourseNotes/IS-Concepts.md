@@ -1,6 +1,6 @@
 ---
 title: Information Security Concepts
-date: 2023-12-26
+date: 2023-12-28
 draft: false
 author: HNO3
 ---
@@ -497,41 +497,49 @@ where $p\equiv q\equiv3(\operatorname{mod}4)$ and $n=p\times q$
 - reach a common agreement
 - once decision of consensus is reached, it will be communicated to other parties and system will be updated
 
+### metrics of consensus
+- performance
+	- transaction throughput (number of transactions per second a blockchain can process, $throughput=\dfrac{block\:size}{transaction\:size\times block\:time}$)
+- scalability
+
 ### responsibility of consensus protocol
 - *maintain data* (ordering, originality, tamper-resistance)
 - *reach agreement* among nodes
 
 ### 2 types of failure
 - *crash*: legitimate nodes can't work properly (send or receive data)
-- *Byzantine*: malicious nodes arbitrarily send fault information
+- *Byzantine*: malicious nodes <font color="#00b050">arbitrarily</font> send fault information
 
 ### main idea of PoW
-- higher hash rate means higher chance to solve PoW cryptography puzzle, and the first node to solve the puzzle will be winner, which is able to add block and win award
+- higher <font color="#00b050">hash rate</font> means higher chance to solve PoW cryptography puzzle, and the first node to solve the puzzle will be winner, which is able to add block and win award
 
 ### issue of PoW
-- double spending problem
-- probabilistic nature: two or more nodes might solve the puzzle at the same time, resulting in the creation of fork
-- long latency
-- computational expensive
+- <font color="#00b050">double spending</font> problem
+- probabilistic nature: two or more nodes might solve the puzzle simultaneously, resulting in the<font color="#00b050"> creation of fork</font>
+- long <font color="#00b050">latency</font>
+- <font color="#00b050">computational</font> expensive
 
 ### fault tolerant of PoW
 - susceptible to 51% attack
 - fault-tolerant to Byzantine attack
 - attack resistant to Sybil attack (creating pseudo identities to launch attack)
 
+### difficulty of PoW
+- higher difficulty ➡ more computing resources required ➡ harder to attack
+
 ### main idea of PoS
 - selection of miners depends on amount of stakes each node carries
 
 ### pros and cons of PoS
-- pro
-	- less energy consumption
-	- lower computational power requirement
-	- faster transaction confirmation speed
-- con
-	- subject to dominance by the most significant token holders
-	- positive feedback loop
-	- message transmission loss and delay
-	- reward incentivization
+- pros
+	- less <font color="#00b050">energy</font> consumption
+	- lower <font color="#00b050">computational</font> power requirement
+	- <font color="#00b050">faster transaction</font> confirmation speed
+- cons
+	- subject to <font color="#00b050">dominance</font> by the most significant token holders
+	- <font color="#00b050">positive feedback</font> loop
+	- message transmission loss and <font color="#00b050">delay</font>
+	- <font color="#00b050">reward</font> incentivization
 
 ### comparison between PoW & PoS
 | aspect of comparison | PoW | PoS |
@@ -547,40 +555,92 @@ where $p\equiv q\equiv3(\operatorname{mod}4)$ and $n=p\times q$
 | forking | naturally prevent constant forkng | forking is not automatically discouraged by PoS |
 
 ### main idea of PAXOS
-- allow consensus over a value under unreliable communications. "majority represents the whole"
+- allow consensus over a value under unreliable communications. "<font color="#00b050">majority</font> represents the whole"
 ![[IS notes-20231218-1.png|600]]
+
+phases
+- *prepare*
+	- <font color="#00b050">proposer</font> receive request from client
+	- <font color="#00b050">proposer</font> sends <font color="#00b0f0">prepare (n)</font>
+	- <font color="#00b050">acceptor</font> stores highest proposal number (<font color="#00b0f0">n</font>) and send promise message (with/without full proposal)
+- *accept*
+	- <font color="#00b050">proposer</font> waits until gets responses from majority of acceptors for <font color="#00b0f0">n</font>
+	- <font color="#00b050">proposer</font> sends an accept message <font color="#00b0f0">accpet(n,v)</font>
+	- <font color="#00b050">acceptors</font> accept and reply with <font color="#00b0f0">accepted(n,v)</font>
+	- if majority of <font color="#00b050">acceptors</font> accept v, then consensus is reached
 
 ### main idea of RAFT
 - enable state machine replication with a persistent log, allow cluster reconfiguration, enabling cluster membership changes without service interruption
 ![[IS-Concepts-20231226-1.png]]
 
+phases
+- *leader election*
+	- all nodes start as followers, once not receive heartbeats from leader, follower node undertakes candidate role and attempt to become leader by election process
+	- if a candidate receive majority of votes, then it become leader. Otherwise, if no one wins ➡ election timeout
+- *log replication*
+	- client sends <font color="#00b0f0">request</font>/command to leader (to be executed by replicated state machine)
+	- leader <font color="#00b0f0">assigns</font> a <font color="#00b0f0">term</font> <font color="#a5a5a5">(to ascertain time of entry of command)</font> and <font color="#00b0f0">index</font> <font color="#a5a5a5">(identify position of entry in log of node)</font> to command, then appends this command to log
+	- leader sends out request to replicate (copy) this command to follower nodes
+	- when leader is able to replicate (copy) command to <font color="#00b0f0">majority</font> of follower nodes, which acknowledge that the entry is <font color="#00b050">committed</font> on cluster
+	- leader <font color="#00b0f0">execute</font> the command and <font color="#00b0f0">returns result</font> to client, also <font color="#00b0f0">notify followers</font> that entry is committed. followers execute committed commands in their state machine
+
 ### main idea of PBFT
 - designed to provide consensus in the presence of Byzantine faults
 ![[IS notes-20231218-6.png|650]]
+
+phases
+- *pre-prepare*
+	- leader <font color="#00b0f0">accepts request</font>
+	- leader <font color="#00b0f0">assigns</font> sequence number
+	- leader <font color="#00b0f0">broadcasts</font> information to all backup replicas
+- *prepare*
+	- backups <font color="#00b0f0">accept</font> pre-prepare message (if never accepted this with same view or sequence number before)
+	- backups <font color="#00b0f0">send</font> prepare message to all replicas
+- *commit*
+	- replicas <font color="#00b0f0">wait</font> for 2f+1 prepare message with same view, sequence number and request
+	- replicas <font color="#00b0f0">send</font> commit messages to all replicas
+	- replicas <font color="#00b0f0">wait</font> for 2f+1 commit message arrive
+	- replicas <font color="#00b0f0">execute</font> received request
+	- replicas <font color="#00b0f0">send</font> a reply with execution result to client
+
 ### 3 subprotocols of PBFT
 - normal operation
 - view change
 - checkpointing
 
 ### licensed & unlicensed spectrum
-- *licensed*: managed by governments and telecom operators needs to buy it then provide to customers
+- *licensed*: managed by governments and telecom operators needs to buy it then provides communication service to customers
 - *unlicensed*: used free of charge by anyone at any time
 
 ### why cognitive radio
-- wireless radio spectrum is underutilized. CR uses dynamic spectrum access (DSA) paradigm, which can utilize wireless radio spectrum efficiently
+- wireless radio spectrum is underutilized (due to <font color="#00b0f0">static allocation</font> of spectrum). CR uses <font color="#00b0f0">dynamic spectrum access</font> (DSA) paradigm, which can utilize wireless radio spectrum efficiently
 
 ### 2 types of nodes in CR
 - *primary radio node*: licensed users, can only use licensed spectrum
-- *secondary users*: can only use licensed spectrum when it's not being used by primary users and do not cause harmful inference to primary radio node. When primary radio node arrives, has to leave the frequency
+- *secondary users*: can only use licensed spectrum when it's <font color="#00b0f0">not</font> being used by primary users and do <font color="#00b0f0">not</font> cause harmful <font color="#00b0f0">inference</font> to primary radio node. When primary radio node requires, it has to leave the frequency band.
 
 ### if not collision-free communication
-- lost packets
-- re-transmission required
-- energy and time consumption
+- <font color="#00b0f0">lose</font> packets
+- <font color="#00b0f0">re-transmission</font> required
+- energy and time <font color="#00b0f0">consumption</font>
+
+### medium access control protocols classification
+in terms of "channels"
+- single channel
+- multiple channel
+
+in terms of "contention"
+- contention based
+- contention free
+
+in terms of access
+- random access
+- controlled access
 
 ### advantage of sharing spectrum
-- enable to use LTE and 5G simultaneously in the same frequency band
-- determine the demand of different radios in real-time
+- enable to use LTE and 5G <font color="#00b0f0">simultaneously</font> in the same frequency band
+- determine the <font color="#00b0f0">demand</font> of different radios in real-time
+- (<font color="#a5a5a5">how: available bandwidth is divided into independent parts and dynamically assigns different standard)</font>
 
 ### issue of DSS in CR
 - self-aware
@@ -610,10 +670,10 @@ pros
 - smart contract integration
 
 cons
-- high computational overhead
-- ownership of ledger
-- capacity
-- storage requirement of nodes
+- high computational <font color="#00b0f0">overhead</font>
+- <font color="#00b0f0">ownership</font> of ledger
+- <font color="#00b0f0">capacity</font>
+- <font color="#00b0f0">storage</font> requirement of nodes
 
 
 
