@@ -145,9 +145,9 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 	- *passive attack* aims to obtain information
 
 ### fundamental principles of security design
-- economy of mechanism
-- fail-safe default
-- least privilege
+- <font color="#f79646">economy</font> of mechanism
+- fail-safe <font color="#f79646">default</font>
+- least <font color="#f79646">privilege</font>
 - isolation
 - layering
 - modularity
@@ -162,22 +162,22 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 	- <font color="#00b050">branch</font>: ways to reach goal
 
 ### 3 authentication components
-- user terminal and user
-- communication channel
-- internet banking server
+- user <font color="#f79646">terminal</font> and user
+- communication <font color="#f79646">channel</font>
+- internet banking <font color="#f79646">server</font>
 
 ### 5 attack strategies
-- user credential compromise
-- injection of commands
-- user credential guessing
-- security policy violation
-- use of known authenticated session
+- user <font color="#f79646">credential compromise</font>
+- <font color="#f79646">injection</font> of commands
+- user <font color="#f79646">credential guessing</font>
+- security policy <font color="#f79646">violation</font>
+- use of known <font color="#f79646">authenticated session</font>
 
 ### 4 basic tasks for network security
-- algorithm for encryption transformation
-- algorithm for generating secret information (secret key)
-- methods for secret information distribution
-- protocol specification making use of algorithm and information
+- algorithm for <font color="#f79646">encryption</font> transformation
+- algorithm for generating secret information (secret <font color="#f79646">key</font>)
+- methods for secret information <font color="#f79646">distribution</font>
+- <font color="#f79646">protocol specification</font> making use of algorithm and information
 
 ### 5 components of symmetric cipher model
 - plaintext
@@ -191,9 +191,9 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - secure key *distribution* and *maintenance*
 
 ### 3 dimensions to characterize cryptographic system
-- type of operations for encryption transformation
-- number of keys
-- way to process ciphertext / plaintext
+- type of <font color="#f79646">operations</font> for encryption transformation
+- number of <font color="#f79646">keys</font>
+- way to <font color="#f79646">process</font> ciphertext / plaintext
 
 ### unconditionally secure scheme
 - ciphertext does not contain enough information to determine plaintext
@@ -206,13 +206,14 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 ### techniques for encryption transformation
 - substitution
 - transposition
+
 ### block cipher & stream cipher
 - *block*: a block of plaintext is treated as a whole and used to produce ciphertext block of equal length
 - *steam*: continuous encrypting digital data one bit or one byte at a time
 
 ### monoalphabetic cipher
 - one plaintext letter randomly correspond to another letter
-- attack: frequency comparison / repeated pattern (why: frequency information retains in the ciphertext)
+- attack: frequency comparison / repeated pattern (why: <font color="#f79646">frequency information</font> retains in the ciphertext)
 
 ### polyalphabetic cipher
 - use a set of monoalphabetic substitution rules
@@ -223,8 +224,8 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - singular == irreversible
 
 ### basic idea of Feistel cipher
-- *confusion*: complicate relationship between <font color="#00b050">statistics of ciphertext</font> and <font color="#00b050">value of encryption key</font> (via: determine one ciphertext by multiple plaintext)
-- *diffusion*: statistical structure of plaintext is dissipated (by complex substitution)
+- *confusion*: complicate relationship between <font color="#00b050">statistics of ciphertext</font> and <font color="#00b050">value of encryption key</font> (via: determine one ciphertext by multiple plaintext) (from ciphertext can't determine key)
+- *diffusion*: statistical structure of plaintext is dissipated (by complex substitution) (from ciphertext can't determine plaintext)
 
 ### why Feistel cipher
 - approximate ideal block cipher (block size $\infty$, safest)
@@ -528,22 +529,22 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - determine the demand of different radios in real-time
 
 ### issue of DSS in CR
-- sweet aware
+- self-aware
 - self-configuration
 - self-healing
 - self-optimizing
 - self-protecting
 
 ### how blockchain help CR
-- blockchain provides verification and validation schemes to ensure security
-- decentralized validation algorithm of blockchain enable medium access protocol of CR more accessible and implementation be easier
-- lacking centralized node makes overall system more robust against single-point failure
+- blockchain provides <font color="#f79646">verification</font> and <font color="#f79646">validation</font> schemes to ensure security
+- decentralized validation algorithm of blockchain enable medium access <font color="#f79646">protocol</font> of CR more <font color="#f79646">accessible</font> and <font color="#f79646">implementation</font> be easier
+- lacking centralized node makes overall system more <font color="#f79646">robust</font> against <font color="#f79646">single-point failure</font>
 
 ### procedure for collision-free communication with blockchain
-- each group reach local consensus to allocate resources
-- broadcast information to all CR nodes
+- each group reach <font color="#f79646">local consensus</font> to allocate resources
+- <font color="#f79646">broadcast</font> information to all CR nodes
 - CR nodes will not use these resources
-- result in collision avoidance in CR network
+- result in <font color="#f79646">collision avoidance</font> in CR network
 
 ### pros & cons of using blockchain in CR
 pros
