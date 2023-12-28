@@ -4,89 +4,6 @@ date: 2023-12-26
 draft: false
 author: HNO3
 ---
-**Table of Contents**
-
-- [[#information security|information security]]
-- [[#CIA(AA) Triad|CIA(AA) Triad]]
-- [[#3 Ds security design principle|3 Ds security design principle]]
-- [[#security program components|security program components]]
-- [[#risk analysis|risk analysis]]
-- [[#thread vector|thread vector]]
-- [[#types of attacks|types of attacks]]
-- [[#OSI security architecture|OSI security architecture]]
-- [[#active and passive attack|active and passive attack]]
-- [[#fundamental principles of security design|fundamental principles of security design]]
-- [[#attack surface and attack trees|attack surface and attack trees]]
-- [[#3 authentication components|3 authentication components]]
-- [[#5 attack strategies|5 attack strategies]]
-- [[#4 basic tasks for network security|4 basic tasks for network security]]
-- [[#5 components of symmetric cipher model|5 components of symmetric cipher model]]
-- [[#requirement of security|requirement of security]]
-- [[#3 dimensions to characterize cryptographic system|3 dimensions to characterize cryptographic system]]
-- [[#unconditionally secure scheme|unconditionally secure scheme]]
-- [[#computationally secure|computationally secure]]
-- [[#techniques for encryption transformation|techniques for encryption transformation]]
-- [[#block cipher & stream cipher|block cipher & stream cipher]]
-- [[#monoalphabetic cipher|monoalphabetic cipher]]
-- [[#polyalphabetic cipher|polyalphabetic cipher]]
-- [[#singular & non-singular transformation|singular & non-singular transformation]]
-- [[#basic idea of Feistel cipher|basic idea of Feistel cipher]]
-- [[#why Feistel cipher|why Feistel cipher]]
-- [[#design features / parameters of Feistel cipher|design features / parameters of Feistel cipher]]
-- [[#avalanche effect|avalanche effect]]
-- [[#3 critical aspects of block cipher design|3 critical aspects of block cipher design]]
-- [[#criteria for randomness|criteria for randomness]]
-- [[#how to test randomness of PRF / PRNG|how to test randomness of PRF / PRNG]]
-- [[#2 forms of unpredictability|2 forms of unpredictability]]
-- [[#3 cryptographic algorithms to generate PRNGs|3 cryptographic algorithms to generate PRNGs]]
-- [[#pros and cons of linear congruential generator|pros and cons of linear congruential generator]]
-- [[#requirement for public-key cryptography|requirement for public-key cryptography]]
-- [[#network access control managing|network access control managing]]
-- [[#NAC deal with 3 components|NAC deal with 3 components]]
-- [[#digital ledger technology|digital ledger technology]]
-- [[#classification of DLT|classification of DLT]]
-- [[#3 data structure for DLT|3 data structure for DLT]]
-- [[#blockchain definition|blockchain definition]]
-- [[#key feature of blockchain|key feature of blockchain]]
-- [[#3 components of blockchain|3 components of blockchain]]
-- [[#features of blockchain system|features of blockchain system]]
-- [[#classification of blockchain system|classification of blockchain system]]
-- [[#issue of public blockchain|issue of public blockchain]]
-- [[#comparison between blockchain system and database management system|comparison between blockchain system and database management system]]
-- [[#3 types of nodes in blockchain network|3 types of nodes in blockchain network]]
-- [[#6 layers in blockchain|6 layers in blockchain]]
-- [[#working sequence of blockchain|working sequence of blockchain]]
-- [[#composition of a block|composition of a block]]
-- [[#3 type of blockchain platform|3 type of blockchain platform]]
-- [[#examples of applications of blockchain|examples of applications of blockchain]]
-- [[#features of BitCoin blockchain system|features of BitCoin blockchain system]]
-- [[#block component of BitCoin|block component of BitCoin]]
-- [[#3 types of users in Ethereum|3 types of users in Ethereum]]
-- [[#properties of blockchain system|properties of blockchain system]]
-- [[#definition of smart contract|definition of smart contract]]
-- [[#sharding|sharding]]
-- [[#definition of consensus|definition of consensus]]
-- [[#responsibility of consensus protocol|responsibility of consensus protocol]]
-- [[#2 types of failure|2 types of failure]]
-- [[#main idea of PoW|main idea of PoW]]
-- [[#issue of PoW|issue of PoW]]
-- [[#fault tolerant of PoW|fault tolerant of PoW]]
-- [[#main idea of PoS|main idea of PoS]]
-- [[#pros and cons of PoS|pros and cons of PoS]]
-- [[#comparison between PoW & PoS|comparison between PoW & PoS]]
-- [[#main idea of PAXOS|main idea of PAXOS]]
-- [[#main idea of RAFT|main idea of RAFT]]
-- [[#main idea of PBFT|main idea of PBFT]]
-- [[#3 subprotocols of PBFT|3 subprotocols of PBFT]]
-- [[#licensed & unlicensed spectrum|licensed & unlicensed spectrum]]
-- [[#why cognitive radio|why cognitive radio]]
-- [[#2 types of nodes in CR|2 types of nodes in CR]]
-- [[#if not collision-free communication|if not collision-free communication]]
-- [[#advantage of sharing spectrum|advantage of sharing spectrum]]
-- [[#issue of DSS in CR|issue of DSS in CR]]
-- [[#how blockchain help CR|how blockchain help CR]]
-- [[#procedure for collision-free communication with blockchain|procedure for collision-free communication with blockchain]]
-- [[#pros & cons of using blockchain in CR|pros & cons of using blockchain in CR]]
 
 ### information security
 - protecting information from unauthorized
@@ -96,6 +13,11 @@ author: HNO3
 	- disruption
 	- modification
 	- destruction
+- essence (paraphrase): protect <font color="#f79646">information</font> & <font color="#f79646">system</font> from people who want to <font color="#f79646">misuse</font> it
+
+### considerations about information security
+- both consider security and "<font color="#f79646">productivity</font>" (should be usable and productive)
+- level of security should be related to the <font color="#f79646">value</font> of information being secured
 
 ### CIA(AA) Triad
 - *Confidentiality*
@@ -109,9 +31,12 @@ author: HNO3
 - *Accountability*
 	- requirement for actions to be traced
 
+### characteristic of modern security model
+- providing <font color="#f79646">limited access</font> to data in a <font color="#f79646">controlled</font> fashion
+
 ### 3 Ds security design principle
 - *Defense*
-	- reduce likelihood of compromise
+	- reduce likelihood of compromise (lower risk)
 - *Detection*
 	- react to security incident
 - *Deterrence*
@@ -121,11 +46,20 @@ author: HNO3
 authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 
 ### risk analysis
-- risk = proba(threat + exploit of vulnerability) * cost of damage
+- risk = probability(threat + exploit of vulnerability) $\times$ cost of damage
+- objective of security program is <font color="#f79646">NOT eliminate</font> risks but <font color="#0070c0">mitigate</font> risks
 
 ### thread vector
 - describe the *origin* and the *path* to reach *target*
-- how to identify: create a *table* containing list of threats along with sources and targets
+- <font color="#f79646">how</font> to identify: create a *table* containing list of threats along with sources and targets
+
+### security control for different threat vectors
+- preventative
+- detective
+- deterrent
+- corrective
+- recovery
+- compensation
 
 ### types of attacks
 - *virus*: self-replicating program, execute host file will execute virus
@@ -139,10 +73,9 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 	- *security mechanism*: process designed to detect, prevent and recover from attack
 	- *security service*: service that enhance the security of system, making use of security mechanism
 
-### active and passive attack
-- difference
-	- *active attack* aims to change the data and harm the system (ex.: modification, replay)
-	- *passive attack* aims to obtain information
+### difference between active and passive attack
+- *active attack* aims to <font color="#f79646">change data</font> and <font color="#f79646">harm system</font> (ex.: modification of message, replay, masquerade)
+- *passive attack* aims to <font color="#f79646">obtain</font> information (hard to detect)
 
 ### fundamental principles of security design
 - <font color="#f79646">economy</font> of mechanism
@@ -153,10 +86,10 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - modularity
 
 ### attack surface and attack trees
-- *attack surface*: reachable and exploitable vulnerabilities in a system
+- *attack surface*: <font color="#f79646">reachable</font> and <font color="#f79646">exploitable</font> **vulnerabilities** in a system
 	- 3 types: network, software, human
 	- larger & shallower ➡ higher risk
-- *attack trees*: branching, hierarchical data structure that represents a set of potential techniques for exploiting security vulnerabilities
+- *attack trees*: branching, hierarchical <font color="#f79646">data structure</font> that represents a set of potential <font color="#f79646">techniques</font> for exploiting security vulnerabilities
 	- <font color="#00b050">root</font>: goal of attack
 	- <font color="#00b050">leaf</font>: ways to initiate
 	- <font color="#00b050">branch</font>: ways to reach goal
@@ -173,11 +106,19 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - security policy <font color="#f79646">violation</font>
 - use of known <font color="#f79646">authenticated session</font>
 
+### 2 components of model for network security
+- security-related transformation on the information to be sent (<font color="#f79646">encryption</font>)
+- share secret information (key) and stay unknown to the opponent (<font color="#f79646">key distribution & maintenance</font>)
+
 ### 4 basic tasks for network security
 - algorithm for <font color="#f79646">encryption</font> transformation
 - algorithm for generating secret information (secret <font color="#f79646">key</font>)
 - methods for secret information <font color="#f79646">distribution</font>
 - <font color="#f79646">protocol specification</font> making use of algorithm and information
+
+### symmetric encryption
+- also called <font color="#00b050">conventional encryption</font> or <font color="#00b050">single-key</font> encryption
+- only keep the key secret, NOT the algorithm
 
 ### 5 components of symmetric cipher model
 - plaintext
@@ -187,7 +128,7 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - decryption algorithm
 
 ### requirement of security
-- strong *encryption algorithm*
+- strong *encryption algorithm* (with ciphertext can't know key or plaintext)
 - secure key *distribution* and *maintenance*
 
 ### 3 dimensions to characterize cryptographic system
@@ -196,27 +137,69 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - way to <font color="#f79646">process</font> ciphertext / plaintext
 
 ### unconditionally secure scheme
-- ciphertext does not contain enough information to determine plaintext
-	- no encryption algorithm (except one-time pad) is unconditionally secure
+- ciphertext does not contain enough information to determine plaintext, no matter with how much time, it's impossible to decrypt
+- no encryption algorithm (except one-time pad) is unconditionally secure
 
 ### computationally secure
-- cost of breaking > value of encrypted information OR
-- time of breaking > useful lifetime of information
+- <font color="#00b050">cost</font> of breaking > <font color="#00b050">value</font> of encrypted information OR
+- <font color="#00b050">time</font> of breaking > useful lifetime of information
+- problem: cost/time to break is hard to estimate
 
 ### techniques for encryption transformation
 - substitution
 - transposition
+
+### formulas, pros and cons for different cipher
+
+*Caesar*
+- $C = E(p+k)mod\:26$, $P=D(c-k)mod\:26$
+- cons: easy to break, there is limited possibility
+
+*playfair*
+- procedure
+	- filling $5\times 5$ matrix with key first then remaining letters in alphabetic order
+	- same row: right
+	- same column: down
+- pros: better than monoalphabetic, difficult to conduct frequency analysis
+- cons: easy to break (leaves much of structure of plaintext)
+
+*Hill*
+- $C=PK\:mod\:26$, $P=CK^{-1}\:mod\:26$, where $C$ and $P$ are row vectors, and $K$ is matrix
+
+*Vigenère*
+- $C_i=(p_i+k_{i\:mod\:m})\:mod\:26$, $p_i=(C_i-k_{i\:mod\:m})\:mod\:26$, key is repeating keyword
+- pros: frequency information is obscured
+- cons: 1) considerable <font color="#00b050">frequency</font> information retains, 2) <font color="#00b050">keyword length</font> may be found
+- cryptanalysis: 1) test for monoalphabetic cipher, 2) find repeated pattern, 3) find keyword length by common factors of repeated pattern interval, 4) take ciphertext letter according to the keyword length, and break it like a sequence of Caesar cipher
+- how to improve: <font color="#00b050">autokey</font>, concatenate keyword with plaintext itself
+
+*Vernam*
+- work on binary data: $c_{i}=p_{i}\oplus k_{i}$, $p_{i}=c_{i}\oplus k_{i}$, $k_i$ is NOT key: it's a bit stream (output of key stream generator) that determined by the key
+- cryptanalysis: break with sufficient ciphertext and the use of known probable plaintext sequence
+
+*one-time pad*
+- using a random key that is as long as the message to decrypt single message then discard
+- pros: 1) can't determine which result of cryptanalysis is correct, 2) security is due to <font color="#00b050">randomness</font> of the key
+- cons: 1) <font color="#00b050">large quantities</font> of random key, 2) <font color="#00b050">key</font> distribution and protection
+
+*steganography*
+- pros: hide in object, no <font color="#00b050">suspicion</font> (encrypted information will be considered as important)
+- cons: 1) limited <font color="#00b050">capacity</font>, 2) large <font color="#00b050">overhead</font>, 3) once system is discovered, whole system is destroyed
+
+*DES*
+- pros: 1) no effective attack found; 2) fast
+- cons: key size (56 bits too small)
 
 ### block cipher & stream cipher
 - *block*: a block of plaintext is treated as a whole and used to produce ciphertext block of equal length
 - *steam*: continuous encrypting digital data one bit or one byte at a time
 
 ### monoalphabetic cipher
-- one plaintext letter randomly correspond to another letter
+- one plaintext letter randomly correspond to another letter ($n!$ permutations make it harder to break)
 - attack: frequency comparison / repeated pattern (why: <font color="#f79646">frequency information</font> retains in the ciphertext)
 
 ### polyalphabetic cipher
-- use a set of monoalphabetic substitution rules
+- use a set of monoalphabetic substitution <font color="#00b050">rules</font>, choice of which rule to use is determined by key
 - one plaintext letter can correspond to multiple ciphertext letter
 
 ### singular & non-singular transformation
@@ -226,10 +209,12 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 ### basic idea of Feistel cipher
 - *confusion*: complicate relationship between <font color="#00b050">statistics of ciphertext</font> and <font color="#00b050">value of encryption key</font> (via: determine one ciphertext by multiple plaintext) (from ciphertext can't determine key)
 - *diffusion*: statistical structure of plaintext is dissipated (by complex substitution) (from ciphertext can't determine plaintext)
+![[IS notes-20231212-13.png|450]]
 
 ### why Feistel cipher
 - approximate ideal block cipher (block size $\infty$, safest)
 - how: stack multiple ciphers in sequence
+- example: DES
 
 ### design features / parameters of Feistel cipher
 - *block size*
@@ -246,49 +231,110 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - design of function
 - key scheduling
 
+### AES
+![[IS-Concepts-20231228-1.png|600]]
+- not Feistel structure, 1 permutation and 3 substitution
+- decryption algorithm is NOT identical to encryption algorithm
+
+### where we need generation of random bit stream
+- key generation
+- encryption
+
 ### criteria for randomness
 - uniform distribution
 - independence
 
-### how to test randomness of PRF / PRNG
+### TRNG/PRNG/PRF
+![[IS-Concepts-20231228-2.png|200]]![[IS-Concepts-20231228-3.png|200]]![[IS-Concepts-20231228-4.png|200]]
+
+### 3 aspects to test randomness of PRF / PRNG
 - uniformity
 - scalability
 - consistency
+
+### 3 tests of randomness
+- *frequency test*: (if 1/0 have same proportion)
+- *runs test*: if runs with various length is expected
+- *Maurer's universal statistical test*: if the sequence can be compressed significantly
 
 ### 2 forms of unpredictability
 - forward unpredictability
 - backward unpredictability
 
-### 3 cryptographic algorithms to generate PRNGs
-- symmetric block cipher
-- asymmetric cipher
-- hash functions and message authentication codes
+### 2 categories of PRNG algorithms
+- purpose-built algorithm
+- algorithms based on existing cryptographic algorithms
 
-### pros and cons of linear congruential generator
-- *pros*: resulting sequence is <font color="#00b050">statistically indistinguishable</font> from a sequence drawn from (1,m-1)
-- *cons*: 1) once seed determined, sequence is determined. 2) knowledge of small part of sequence is sufficient to determine the parameter of the algorithm
-	- alleviation: periodically restart; add current clock value
+### 3 cryptographic algorithms to generate PRNGs
+- <font color="#00b050">symmetric</font> block cipher
+- <font color="#00b050">asymmetric</font> cipher
+- <font color="#00b050">hash</font> functions and message authentication codes
+
+### Linear Congruential Generators
+-  $m$: modulus, $m>0$ (chosen very large)
+- $a$: multiplier, $0<a<m$
+- $c$: increment, $0\le c <m$
+- $X_0$: starting value or <font color="#00b050">seed</font>, $0\le X_0 < m$
+- $$ \begin{aligned}X_{n+1}\:=\:(aX_n\:+\:c)\bmod m\end{aligned}$$
+- range: $0\le X_m \le m$
+- tests for Linear Congruential Generator
+	- if it's <font color="#00b050">full-period generating</font> function (generate all numbers of the range before repeating)
+	- if sequence appear <font color="#00b050">random</font>
+	- if can be <font color="#00b050">implemented</font> efficiently with 32-bit arithmetic
+- pros: statistically indistinguishable
+- cons: 1) if known algorithm, once a single number is discovered, all subsequent numbers are known; 2) knowledge of a small part of the sequence is sufficient to determine the parameters of the algorithm
+- improve: 1) restart sequence periodically, 2) add current clock value
+
+### Blum Blum Shub generator
+$$ \begin{array}{rcl}\mathrm{X}_0&=&\mathrm{s}^2\mod\:n\\\mathrm{for}\quad\mathrm{i}&=&1\:\textsf{to}\:\infty\\\mathrm{X}_i&=&(\mathrm{X}_{i-1})^2\mod\:n\\\mathrm{B}_i&=&\mathrm{X}_i\mod\:2\end{array}$$
+where $p\equiv q\equiv3(\operatorname{mod}4)$ and $n=p\times q$
+- BBS pass cryptographically secure (next-bit test: can't predict next bit with probability higher than 0.5)
+
+### concepts in public-key cryptography
+- *asymmetric key*: two related keys used to perform complementary operations
+- *public key certificate*: a digital <font color="#00b050">document</font> <font color="#f79646">issued</font> and digitally <font color="#f79646">signed</font> by the private key of an authority that <font color="#f79646">binds</font> the name of a <font color="#f79646">subscriber</font> to a public key, indicating that the subscriber identified in the certificate has sole <font color="#f79646">control</font> and <font color="#f79646">access</font> to the corresponding private key
 
 ### requirement for public-key cryptography
-- easy to generate key pair
-- easy to encrypt
-- easy to decrypt
-- infeasible for adversary knowing public key to determine private key or decrypt ciphetext
+- easy to <font color="#00b050">generate</font> key pair
+- easy to <font color="#00b050">encrypt</font>
+- easy to <font color="#00b050">decrypt</font>
+- infeasible for adversary knowing public key to determine private <font color="#00b050">key</font> or decrypt <font color="#00b050">ciphetext</font>
 
+### essential steps for public-key cryptography
+1. generate a pair of keys
+2. place one key in public while the other in private
+3. encrypt message with one key
+4. decrypt with the other key
+
+### 3 usages of public-key cryptosystems
+- encryption & decryption
+- digital signature
+- key exchange
+
+### Diffie-Hellman algorithm & man in the middle attack
+![[IS-Concepts-20231228-5.png|500]]
+
+![[IS notes-20231212-30.png|500]]
+- why vulnerable: participants are not <font color="#00b050">authenticated</font>
+- how to overcome: <font color="#00b050">digital signatures</font> & <font color="#00b050">public-key certificates</font>
 ### network access control managing
 - <font color="#00b050">authenticate</font> users to log in
-- <font color="#00b050">data</font> access
-- <font color="#00b050">actions</font> to be performed
+- determine <font color="#00b050">data</font> access, <font color="#00b050">actions</font> to be performed
 - examine the <font color="#00b050">health</font> of users' device
 
 ### NAC deal with 3 components
-1. access router
-2. policy server
-3. network access server
+1. *access router*: node attempts to access network, also called *supplicant* or *client*
+2. *policy server*: determine what access to be granted
+3. *network access server*: access control point, also called *media gateway* or *remote access server*
+
+### procedure of NAC
+1. authenticate AR, verify <font color="#00b050">identity</font>
+2. <font color="#00b050">enable</font> secure <font color="#00b050">communication</font> by establishment of <font color="#00b050">session key</font>
+3. <font color="#00b050">check</font> on AR to determine if <font color="#00b050">permitted</font> for remote access
 
 ### digital ledger technology
-- *ledger*: records of maintenance (transaction + ownership) of property
-- *digital*: managed by computer
+- *ledger*: records of <font color="#00b050">maintenance</font> (transaction + ownership) of property
+- *digital*: managed by <font color="#00b050">computer</font>
 - *distributed*: record kept on multiple computers
 - *decentralized*: record managed in a decentralized way (no central entity management)
 
@@ -335,12 +381,18 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 	- permissioned
 	- permissionless
 
+### why blockchain secure
+- strong public/private <font color="#00b050">keys</font>
+- <font color="#00b050">hashing</font> algorithm
+- digital <font color="#00b050">signature</font>
+- <font color="#00b050">encryption</font> techniques
+
 ### issue of public blockchain
-- limited transactions
-- scalability (node/transaction)
-- pseudonymity
-- limited block size
-- energy consumption
+- limited <font color="#00b050">transactions</font>
+- <font color="#00b050">scalability</font> (node/transaction)
+- <font color="#00b050">pseudonymity</font> (double spending)
+- limited <font color="#00b050">block size</font>
+- <font color="#00b050">energy</font> consumption
 
 ### comparison between blockchain system and database management system
 |  | blockchain | DBMS |
@@ -415,9 +467,9 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 - time stamping of transactions
 
 ### block component of BitCoin
-- outer header
-- block header
-- block body
+- *outer header* (block size, block identification)
+- *block header* (block version, time stamp, hashing target, nonce, previous hash, Merkle Tree root)
+- *block body* (all transactions)
 
 ### 3 types of users in Ethereum
 - contract account
@@ -426,17 +478,19 @@ authority ➡ framework ➡ assessment ➡ planning ➡ action ➡ maintenance
 
 ### properties of blockchain system
 - *smart contract*
-	- classification: deterministic (dependent on external data/event)
+	- classification: <font color="#00b050">deterministic</font> (dependent on external data/event) and <font color="#00b050">non-deterministic</font>
 - *scalability issues*
 	- nodes/transactions/size of ledger/storage capacity of nodes
+	- how to improve: 1) offload to side chain (main chain only store hash); 2) [[#sharding]]
 - *transaction capacity*
-	- limiting factors: Tx/block, Tx speed, interval between blocks
+	- limiting factors: # of Tx in block, Tx speed, interval between blocks
 - *interoperability*
 
 ### definition of smart contract
 - self-executing program that automate actions required in an agreement
+
 ### sharding
-- blockchain nodes are divided into multiple smaller groups (shards) and each shard handle some transactions in parallel
+- blockchain nodes are <font color="#00b050">divided</font> into multiple smaller groups (shards) and each shard handle some transactions in <font color="#00b050">parallel</font>
 - issue: <font color="#00b050">communication</font> between different shards; how all nodes keep the complete ledger
 
 ### definition of consensus
