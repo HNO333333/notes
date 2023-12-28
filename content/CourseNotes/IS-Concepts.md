@@ -675,6 +675,3 @@ cons
 - <font color="#00b0f0">ownership</font> of ledger
 - <font color="#00b0f0">capacity</font>
 - <font color="#00b0f0">storage</font> requirement of nodes
-
-
-
