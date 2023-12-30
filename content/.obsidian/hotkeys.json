@@ -75,14 +75,6 @@
     }
   ],
   "markdown:add-metadata-property": [],
-  "quickadd:choice:3379f54e-492e-48ba-8468-9c178ecadee6": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": ";"
-    }
-  ],
   "app:go-back": [
     {
       "modifiers": [
@@ -186,5 +178,13 @@
       "key": "6"
     }
   ],
-  "workspace:goto-tab-6": []
+  "workspace:goto-tab-6": [],
+  "insert-template": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": ";"
+    }
+  ]
 }

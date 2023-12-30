@@ -139,7 +139,7 @@
       "id": "26a6a00a-ad6a-41d8-a461-521f57e926c7",
       "name": "insert info callout",
       "type": "Capture",
-      "command": true,
+      "command": false,
       "appendLink": false,
       "captureTo": "",
       "captureToActiveFile": true,
