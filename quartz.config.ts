@@ -10,7 +10,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     baseUrl: "HNO333333.github.io/notes",
-    ignorePatterns: ["templates", "private"],
+    ignorePatterns: ["**/templates", "private"],
     defaultDateType: "created",
     theme: {
       typography: {
