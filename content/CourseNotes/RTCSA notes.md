@@ -12,50 +12,50 @@ author: HNO3
 
 ## Lecture 1 Real-time System
 
-- software
-	- system program
-		- software that interfaces with the hardware
+- <span style="background:#d3f8b6">software</span>
+	- <span style="background:#d3f8b6">system program</span>
+		- 🔄software that interfaces with the hardware
 		- example: drivers, interrupt handlers, task schedulers, compilers, assemblers, linkers, locators
-		- operating system: specialized collection of system programs that manage physical resources of computer ^os
+		- <span style="background:#d3f8b6">operating system</span>: 🔄specialized collection of system programs that manage physical resources of computer ^os
 	- application programs
 		- programmed to solve specific problems
-- system
-	- mapping of a set of inputs into a set of outputs
+- <span style="background:#d3f8b6">system</span>
+	- 🔄mapping of a set of inputs into a set of outputs
 	- input & output
 		- input: associated with sensors, convert analog signals into digital signals
 		- output: converted to analog to control external hardware devices
 	- ![[RTCSA notes-20231212-153.png]]
-- definition of real-time system
-	- a system that responds within specified times. (Not necessarily fast – must meet timing deadline)
+- <span style="background:#d3f8b6">definition of real-time system</span>
+	- 🔄a system that responds within specified times. (Not necessarily fast – must meet timing deadline)
 - response time
-	- time between the presentation of a set of inputs to a system and the realisation of the required behaviour
+	- time between the presentation of a set of inputs to a system and the realization of the required behavior
 	- how fast? depends on specific system's characteristic and purpose
 - real-time computing
 	- study of system subjected to a "real-time constraint" (deadline)
-	- logical correctness is based on both the correctness of the **outputs** and their **timeliness**
+	- logical <font color="#00b0f0">correctness</font> is based on both the correctness of the **outputs** and their **timeliness**
 - failed system
 	- cannot satisfy one or more of the requirements
-- embedded system
+- <span style="background:#d3f8b6">embedded system</span>
 	- perform dedicated functions, often with real-time computing constraints
 	- system has a central role in the functionality of the system, but the system is not explicitly called a computer
-	- hardware tightly coupled and software integrated that designed to dedicated function
+	- 🔄<font color="#00b0f0">device</font> tightly coupled computing <font color="#00b0f0">hardware</font> and <font color="#00b0f0">software</font> that are <font color="#00b0f0">designed</font> to perform a <font color="#00b0f0">dedicated function</font>
 	- embedded into a larger product, often hidden from view
 	- encapsulated by the device it controls
 	- can be sub-system within a larger system
 	- one can have multiple embedded system coexist
-- firmware
+- <span style="background:#d3f8b6">firmware</span>
 	- program instructions written for embedded systems
-	- stored in read-only memory or Flash memory chips
+	- stored in <font color="#00b0f0">read-only memory</font> or Flash memory chips
 	-  run with limited hardware resources
 - reactive system
-	- task scheduling is driven by ongoing interaction with their environment
-- main requirement of an embedded system
+	- task scheduling is driven by ongoing <font color="#00b0f0">interaction</font> with their environment
+- <span style="background:#d3f8b6">main requirement of an embedded system</span>
 	- environmental
 	- performance
 	- economic
 	- consequential
 
-### types of real-time system
+### 🔄types of real-time system
 1. *soft real-time system*
 	1. performance is **degraded** but **not destroyed** by failure to meet response-time constraints
 2. *firm real-time system*
@@ -85,7 +85,7 @@ author: HNO3
 - Event & Release time
 	- event: occurrence that causes program to change non-sequentially
 	- release time: time at which an instance of scheduled task is ready to run and is generally associated with an interrupt
-- Synchronous vs Asynchronous Events
+- <span style="background:#d3f8b6">Synchronous vs Asynchronous Events</span>
 	- synchronous: occur at predictable times in the flow-of-control
 	- asynchronous: occur at unpredictable points in the flow-of- control and are usually caused by <font color="#00b050">external sources</font>
 - Deterministic System
@@ -115,11 +115,11 @@ author: HNO3
 - interpretations of binary number
 	- <font color="#00b050">signed vs. unsigned</font>
 	- *unsigned*
-		- N-bit unsigned integer: range $(0,2^N-1)_{10}$
+		- N-bit unsigned integer: 🔄range $(0,2^N-1)_{10}$
 	- *signed*
-		- N-bit signed integer: range $(-2^{N-1},2^{N-1}-1)$
+		- N-bit signed integer: 🔄range $(-2^{N-1},2^{N-1}-1)$
 	- sign and magnitude
-		- <font color="#00b050">two's complement</font> to represent a negative number
+		- 🔄<font color="#00b050">two's complement</font> to represent a negative number
 			1. invert digits (+28 = 00011100, invert: 11100011)
 			2. add one to the result (11100011 + 1 = 11100100 = -28)
 	- representation width
@@ -149,9 +149,9 @@ author: HNO3
 	- structure: (MSB) {<span style="background:rgba(240, 107, 5, 0.2)">sign-bit (1)</span>}-{<span style="background:rgba(240, 200, 0, 0.2)">exponent (11)</span>}-{<span style="background:rgba(5, 117, 197, 0.2)">significand (52)</span>}
 	- exponent: in bias -1023 integer format (add 1023 to it)
 	- signifcand: only fractional part of mantissa, MSB is always 1 and not stored.
-- comparison of fixed & floating point
+- 🔄<span style="background:#d3f8b6">comparison of fixed & floating point</span>
 	- floating point
-		- pro: large dynamic range, resolution determined by sinificand
+		- pro: large dynamic range, resolution determined by signifcand
 		- con: implementation slow
 	- fixed point
 		- pro: implementation fast
@@ -177,7 +177,7 @@ author: HNO3
 		- clock rate is determined by the physical layout of the processor
 	- operations are <font color="#00b050">synchronized</font> and <font color="#00b050">paced</font> so that proper signal values are available for each operation
 	- most instructions require multiple clock cycles to complete
-	- <font color="#00b050">pipelining</font>: multiple instructions executed simultaneously
+	- 🔄<font color="#00b050">pipelining</font>: multiple instructions executed simultaneously
 	- direct comparison of system clock frequency will not show the performance.
 - <span style="background:rgba(5, 117, 197, 0.2)">cycles per instruction (CPI)</span>
 	- $$ \tau=1/f$$
@@ -201,51 +201,59 @@ author: HNO3
 			- cache and memory hierarchy
 		- ![[RTCSA notes-20231212-156.png|475]]
 - <span style="background:rgba(5, 117, 197, 0.2)">Millions of Instructions per Second (MIPS)</span>
-	- $$ \text{MIPS rate}=\frac{I_c}{T\times10^6}=\frac{f}{CPI\times10^6}$$
+	- 🔄$$ \text{MIPS rate}=\frac{I_c}{T\times10^6}=\frac{f}{CPI\times10^6}$$
 
 ## Lecture 4 Overview of an Operating System (OS)
 
 ### what is OS
-- definition: program that <font color="#00b050">manages</font> all the other programs in a computer
+- <span style="background:#d3f8b6">definition</span>: 🔄program that <font color="#00b050">manages</font> all the other programs in a computer
 	- other programs called applications
 	- applications request for services through application program interface (<font color="#953734">API</font>)
 - OS performs as <font color="#953734">environmental architecture</font>
 	- for efficient usage
 	- act as control program
 - ![[RTCSA notes-20231212-157.png]]
-- services of OS ^service-of-os
+- 🔄<span style="background:#d3f8b6">services of OS</span> ^service-of-os
 	1. multitasking
 	2. manage memory sharing
 	3. handle input and output
 	4. send message
 	5. offload batch job
 	6. provide parallel processing
+>[!info]+ key services of OS from tutorial
+>- *program creation*
+>- *program execution*: require tasks like loading instruction and data, initializing I/O and files, preparing resources
+>- *access to I/O devices*: each I/O device require its own set of instructions or control signals for operation
+>- *controlled access to files*: know nature of I/O device and file format
+>- *system access*: control access to system
+>- *error detection and response*
+>- *accounting*: collect usage statistics and monitor performance
 - OS provides abstraction of hardware
 	- allow users to program without knowledge of hardware
-- OS resources management
-	- process management
-	- memory management
-	- time & space multiplexing
+- OS <span style="background:#d3f8b6">resources management</span>
+	- <font color="#00b0f0">process</font> management
+	- <font color="#00b0f0">memory</font> management
+	- time & space <font color="#00b0f0">multiplexing</font>
 
 ### OS component
-- Process management
+- *Process management*
 	- applications
 	- allocate independent memory space for each process
 	- creation and destruction of processes
 	- schedule process according to their deadline, priority, sequence...
 	- maintain communication of process
 	- maintain concurrency of process
-- Memory management
+- *Memory management*
 	- support multiprogramming
 	- sharing data between processes
 	- virtual memory: use secondary memory (RAM) as cache
-- File system
+- *File system*
 	- abstraction of a bulk of information
-- I/O
+- *I/O*
 	- requires device specific knowledge
-- Network
-- Security
-- GUI
+- *Network*
+- *Security*
+- *GUI*
 
 ### Operating System Structure
 - monolithic
@@ -269,18 +277,18 @@ author: HNO3
 	- microkernel has better modularity and extensibility
 	- <font color="#953734">modern OS</font> adopt <font color="#953734">hybrid</font> approach
 
-### Types of OS
-- Network OS
+### 🔄Types of OS
+- <font color="#00b0f0">Network OS</font>
 	- for computer network
 	- allow facilities file sharing and hardware access
 	- more communication features compared with single computer OS
-- Distributed Operating System
+- <font color="#00b0f0">Distributed Operating System</font>
 	- microkernel plus service component that coordinates with other nodes
 	- work collectively to fulfil all system resources
 	- single node has full access to all system resources
 		- complicated scheduling and parallelism
 		- user not aware of which node is executing
-- RTOS
+- <font color="#00b0f0">RTOS</font>
 	- dedicated to meet specific timing constraints
 	- key design requirement
 		- predictability and determinism
@@ -329,9 +337,9 @@ author: HNO3
 		- memory state
 		- CPU state
 		- OS state
-	- <font color="#953734">program</font>: instructions stored on the disk
-	- <font color="#953734">process</font>: program with execution context ^diff-program-process
-	- <font color="#953734">thread</font>: lightweight process, a process can have multiple threads
+	- 🔄<font color="#953734">program</font>: instructions stored on the disk
+	- 🔄<font color="#953734">process</font>: program with execution context (🔄<font color="#f79646">process</font> is a <font color="#00b0f0">program</font> in execution, together with all the <font color="#00b0f0">state information</font> required for execution) ^diff-program-process
+	- 🔄<font color="#953734">thread</font>: lightweight process, a process can have multiple threads
 - process control block (PCB) or Task Control Block (TCB)
 	- contains all relevant information for the process
 		- ID
@@ -371,7 +379,7 @@ author: HNO3
 		- need hardware support
 	- multiprogramming
 - process state
-	- standard model has 5 states
+	- <span style="background:#d3f8b6">standard model has 5 states</span>🔄
 		1. *new*: just created, not ready for queue
 		2. *ready*: can be loaded by OS
 		3. *running*: scheduler picked this process from queue and executed it
@@ -382,9 +390,9 @@ author: HNO3
 	- state transition may voluntarily (terminate) or involuntarily (error)
 	- OS maintains queue or queue-like structure for process in the same state
 - state transition
-	- ![[RTCSA notes-20231212-160.png]]
+	- ![[RTCSA notes-20231212-160.png|550]]
 	- *admit*: process is fully loaded into memory and control established
-	- *dispatch*: scheduler begin to assign CPU to process
+	- 🔄*dispatch*: scheduler begin to assign CPU to process
 	- *time out*: expired/preempted, push back to queue
 	- *event occur/wait*: request cannot be met now, has to wait until something occurs
 		- why
@@ -397,6 +405,11 @@ author: HNO3
 ## Lecture 5 Computer Components and Function
 
 ### computer components
+> [!info]+ computer components (from tutorial)
+> - *CPU*: control operation of computer and process data
+> - *main memory*
+> - *I/O*: transfer data between computer and external environment
+> - *system interconnection*: mechanisms that provide communication among components (bus)
 - von Neumann architecture
 	- ![[RTCSA notes-20231212-161.png|325]]
 	- data & instruction
@@ -2193,7 +2206,7 @@ objective
 	- non-preemptive
 
 #### non-preemptive scheduling
-![[RTCSA notes-20231213-1.png|250]]
+![[RTCSA notes-20231213-1.png|350]]
 (state transition of a process)
 - also referred to as <font color="#00b050">cooperative scheduling</font>, allow process to continue running until <font color="#00b050">voluntarily</font> give up the CPU until: 1) completion 2) enter waiting state
 - scheduler done NOT forcibly interrupt a running process
