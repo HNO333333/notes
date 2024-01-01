@@ -1,5 +1,4 @@
 [
-  "editing-toolbar",
   "image2latex",
   "easy-typing-obsidian",
   "mousewheel-image-zoom",
@@ -11,5 +10,6 @@
   "obsidian-paste-image-rename",
   "zotlit",
   "ninja-cursor",
-  "obsidian-plugin-toc"
+  "obsidian-plugin-toc",
+  "editing-toolbar"
 ]
