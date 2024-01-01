@@ -230,7 +230,7 @@ author: HNO3
 >- *accounting*: collect usage statistics and monitor performance
 - OS provides abstraction of hardware
 	- allow users to program without knowledge of hardware
-- OS <span style="background:#d3f8b6">resources management</span>
+- OS <span style="background:#d3f8b6">resources management</span>🔄
 	- <font color="#00b0f0">process</font> management
 	- <font color="#00b0f0">memory</font> management
 	- time & space <font color="#00b0f0">multiplexing</font>
@@ -982,7 +982,7 @@ author: HNO3
 			- one dedicated cache for <font color="#00b050">instruction</font>
 			- one dedicated cache for <font color="#00b050">data</font>
 			- both exist at the same level (L1)
-		- <span style="background:#d3f8b6">advantage of split</span>
+		- <span style="background:#d3f8b6">advantage of split</span>🔄
 			- Eliminates cache disagreement between instruction fetch/decode unit and execution unit
 			- pipelining
 		- <span style="background:#d3f8b6">advantage of unified cache</span>
