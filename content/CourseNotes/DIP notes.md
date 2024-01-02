@@ -675,12 +675,12 @@ RLC compresses image by representing runs of <font color="#00b050">identical int
 
 
 ## what's going on in past exam
-- neighboring
-- filter design (median)
-- opening/closing/erosion/dilation
-- calculate result of applying filters
-- find histogram of image
-- histogram equalization
+- [x] neighboring
+- [x] filter design (median)
+- [x] opening/closing/erosion/dilation
+- [x] calculate result of applying filters
+- [x] find histogram of image
+- [x] histogram equalization
 - entropy calculation
 - Huffman's encoding
 - evaluate compression method with code length, compression ratio, coding efficiency
