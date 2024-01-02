@@ -673,3 +673,14 @@ RLC compresses image by representing runs of <font color="#00b050">identical int
 		- can't be seen, insert watermark as redundant information, will be destroyed by any modification of the images
 	- can also be implemented in transform domain: compute DCT, locate its $K$ largest coefficients by magnitude, then create a watermark by <font color="#00b050">generating</font> $K$-element pseudo-random <font color="#00b050">sequence of numbers</font>, taken from a Gaussian distribution with 0 mean and unit variance, after this embed watermark image from previous step into $K$ largest DCT coefficients using $c_i' = c_i (1 + \alpha w_i)\quad\quad 1\le i \le K$. And at last compute the inverse DCT.
 
+
+## what's going on in past exam
+- neighboring
+- filter design (median)
+- opening/closing/erosion/dilation
+- calculate result of applying filters
+- find histogram of image
+- histogram equalization
+- entropy calculation
+- Huffman's encoding
+- evaluate compression method with code length, compression ratio, coding efficiency
