@@ -1,9 +1,51 @@
 ---
 title: Digital Image Processing Notes
-date: 2023-12-17
+date: 2023-01-03
 draft: false
 author: HNO3
 ---
+**Table of Contents**
+
+- [[#Chapter 1 Introduction|Chapter 1 Introduction]]
+	- [[#Chapter 1 Introduction#Basic Concepts|Basic Concepts]]
+	- [[#Chapter 1 Introduction#orientation|orientation]]
+- [[#Chapter 2 Vision & Vision Properties|Chapter 2 Vision & Vision Properties]]
+	- [[#Chapter 2 Vision & Vision Properties#vision from low level|vision from low level]]
+	- [[#Chapter 2 Vision & Vision Properties#vision in high level|vision in high level]]
+	- [[#Chapter 2 Vision & Vision Properties#vision properties|vision properties]]
+	- [[#Chapter 2 Vision & Vision Properties#color space|color space]]
+- [[#Chapter 3 Image Digitalization|Chapter 3 Image Digitalization]]
+	- [[#Chapter 3 Image Digitalization#quantization & sampling|quantization & sampling]]
+	- [[#Chapter 3 Image Digitalization#quantization|quantization]]
+- [[#Chapter 4 Image Transforms|Chapter 4 Image Transforms]]
+	- [[#Chapter 4 Image Transforms#Discrete Fourier Transform (DFT2)|Discrete Fourier Transform (DFT2)]]
+	- [[#Chapter 4 Image Transforms#Discrete Cosine Transformation (DCT)|Discrete Cosine Transformation (DCT)]]
+	- [[#Chapter 4 Image Transforms#DHT|DHT]]
+	- [[#Chapter 4 Image Transforms#Karhunen-Loeve Transform (KLT)|Karhunen-Loeve Transform (KLT)]]
+	- [[#Chapter 4 Image Transforms#DWT|DWT]]
+- [[#Chapter 5 Image Enhancement|Chapter 5 Image Enhancement]]
+	- [[#Chapter 5 Image Enhancement#spatial domain filtering|spatial domain filtering]]
+	- [[#Chapter 5 Image Enhancement#frequency domain filtering|frequency domain filtering]]
+- [[#Chapter 6 Image Restoration|Chapter 6 Image Restoration]]
+	- [[#Chapter 6 Image Restoration#image degradation model|image degradation model]]
+	- [[#Chapter 6 Image Restoration#restoration in the presence of noise only|restoration in the presence of noise only]]
+	- [[#Chapter 6 Image Restoration#inverse filtering|inverse filtering]]
+	- [[#Chapter 6 Image Restoration#Wiener filtering / minimum mean square error filtering|Wiener filtering / minimum mean square error filtering]]
+	- [[#Chapter 6 Image Restoration#constrained least squares filtering|constrained least squares filtering]]
+	- [[#Chapter 6 Image Restoration#geometric image transformation|geometric image transformation]]
+- [[#Chapter 7 Image Segmentation|Chapter 7 Image Segmentation]]
+	- [[#Chapter 7 Image Segmentation#connectivity|connectivity]]
+	- [[#Chapter 7 Image Segmentation#segmentation methods|segmentation methods]]
+- [[#Chapter 8 Morphological Image Processing|Chapter 8 Morphological Image Processing]]
+	- [[#Chapter 8 Morphological Image Processing#binary morphology|binary morphology]]
+	- [[#Chapter 8 Morphological Image Processing#gray-scale morphology|gray-scale morphology]]
+- [[#Chapter 9 Image Compression|Chapter 9 Image Compression]]
+	- [[#Chapter 9 Image Compression#fundamental concepts|fundamental concepts]]
+	- [[#Chapter 9 Image Compression#image data redundancy|image data redundancy]]
+	- [[#Chapter 9 Image Compression#model of image compression|model of image compression]]
+	- [[#Chapter 9 Image Compression#digital image watermark|digital image watermark]]
+- [[#what's going on in past exam|what's going on in past exam]]
+
 ## Chapter 1 Introduction
 
 ### Basic Concepts
@@ -681,6 +723,6 @@ RLC compresses image by representing runs of <font color="#00b050">identical int
 - [x] calculate result of applying filters
 - [x] find histogram of image
 - [x] histogram equalization
-- entropy calculation
-- Huffman's encoding
-- evaluate compression method with code length, compression ratio, coding efficiency
+- [x] entropy calculation
+- [x] Huffman's encoding
+- [x] evaluate compression method with code length, compression ratio, coding efficiency
