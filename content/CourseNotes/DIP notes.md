@@ -1,6 +1,6 @@
 ---
 title: Digital Image Processing Notes
-date: 2023-01-03
+date: 2024-01-04
 draft: false
 author: HNO3
 ---
@@ -281,7 +281,7 @@ frequency domain processing
 ### spatial domain filtering
 #### histogram (intensity transformation techniques
 - definition: <font color="#00b050">estimate</font> of the <font color="#00b050">probability</font> of occurrence of each intensity level in an image
-- $$ P(r_k)=\frac{n_k}{MN},\quad k=0,1,...,L-1$$, where $MN$: the total number of pixels, $r_k$: $k$th intensity value, $n_k$: number of pixels with intensity $r_k$
+- $$ P(r_k)=\frac{n_k}{MN},\quad k=0,1,...,L-1$$, where $MN$: the total number of pixels, $r_k$: $k$th intensity value, $n_k$: number of pixels with intensity $r_k$, $L$ is number of possible intensity levels
 - *histogram equalization*: [geeksforgeeks ref](https://www.geeksforgeeks.org/histogram-equalization-in-digital-image-processing/) <font color="#00b050">mapping</font> original PDF to another whose distribution is more uniform. spread the histogram of the input image, resulting a <font color="#00b050">contrast enhancement</font> $$ s_{k}=T(r_{k})=(L-1)\sum_{i=0}^{k}p_{r}(r_{j})=(L-1)P_{r}^{\prime}(k)=\frac{L-1}{MN}\sum_{i=0}^{k}n_{j}$$
 	- ![[DIP notes-20231217-2.png|550]] (这个图公式是不是有点问题...rounding那里不应该加0.5的)
 - *histogram modification*
