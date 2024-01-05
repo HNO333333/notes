@@ -123,12 +123,14 @@ $$ Z=3I-(X+Y)$$ $$ H^{\prime}=H\mathrm{~mod~}120\quad\quad H\in[0^{\circ},360^{\
 ## Chapter 3 Image Digitalization
 
 digitalization: two stages, *sampling* + *quantization*
-- sampling: $f(x,y)$ (continuous) ➡ $f(m,n)$
-- quantization: $f(x,y)$ ➡ $I(x,y)$
+- sampling: $f(x,y)$ (continuous) ➡ $f(m,n)$ (discrete in spatial coordination)
+- quantization: $f(x,y)$ ➡ $I(x,y)$ (discrete in gray-scale)
 
 representation in this chapter:
 - image size: $M\times N$, gray scale $G$, satisfying: $M=2^m,\quad N=2^n,\quad G=2^k$
 - bytes required to store this image: $2^{m+n-3}k$
+
+sometimes for fixed $N$ and $M$, reduce $k$ can improve the quality (maybe increase the contrast of the image)
 
 image quality assessment
 - *fidelity*: comparison between processed image and original image
@@ -283,7 +285,7 @@ frequency domain processing
 - definition: <font color="#00b050">estimate</font> of the <font color="#00b050">probability</font> of occurrence of each intensity level in an image
 - $$ P(r_k)=\frac{n_k}{MN},\quad k=0,1,...,L-1$$, where $MN$: the total number of pixels, $r_k$: $k$th intensity value, $n_k$: number of pixels with intensity $r_k$, $L$ is number of possible intensity levels
 - *histogram equalization*: [geeksforgeeks ref](https://www.geeksforgeeks.org/histogram-equalization-in-digital-image-processing/) <font color="#00b050">mapping</font> original PDF to another whose distribution is more uniform. spread the histogram of the input image, resulting a <font color="#00b050">contrast enhancement</font> $$ s_{k}=T(r_{k})=(L-1)\sum_{i=0}^{k}p_{r}(r_{j})=(L-1)P_{r}^{\prime}(k)=\frac{L-1}{MN}\sum_{i=0}^{k}n_{j}$$
-	- ![[DIP notes-20231217-2.png|550]] (这个图公式是不是有点问题...rounding那里不应该加0.5的)
+	- ![[DIP notes-20231217-2.png|550]] (+0.5是对的！！四舍五入，`int`表达的是只取整数部分)
 - *histogram modification*
 	- histogram specification: uniform histogram is not best choice
 	- method used to generate a processed image that has a specified histogram is called histogram specification
@@ -294,6 +296,11 @@ frequency domain processing
 		4. compute all values of transformation function and store them in a table
 		5. convert the histogram of given image to the new image based on the values in the table
 	- ![[DIP notes-20231217-3.png|600]]
+- histogram specification
+	1. histogram equalization
+	2. specify the "goal" histogram $p_z(z)$, find $s=G(z)=(L-1)\int_0^zp_z\left(v\right)dv$
+	3. mapping the original histogram to specified histogram by $z=G^{-1}(s)=G^{-1}(T(r))$
+
 
 #### image smoothing
 
@@ -703,7 +710,7 @@ RLC compresses image by representing runs of <font color="#00b050">identical int
 #### other coding methods
 - bit-plane
 - block transform coding
-- predictive coding
+- predictive coding (by reducing the redundancy in space and time, new information a pixel brings is defined as the difference between actual value and prediction)
 
 ### digital image watermark
 
